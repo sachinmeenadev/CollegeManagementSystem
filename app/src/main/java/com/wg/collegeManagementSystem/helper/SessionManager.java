@@ -10,22 +10,17 @@ import android.util.Log;
  */
 
 public class SessionManager {
+    // Shared preferences file name
+    private static final String PREF_NAME = "CollegeManagementSystem";
+    private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
-
     // Shared Preferences
     SharedPreferences pref;
-
     Editor editor;
     Context _context;
-
     // Shared pref mode
     int PRIVATE_MODE = 0;
-
-    // Shared preferences file name
-    private static final String PREF_NAME = "AndroidDemoAppLogin";
-
-    private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
 
     public SessionManager(Context context) {
         this._context = context;
