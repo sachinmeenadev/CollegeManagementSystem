@@ -1,8 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:padding="20dp"
     tools:context="com.wg.collegeManagementSystem.LoginActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/login_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email@poornima.org"
+        android:textColor="@color/colorInputHint" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="@color/colorInputHint" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBtnLoginBg"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBtnLogin" />
+</LinearLayout>
