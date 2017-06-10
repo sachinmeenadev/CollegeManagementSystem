@@ -9,40 +9,74 @@
     android:padding="20dp"
     tools:context="com.wg.collegeManagementSystem.LoginActivity">
 
-    <android.support.v7.widget.AppCompatTextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        android:textColor="@color/colorBlack"
-        android:textStyle="bold" />
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:src="@drawable/piet_only_logo_round" />
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/login_username"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="email@poornima.org"
-        android:textColor="@color/colorInputHint" />
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatTextView
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/activity_login_input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email (poornima.org)"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/activity_login_input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorBtnLoginBg"
+                android:onClick="activity_login_btn_login"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@null"
+                android:onClick="activity_login_btn_forgot_password"
+                android:text="Forgot Password ?"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlack" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:textColor="@color/colorBlack"
-        android:textStyle="bold" />
-
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/login_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="@color/colorInputHint" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBtnLoginBg"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="@color/colorBtnLogin" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/piet_only_name_logo" />
 </LinearLayout>

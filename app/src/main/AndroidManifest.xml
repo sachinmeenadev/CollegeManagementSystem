@@ -33,7 +33,9 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:theme="@style/StartTheme" />
-        <activity android:name=".WelcomeActivity" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
