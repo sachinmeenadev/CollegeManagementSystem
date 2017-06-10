@@ -22,14 +22,15 @@
 
     <ProgressBar
         android:id="@+id/splash_progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_weight="1"
-        android:padding="6dp" />
+        android:padding="6dp"
+        android:theme="@style/CircularProgress" />
 
     <TextView
         android:layout_width="match_parent"

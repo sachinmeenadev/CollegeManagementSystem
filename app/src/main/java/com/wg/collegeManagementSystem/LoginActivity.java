@@ -26,4 +26,11 @@ public class LoginActivity extends AppCompatActivity {
     public void activity_login_btn_forgot_password(View v) {
         startActivity(new Intent(this, ForgotPasswordActivity.class));
     }
+
+    /**
+     * On image click button
+     */
+    public void activity_login_register(View v) {
+        startActivity(new Intent(this, RegisterActivity.class));
+    }
 }

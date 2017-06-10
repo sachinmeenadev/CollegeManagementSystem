@@ -15,7 +15,7 @@ import java.util.TimerTask;
 public class SplashScreen extends Activity {
 
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 50;
+    private static int SPLASH_TIME_OUT = 20;
     private Timer timer;
     private ProgressBar progressBar;
     private int i = 0;
