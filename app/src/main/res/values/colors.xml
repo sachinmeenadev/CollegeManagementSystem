@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBtnLogin">#00E676</color>
+    <color name="colorBtnLoginBg">#3D5AFE</color>
+    <color name="colorInputHint">#B0BEC5</color>
 </resources>

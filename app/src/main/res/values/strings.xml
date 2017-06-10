@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">College Management System</string>
+    <string name="title_activity_login">Sign in</string>
 </resources>
