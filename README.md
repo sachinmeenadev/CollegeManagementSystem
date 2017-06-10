@@ -1,2 +1,2 @@
 # CollegeManagementSystem
-A small College Management System demo android application
+A small College ERP android application for managing Student, Faculty Members and Placements
