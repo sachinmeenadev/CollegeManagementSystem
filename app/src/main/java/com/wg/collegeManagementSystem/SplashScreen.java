@@ -38,7 +38,7 @@ public class SplashScreen extends Activity {
                 } else {
                     //closing the timer
                     timer.cancel();
-                    Intent intent = new Intent(SplashScreen.this, WelcomeActivity.class);
+                    Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
                     startActivity(intent);
                     // close this activity
                     finish();

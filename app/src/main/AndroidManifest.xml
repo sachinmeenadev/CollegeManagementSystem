@@ -17,17 +17,23 @@
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/StartTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/StartTheme" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/StartTheme" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:theme="@style/StartTheme" />
         <activity android:name=".WelcomeActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ForgotPasswordActivity"></activity>
     </application>
 
 </manifest>
