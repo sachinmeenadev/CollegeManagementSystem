@@ -12,7 +12,9 @@ import android.util.Log;
 public class SessionManager {
     // Shared preferences file name
     private static final String PREF_NAME = "CollegeManagementSystem";
-    private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+    private static String USER_NAME = "";
+    private static String USER_ROLE = "";
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
     // Shared Preferences
@@ -29,17 +31,25 @@ public class SessionManager {
     }
 
     public void setLogin(boolean isLoggedIn) {
-
-        editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn);
-
-        // commit changes
+        editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
         editor.commit();
-
         Log.d(TAG, "User login session modified!");
     }
 
-    public boolean isLoggedIn(){
-        return pref.getBoolean(KEY_IS_LOGGEDIN, false);
+    public void setUserName(String userName) {
+        editor.putString(USER_NAME, userName);
+        editor.commit();
+        Log.d(TAG, "User name modified!");
+    }
+
+    public void setUserRole(String userRole) {
+        editor.putString(USER_ROLE, userRole);
+        editor.commit();
+        Log.d(TAG, "User role modified!");
+    }
+
+    public boolean isLoggedIn() {
+        return pref.getBoolean(KEY_IS_LOGGED_IN, false);
     }
 }
 
