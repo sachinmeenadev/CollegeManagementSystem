@@ -35,7 +35,9 @@
             android:theme="@style/StartTheme" />
         <activity
             android:name=".WelcomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".admin.AdminWelcomeActivity" />
+        <activity android:name=".admin.AdminRoleCreation"></activity>
     </application>
 
 </manifest>
