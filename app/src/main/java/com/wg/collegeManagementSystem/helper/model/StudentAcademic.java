@@ -28,8 +28,8 @@ public class StudentAcademic {
     public static final String KEY_StudentAcademicCollegeBackSubject = "studentAcademicCollegeBackSubject";
     public static final String KEY_StudentAcademicHobbies = "studentAcademicHobbies";
 
-    public String studentAcademicId;
-    public String studentAcademicStudentId;
+    public int studentAcademicId;
+    public int studentAcademicStudentId;
     public String studentAcademicSecPercentage;
     public String studentAcademicSecBoard;
     public String studentAcademicSecMedium;
@@ -47,20 +47,19 @@ public class StudentAcademic {
     public String studentAcademicCollegeBackSubject;
     public String studentAcademicHobbies;
 
-    public String getStudentAcademicId() {
-
+    public int getStudentAcademicId() {
         return studentAcademicId;
     }
 
-    public void setStudentAcademicId(String studentAcademicId) {
+    public void setStudentAcademicId(int studentAcademicId) {
         this.studentAcademicId = studentAcademicId;
     }
 
-    public String getStudentAcademicStudentId() {
+    public int getStudentAcademicStudentId() {
         return studentAcademicStudentId;
     }
 
-    public void setStudentAcademicStudentId(String studentAcademicStudentId) {
+    public void setStudentAcademicStudentId(int studentAcademicStudentId) {
         this.studentAcademicStudentId = studentAcademicStudentId;
     }
 

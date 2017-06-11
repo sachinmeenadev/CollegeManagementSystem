@@ -12,14 +12,14 @@ public class Role {
     public static final String KEY_RoleId = "roleId";
     public static final String KEY_RoleType = "roleType";
 
-    public String roleId;
+    public int roleId;
     public String roleType;
 
-    public String getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 

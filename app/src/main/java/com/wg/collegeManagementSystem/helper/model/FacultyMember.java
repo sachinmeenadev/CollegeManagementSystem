@@ -12,19 +12,23 @@ public class FacultyMember {
     // Labels Table Columns names
     public static final String KEY_FacultyMemberId = "facultyMemberId";
     public static final String KEY_FacultyMemberName = "facultyMemberName";
-    public static final String KEY_FacultyMemberBranch = "facultyMemberBranch";
+    public static final String KEY_FacultyMemberBranchId = "facultyMemberBranchId";
     public static final String KEY_FacultyMemberDesignation = "facultyMemberDesignation";
+    public static final String KEY_FacultyMemberContact = "facultyMemberContact";
+    public static final String KEY_FacultyMemberEmail = "facultyMemberEmail";
 
-    public String facultyMemberId;
+    public int facultyMemberId;
     public String facultyMemberName;
-    public String facultyMemberBranch;
+    public int facultyMemberBranchId;
     public String facultyMemberDesignation;
+    public String facultyMemberContact;
+    public String facultyMemberEmail;
 
-    public String getFacultyMemberId() {
+    public int getFacultyMemberId() {
         return facultyMemberId;
     }
 
-    public void setFacultyMemberId(String facultyMemberId) {
+    public void setFacultyMemberId(int facultyMemberId) {
         this.facultyMemberId = facultyMemberId;
     }
 
@@ -36,12 +40,12 @@ public class FacultyMember {
         this.facultyMemberName = facultyMemberName;
     }
 
-    public String getFacultyMemberBranch() {
-        return facultyMemberBranch;
+    public int getFacultyMemberBranchId() {
+        return facultyMemberBranchId;
     }
 
-    public void setFacultyMemberBranch(String facultyMemberBranch) {
-        this.facultyMemberBranch = facultyMemberBranch;
+    public void setFacultyMemberBranchId(int facultyMemberBranchId) {
+        this.facultyMemberBranchId = facultyMemberBranchId;
     }
 
     public String getFacultyMemberDesignation() {
@@ -50,5 +54,21 @@ public class FacultyMember {
 
     public void setFacultyMemberDesignation(String facultyMemberDesignation) {
         this.facultyMemberDesignation = facultyMemberDesignation;
+    }
+
+    public String getFacultyMemberContact() {
+        return facultyMemberContact;
+    }
+
+    public void setFacultyMemberContact(String facultyMemberContact) {
+        this.facultyMemberContact = facultyMemberContact;
+    }
+
+    public String getFacultyMemberEmail() {
+        return facultyMemberEmail;
+    }
+
+    public void setFacultyMemberEmail(String facultyMemberEmail) {
+        this.facultyMemberEmail = facultyMemberEmail;
     }
 }

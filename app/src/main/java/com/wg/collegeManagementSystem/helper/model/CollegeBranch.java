@@ -12,15 +12,17 @@ public class CollegeBranch {
     // Labels Table Columns names
     public static final String KEY_CollegeBranchId = "collegeBranchId";
     public static final String KEY_CollegeBranchName = "collegeBranchName";
+    public static final String KEY_CollegeBranchAbbr = "collegeBranchAbbbr";
 
-    public String collegeBranchId;
+    public int collegeBranchId;
     public String collegeBranchName;
+    public String collegeBranchAbbr;
 
-    public String getCollegeBranchId() {
+    public int getCollegeBranchId() {
         return collegeBranchId;
     }
 
-    public void setCollegeBranchId(String collegeBranchId) {
+    public void setCollegeBranchId(int collegeBranchId) {
         this.collegeBranchId = collegeBranchId;
     }
 
@@ -30,5 +32,13 @@ public class CollegeBranch {
 
     public void setCollegeBranchName(String collegeBranchName) {
         this.collegeBranchName = collegeBranchName;
+    }
+
+    public String getCollegeBranchAbbr() {
+        return collegeBranchAbbr;
+    }
+
+    public void setCollegeBranchAbbr(String collegeBranchAbbr) {
+        this.collegeBranchAbbr = collegeBranchAbbr;
     }
 }

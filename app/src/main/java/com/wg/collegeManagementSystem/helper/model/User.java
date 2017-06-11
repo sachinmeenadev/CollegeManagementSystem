@@ -15,17 +15,17 @@ public class User {
     public static final String KEY_UserPassword = "userPassword";
     public static final String KEY_UserRoleId = "userRoleId";
 
-    public String userId;
+    public int userId;
     public String userName;
     public String userEmail;
     public String userPassword;
-    public String userRoleId;
+    public int userRoleId;
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -53,11 +53,11 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public String getUserRoleId() {
+    public int getUserRoleId() {
         return userRoleId;
     }
 
-    public void setUserRoleId(String userRoleId) {
+    public void setUserRoleId(int userRoleId) {
         this.userRoleId = userRoleId;
     }
 }

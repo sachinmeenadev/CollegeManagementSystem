@@ -6,7 +6,9 @@ import android.util.Log;
 
 import com.wg.collegeManagementSystem.app.App;
 import com.wg.collegeManagementSystem.helper.model.Role;
+import com.wg.collegeManagementSystem.helper.model.Subject;
 import com.wg.collegeManagementSystem.helper.repo.RoleRepo;
+import com.wg.collegeManagementSystem.helper.repo.SubjectRepo;
 
 /**
  * Created by Jerry on 11-06-2017.
@@ -29,6 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //All necessary tables you like to create will create here
         db.execSQL(RoleRepo.createTable());
+        db.execSQL(SubjectRepo.createTable());
     }
 
     @Override
@@ -37,6 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Drop table if existed, all data will be gone!!!
         db.execSQL("DROP TABLE IF EXISTS " + Role.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + Subject.TABLE);
         onCreate(db);
     }
 

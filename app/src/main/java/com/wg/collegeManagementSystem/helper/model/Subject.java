@@ -15,16 +15,16 @@ public class Subject {
     public static final String KEY_SubjectAbbr = "subjectAbbr";
     public static final String KEY_SubjectCode = "subjectCode";
 
-    public String subjectId;
+    public int subjectId;
     public String subjectName;
     public String subjectAbbr;
     public String subjectCode;
 
-    public String getSubjectId() {
+    public int getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(String subjectId) {
+    public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
     }
 

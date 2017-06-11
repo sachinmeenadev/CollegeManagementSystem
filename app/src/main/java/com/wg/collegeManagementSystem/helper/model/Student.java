@@ -11,11 +11,11 @@ public class Student {
     // Labels Table Columns names
     public static final String KEY_StudentId = "studentId";
     public static final String KEY_StudentName = "studentName";
+    public static final String KEY_StudentRegNumber = "studentRegNumber";
     public static final String KEY_StudentBranch = "studentBranch";
     public static final String KEY_StudentSem = "studentSem";
     public static final String KEY_StudentSemSection = "studentSemSection";
     public static final String KEY_StudentSemBatch = "studentSemBatch";
-    public static final String KEY_StudentImage = "studentImage";
     public static final String KEY_StudentEmail = "studentEmail";
     public static final String KEY_StudentContact = "studentContact";
     public static final String KEY_StudentFatherName = "studentFatherName";
@@ -39,13 +39,13 @@ public class Student {
     public static final String KEY_StudentCountry = "studentCountry";
     public static final String KEY_StudentPinCode = "studentPinCode";
 
-    public String studentId;
+    public int studentId;
     public String studentName;
+    public String studentRegNumber;
     public String studentBranch;
     public String studentSem;
     public String studentSemSection;
     public String studentSemBatch;
-    public String studentImage;
     public String studentEmail;
     public String studentContact;
     public String studentFatherName;
@@ -69,11 +69,11 @@ public class Student {
     public String studentCountry;
     public String studentPinCode;
 
-    public String getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
@@ -83,6 +83,14 @@ public class Student {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getStudentRegNumber() {
+        return studentRegNumber;
+    }
+
+    public void setStudentRegNumber(String studentRegNumber) {
+        this.studentRegNumber = studentRegNumber;
     }
 
     public String getStudentBranch() {
@@ -115,14 +123,6 @@ public class Student {
 
     public void setStudentSemBatch(String studentSemBatch) {
         this.studentSemBatch = studentSemBatch;
-    }
-
-    public String getStudentImage() {
-        return studentImage;
-    }
-
-    public void setStudentImage(String studentImage) {
-        this.studentImage = studentImage;
     }
 
     public String getStudentEmail() {

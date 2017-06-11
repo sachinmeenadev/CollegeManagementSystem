@@ -13,31 +13,31 @@ public class FacultyMemberSubject {
     public static final String KEY_FMSFacultyId = "fmsFacultyId";
     public static final String KEY_FMSSubjectId = "fmsSubjectId";
 
-    public String fmsId;
-    public String fmsFacultyId;
-    public String fmsSubjectId;
+    public int fmsId;
+    public int fmsFacultyId;
+    public int fmsSubjectId;
 
-    public String getFmsId() {
+    public int getFmsId() {
         return fmsId;
     }
 
-    public void setFmsId(String fmsId) {
+    public void setFmsId(int fmsId) {
         this.fmsId = fmsId;
     }
 
-    public String getFmsFacultyId() {
+    public int getFmsFacultyId() {
         return fmsFacultyId;
     }
 
-    public void setFmsFacultyId(String fmsFacultyId) {
+    public void setFmsFacultyId(int fmsFacultyId) {
         this.fmsFacultyId = fmsFacultyId;
     }
 
-    public String getFmsSubjectId() {
+    public int getFmsSubjectId() {
         return fmsSubjectId;
     }
 
-    public void setFmsSubjectId(String fmsSubjectId) {
+    public void setFmsSubjectId(int fmsSubjectId) {
         this.fmsSubjectId = fmsSubjectId;
     }
 }

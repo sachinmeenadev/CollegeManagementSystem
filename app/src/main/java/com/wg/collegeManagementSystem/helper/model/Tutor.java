@@ -14,24 +14,24 @@ public class Tutor {
     public static final String KEY_TutorSection = "tutorSection";
     public static final String KEY_TutorBatch = "tutorBatch";
 
-    public String tutorId;
-    public String tutorFacultyId;
+    public int tutorId;
+    public int tutorFacultyId;
     public String tutorSection;
     public String tutorBatch;
 
-    public String getTutorId() {
+    public int getTutorId() {
         return tutorId;
     }
 
-    public void setTutorId(String tutorId) {
+    public void setTutorId(int tutorId) {
         this.tutorId = tutorId;
     }
 
-    public String getTutorFacultyId() {
+    public int getTutorFacultyId() {
         return tutorFacultyId;
     }
 
-    public void setTutorFacultyId(String tutorFacultyId) {
+    public void setTutorFacultyId(int tutorFacultyId) {
         this.tutorFacultyId = tutorFacultyId;
     }
 
