@@ -9,6 +9,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -37,6 +38,14 @@ public class AdminRoleCreation extends Fragment {
 
         input_role = (EditText) view.findViewById(R.id.fragment_admin_role_input_role);
         listView = (ListView) view.findViewById(R.id.fragment_admin_role_list);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                return true;
+            }
+        });
+
         fragmentAdminRoleBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_role_btn_insert);
         fragmentAdminRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
