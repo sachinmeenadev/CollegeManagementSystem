@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         session = new SessionManager(getApplicationContext());
         if (session.isLoggedIn()) {
-            if (session.getUserRole() == "Admin") {
+            if (session.getUserRole().equals("Admin")) {
                 // User is already logged in. Take him to main activity
                 Intent intent = new Intent(this, AdminWelcomeActivity.class);
                 startActivity(intent);
@@ -41,8 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!email.isEmpty() && !password.isEmpty()) {
             if (email.equals(aEmail) && password.equals(aPassword)) {
                 session.setLogin(true);
-                session.setUserName("Jerry");
-                session.setUserRole("Admin");
+                session.setUserNameAndRole("Jerry", "Admin");
                 startActivity(new Intent(this, AdminWelcomeActivity.class));
                 finish();
             }

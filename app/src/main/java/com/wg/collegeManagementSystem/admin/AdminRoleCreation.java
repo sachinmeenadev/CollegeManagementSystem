@@ -24,7 +24,6 @@ public class AdminRoleCreation extends AppCompatActivity {
     private ListView listView;
     private EditText input_role;
     private CustomAdapter customAdapter;
-    private RoleRepo roleRepo;
     private List<RoleList> list;
 
     @Override
@@ -34,7 +33,6 @@ public class AdminRoleCreation extends AppCompatActivity {
 
         input_role = (EditText) findViewById(R.id.admin_activity_role_input_role);
         listView = (ListView) findViewById(R.id.admin_activity_role_list);
-        roleRepo = new RoleRepo();
 
         show_data();
     }
@@ -42,6 +40,7 @@ public class AdminRoleCreation extends AppCompatActivity {
     public void admin_activity_role_btn_insert(View v) {
         String roleType = input_role.getText().toString().trim();
 
+        RoleRepo roleRepo = new RoleRepo();
         Role role = new Role();
 
         role.setRoleType(roleType);
@@ -51,6 +50,7 @@ public class AdminRoleCreation extends AppCompatActivity {
     }
 
     public void show_data() {
+        RoleRepo roleRepo = new RoleRepo();
         list = roleRepo.getStudentCourse();
         String[] roleType;
         roleType = new String[list.size()];

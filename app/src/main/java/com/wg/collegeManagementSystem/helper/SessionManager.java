@@ -13,8 +13,8 @@ public class SessionManager {
     // Shared preferences file name
     private static final String PREF_NAME = "CollegeManagementSystem";
     private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
-    private static String USER_NAME = null;
-    private static String USER_ROLE = null;
+    private static String USER_NAME = "USER_NAME";
+    private static String USER_ROLE = "USER_ROLE";
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
     // Shared Preferences
@@ -27,10 +27,10 @@ public class SessionManager {
     public SessionManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
-        editor = pref.edit();
     }
 
     public void setLogin(boolean isLoggedIn) {
+        editor = pref.edit();
         editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
         editor.commit();
         Log.d(TAG, "User login session modified!");
@@ -44,20 +44,16 @@ public class SessionManager {
         return pref.getString(USER_NAME, "userName");
     }
 
-    public void setUserName(String userName) {
+    public void setUserNameAndRole(String userName, String userRole) {
         editor.putString(USER_NAME, userName);
+        editor.putString(USER_ROLE, userRole);
         editor.commit();
+        Log.d(TAG, "User role modified!");
         Log.d(TAG, "User name modified!");
     }
 
     public String getUserRole() {
         return pref.getString(USER_ROLE, "userRole");
-    }
-
-    public void setUserRole(String userRole) {
-        editor.putString(USER_ROLE, userRole);
-        editor.commit();
-        Log.d(TAG, "User role modified!");
     }
 }
 

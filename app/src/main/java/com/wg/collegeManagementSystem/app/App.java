@@ -24,7 +24,5 @@ public class App extends Application {
         context = this.getApplicationContext();
         dbHelper = new DBHelper();
         DatabaseManager.initializeInstance(dbHelper);
-
     }
-
 }
