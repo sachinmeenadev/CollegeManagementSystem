@@ -22,8 +22,9 @@ import com.wg.collegeManagementSystem.LoginActivity;
 import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.helper.SessionManager;
 
-public class AdminWelcomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public SessionManager session;
+    private Fragment fragment = null;
     private LinearLayout linearLayout;
     private TextView navDrawerHeaderLblName, navDrawerHeaderLblEmail;
     private AppCompatButton navDrawerHeaderBtnLogout;
@@ -37,6 +38,10 @@ public class AdminWelcomeActivity extends AppCompatActivity implements Navigatio
         if (!session.isLoggedIn()) {
             session.setLogin(false);
         }
+        fragment = new AdminWelcome();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_admin_frame, fragment);
+        fragmentTransaction.commit();
 
         linearLayout = (LinearLayout) findViewById(R.id.admin_welcome_linear_layout);
 
@@ -94,9 +99,6 @@ public class AdminWelcomeActivity extends AppCompatActivity implements Navigatio
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        //creating fragment object
-        Fragment fragment = null;
-
         int itemId = item.getItemId();
         String itemName = item.getTitle().toString();
         //initializing the fragment object which is selected
@@ -107,9 +109,9 @@ public class AdminWelcomeActivity extends AppCompatActivity implements Navigatio
         }
         //replacing the fragment
         if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_admin_frame, fragment);
-            ft.commit();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content_admin_frame, fragment);
+            fragmentTransaction.commit();
         }
         Snackbar snackbar = Snackbar.make(linearLayout, "You selected " + itemName, Snackbar.LENGTH_LONG);
         snackbar.show();

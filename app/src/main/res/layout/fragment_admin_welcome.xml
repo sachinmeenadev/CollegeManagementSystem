@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:src="@drawable/piet_only_logo_round" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="Welcome to the Admin Panel of this app. \n From the navigation drawer on the left top corner you can choose the action you want to perform."
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+</LinearLayout>

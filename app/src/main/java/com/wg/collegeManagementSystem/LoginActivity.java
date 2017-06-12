@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-import com.wg.collegeManagementSystem.admin.AdminWelcomeActivity;
+import com.wg.collegeManagementSystem.admin.AdminActivity;
 import com.wg.collegeManagementSystem.helper.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
         if (session.isLoggedIn()) {
             if (session.getUserRole().equals("Admin")) {
                 // User is already logged in. Take him to main activity
-                Intent intent = new Intent(this, AdminWelcomeActivity.class);
+                Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             if (email.equals(aEmail) && password.equals(aPassword)) {
                 session.setLogin(true);
                 session.setUserNameEmailRole("Jerry", "jerry@sachin.com", "Admin");
-                startActivity(new Intent(this, AdminWelcomeActivity.class));
+                startActivity(new Intent(this, AdminActivity.class));
                 finish();
             }
         } else {
