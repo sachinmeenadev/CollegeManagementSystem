@@ -19,8 +19,8 @@ public class CollegeBranchRepo {
 
     public static String createTable() {
         return "CREATE TABLE " + CollegeBranch.TABLE + "("
-                + CollegeBranch.KEY_CollegeBranchId + " INT  PRIMARY KEY AUTOINCREMENT,"
-                + CollegeBranch.KEY_CollegeBranchName + " VARCHAR,"
+                + CollegeBranch.KEY_CollegeBranchId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + CollegeBranch.KEY_CollegeBranchName + " VARCHAR, "
                 + CollegeBranch.KEY_CollegeBranchAbbr + " VARCHAR)";
     }
 

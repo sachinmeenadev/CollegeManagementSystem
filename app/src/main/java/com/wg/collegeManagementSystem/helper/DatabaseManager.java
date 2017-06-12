@@ -3,8 +3,6 @@ package com.wg.collegeManagementSystem.helper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * Created by Jerry on 11-06-2017.
  */
@@ -12,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DatabaseManager {
     private static DatabaseManager instance;
     private static SQLiteOpenHelper mDatabaseHelper;
-    private AtomicInteger mOpenCounter = new AtomicInteger();
+    private Integer mOpenCounter = 0;
     private SQLiteDatabase mDatabase;
 
     public static synchronized void initializeInstance(SQLiteOpenHelper helper) {
@@ -32,7 +30,8 @@ public class DatabaseManager {
     }
 
     public synchronized SQLiteDatabase openDatabase() {
-        if (mOpenCounter.incrementAndGet() == 1) {
+        mOpenCounter += 1;
+        if (mOpenCounter == 1) {
             // Opening new database
             mDatabase = mDatabaseHelper.getWritableDatabase();
         }
@@ -40,7 +39,8 @@ public class DatabaseManager {
     }
 
     public synchronized void closeDatabase() {
-        if (mOpenCounter.decrementAndGet() == 0) {
+        mOpenCounter -= 1;
+        if (mOpenCounter == 0) {
             // Closing database
             mDatabase.close();
 

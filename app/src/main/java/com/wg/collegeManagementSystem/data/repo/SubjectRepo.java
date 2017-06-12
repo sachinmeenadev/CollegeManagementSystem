@@ -20,9 +20,9 @@ public class SubjectRepo {
 
     public static String createTable() {
         return "CREATE TABLE " + Subject.TABLE + "("
-                + Subject.KEY_SubjectId + " INT  PRIMARY KEY AUTOINCREMENT,"
-                + Subject.KEY_SubjectName + " VARCHAR,"
-                + Subject.KEY_SubjectAbbr + " VARCHAR,"
+                + Subject.KEY_SubjectId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Subject.KEY_SubjectName + " VARCHAR, "
+                + Subject.KEY_SubjectAbbr + " VARCHAR, "
                 + Subject.KEY_SubjectCode + " VARCHAR)";
     }
 

@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!email.isEmpty() && !password.isEmpty()) {
             if (email.equals(aEmail) && password.equals(aPassword)) {
                 session.setLogin(true);
-                session.setUserNameAndRole("Jerry", "Admin");
+                session.setUserNameEmailRole("Jerry", "jerry@sachin.com", "Admin");
                 startActivity(new Intent(this, AdminWelcomeActivity.class));
                 finish();
             }

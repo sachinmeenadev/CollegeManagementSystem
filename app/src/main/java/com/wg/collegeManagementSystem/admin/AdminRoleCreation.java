@@ -2,8 +2,11 @@ package com.wg.collegeManagementSystem.admin;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,25 +22,44 @@ import com.wg.collegeManagementSystem.model.RoleList;
 
 import java.util.List;
 
-public class AdminRoleCreation extends AppCompatActivity {
+public class AdminRoleCreation extends Fragment {
 
+    public static final String TAG = AdminRoleCreation.class.getSimpleName();
     private ListView listView;
     private EditText input_role;
+    private AppCompatButton fragmentAdminRoleBtnInsert;
     private CustomAdapter customAdapter;
-    private List<RoleList> list;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_role_creation);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        input_role = (EditText) findViewById(R.id.admin_activity_role_input_role);
-        listView = (ListView) findViewById(R.id.admin_activity_role_list);
+        View view = inflater.inflate(R.layout.fragment_admin_role_creation, container, false);
 
+        input_role = (EditText) view.findViewById(R.id.fragment_admin_role_input_role);
+        listView = (ListView) view.findViewById(R.id.fragment_admin_role_list);
+        fragmentAdminRoleBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_role_btn_insert);
+        fragmentAdminRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                insertRoleType();
+            }
+        });
         show_data();
+        return view;
     }
 
-    public void admin_activity_role_btn_insert(View v) {
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //you can set the title for your toolbar here for different fragments different titles
+        getActivity().setTitle("PIET-AIM, Role Creation");
+    }
+
+    /**
+     * For inserting roles in database
+     */
+    public void insertRoleType() {
         String roleType = input_role.getText().toString().trim();
 
         RoleRepo roleRepo = new RoleRepo();
@@ -45,41 +67,62 @@ public class AdminRoleCreation extends AppCompatActivity {
 
         role.setRoleType(roleType);
         int status = roleRepo.insert(role);
-
+        input_role.setText("");
+        Toast.makeText(getActivity(), "Role Added Successfully", Toast.LENGTH_SHORT).show();
         show_data();
     }
 
+    /**
+     * For showing added roles from database
+     */
     public void show_data() {
         RoleRepo roleRepo = new RoleRepo();
-        list = roleRepo.getStudentCourse();
+        List<RoleList> list = roleRepo.getRole();
         String[] roleType;
         roleType = new String[list.size()];
+        Log.d(TAG, String.format("%-11s", "Role ID") +
+                String.format("%-35s", "Role Type")
+        );
+        Log.d(TAG, "=============================================================");
+        for (int i = 0; i < list.size(); i++) {
+            Log.d(TAG, list.get(i).getRoleId() +
+                    " " + String.format("%-35s", list.get(i).getRoleType())
+            );
+        }
+        Log.d(TAG, "=============================================================");
+
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 roleType[i] = list.get(i).getRoleType();
             }
-            customAdapter = new CustomAdapter(this, roleType);
+            customAdapter = new CustomAdapter(getActivity(), roleType);
             listView.setAdapter(customAdapter);
         } else {
-            Toast.makeText(this, "No data in database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
         }
     }
 
+    /**
+     * ViewHolder to hold elements from custom row layout
+     */
     public class ViewHolder {
         AppCompatTextView lblSlNo, lblRoleType;
 
         public ViewHolder(View v) {
-            lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_activity_role_list_sl_no);
-            lblRoleType = (AppCompatTextView) v.findViewById(R.id.admin_activity_role_list_role_type);
+            lblSlNo = (AppCompatTextView) v.findViewById(R.id.fragment_admin_role_list_sl_no);
+            lblRoleType = (AppCompatTextView) v.findViewById(R.id.fragment_admin_role_list_role_type);
         }
     }
 
+    /**
+     * Custom adapter to fill list view
+     * */
     public class CustomAdapter extends ArrayAdapter<String> {
         String[] mRoleType;
         Context mContext;
 
         public CustomAdapter(Context context, String[] roleType) {
-            super(context, R.layout.activity_admin_role_row, R.id.admin_activity_role_list_role_type, roleType);
+            super(context, R.layout.fragment_admin_role_row, R.id.fragment_admin_role_list_role_type, roleType);
             mRoleType = roleType;
             mContext = context;
         }
@@ -87,11 +130,11 @@ public class AdminRoleCreation extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View row = convertView;
-            ViewHolder viewHolder = null;
+            ViewHolder viewHolder;
 
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(R.layout.activity_admin_role_row, parent, false);
+                row = inflater.inflate(R.layout.fragment_admin_role_row, parent, false);
                 viewHolder = new ViewHolder(row);
                 row.setTag(viewHolder);
             } else {

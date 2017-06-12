@@ -26,7 +26,7 @@ public class RoleRepo {
 
     public static String createTable() {
         return "CREATE TABLE " + Role.TABLE + "("
-                + Role.KEY_RoleId + " INT  PRIMARY KEY AUTOINCREMENT,"
+                + Role.KEY_RoleId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Role.KEY_RoleType + " VARCHAR)";
     }
 
@@ -43,7 +43,7 @@ public class RoleRepo {
         return roleId;
     }
 
-    public List<RoleList> getStudentCourse() {
+    public List<RoleList> getRole() {
         RoleList roleList = new RoleList();
         List<RoleList> roleLists = new ArrayList<RoleList>();
 
@@ -57,6 +57,7 @@ public class RoleRepo {
 
         if (cursor.moveToFirst()) {
             do {
+                Log.d(TAG, cursor.getInt(cursor.getColumnIndex(Role.KEY_RoleId)) + "  " + cursor.getString(cursor.getColumnIndex(Role.KEY_RoleType)));
                 roleList.setRoleId(cursor.getInt(cursor.getColumnIndex(Role.KEY_RoleId)));
                 roleList.setRoleType(cursor.getString(cursor.getColumnIndex(Role.KEY_RoleType)));
 

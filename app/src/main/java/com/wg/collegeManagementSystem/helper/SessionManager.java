@@ -14,6 +14,7 @@ public class SessionManager {
     private static final String PREF_NAME = "CollegeManagementSystem";
     private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
     private static String USER_NAME = "USER_NAME";
+    private static String USER_EMAIL = "USER_EMAIL";
     private static String USER_ROLE = "USER_ROLE";
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
@@ -40,16 +41,22 @@ public class SessionManager {
         return pref.getBoolean(KEY_IS_LOGGED_IN, false);
     }
 
+    public void setUserNameEmailRole(String userName, String userEmail, String userRole) {
+        editor.putString(USER_NAME, userName);
+        editor.putString(USER_EMAIL, userEmail);
+        editor.putString(USER_ROLE, userRole);
+        editor.commit();
+        Log.d(TAG, "User name modified!");
+        Log.d(TAG, "User email modified!");
+        Log.d(TAG, "User role modified!");
+    }
+
     public String getUserName() {
         return pref.getString(USER_NAME, "userName");
     }
 
-    public void setUserNameAndRole(String userName, String userRole) {
-        editor.putString(USER_NAME, userName);
-        editor.putString(USER_ROLE, userRole);
-        editor.commit();
-        Log.d(TAG, "User role modified!");
-        Log.d(TAG, "User name modified!");
+    public String getUserEmail() {
+        return pref.getString(USER_EMAIL, "userEmail");
     }
 
     public String getUserRole() {

@@ -19,11 +19,11 @@ public class UserRepo {
 
     public static String createTable() {
         return "CREATE TABLE " + User.TABLE + "("
-                + User.KEY_UserId + " INT  PRIMARY KEY AUTOINCREMENT,"
-                + User.KEY_UserName + " VARCHAR,"
-                + User.KEY_UserEmail + " VARCHAR,"
-                + User.KEY_UserPassword + " VARCHAR,"
-                + User.KEY_UserRoleId + " INT)";
+                + User.KEY_UserId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + User.KEY_UserName + " VARCHAR, "
+                + User.KEY_UserEmail + " VARCHAR, "
+                + User.KEY_UserPassword + " VARCHAR, "
+                + User.KEY_UserRoleId + " INTEGER)";
     }
 
     public int insert(User user) {

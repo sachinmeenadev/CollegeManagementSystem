@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
     //version number.
     private static final int DATABASE_VERSION = 2;
     // Database Name
-    private static final String DATABASE_NAME = "sqliteDBMultiTbl.db";
+    private static final String DATABASE_NAME = "CollegeManagementSystem";
     private static final String TAG = DBHelper.class.getSimpleName().toString();
 
     public DBHelper() {
@@ -44,15 +44,15 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //All necessary tables you like to create will create here
+        db.execSQL(RoleRepo.createTable());
+        db.execSQL(UserRepo.createTable());
         db.execSQL(CollegeBranchRepo.createTable());
+        db.execSQL(SubjectRepo.createTable());
         db.execSQL(FacultyMemberRepo.createTable());
         db.execSQL(FacultyMemberSubjectRepo.createTable());
-        db.execSQL(RoleRepo.createTable());
+        db.execSQL(TutorRepo.createTable());
         db.execSQL(StudentAcademicRepo.createTable());
         db.execSQL(StudentRepo.createTable());
-        db.execSQL(SubjectRepo.createTable());
-        db.execSQL(TutorRepo.createTable());
-        db.execSQL(UserRepo.createTable());
     }
 
     @Override
@@ -60,15 +60,15 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d(TAG, String.format("SQLiteDatabase.onUpgrade(%d -> %d)", oldVersion, newVersion));
 
         // Drop table if existed, all data will be gone!!!
+        db.execSQL("DROP TABLE IF EXISTS " + Role.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + CollegeBranch.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + Subject.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + FacultyMember.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + FacultyMemberSubject.TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + Role.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + Tutor.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + Student.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + StudentAcademic.TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + Subject.TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + Tutor.TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
         onCreate(db);
     }
 

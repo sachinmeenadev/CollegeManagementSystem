@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
-    android:orientation="vertical"
-    android:padding="30dp"
-    tools:context="com.wg.collegeManagementSystem.admin.AdminWelcomeActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/admin_activity_lbl_welcome_name"
+    <include
+        layout="@layout/app_bar_admin_welcome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="5dp"
-        android:gravity="left"
-        android:textAllCaps="false"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        android:layout_height="match_parent" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBtnLoginBg"
-        android:onClick="admin_role_creation"
-        android:text="Roles Creation"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite" />
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/colorNavMenu"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_drawer_header"
+        app:menu="@menu/activity_drawer_menu" />
 
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

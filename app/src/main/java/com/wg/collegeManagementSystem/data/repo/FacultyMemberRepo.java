@@ -19,11 +19,11 @@ public class FacultyMemberRepo {
 
     public static String createTable() {
         return "CREATE TABLE " + FacultyMember.TABLE + "("
-                + FacultyMember.KEY_FacultyMemberId + " INT  PRIMARY KEY AUTOINCREMENT,"
-                + FacultyMember.KEY_FacultyMemberName + " VARCHAR,"
-                + FacultyMember.KEY_FacultyMemberBranchId + " INT,"
-                + FacultyMember.KEY_FacultyMemberDesignation + " VARCHAR,"
-                + FacultyMember.KEY_FacultyMemberContact + " VARCHAR,"
+                + FacultyMember.KEY_FacultyMemberId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + FacultyMember.KEY_FacultyMemberName + " VARCHAR, "
+                + FacultyMember.KEY_FacultyMemberBranchId + " INTEGER, "
+                + FacultyMember.KEY_FacultyMemberDesignation + " VARCHAR, "
+                + FacultyMember.KEY_FacultyMemberContact + " VARCHAR, "
                 + FacultyMember.KEY_FacultyMemberEmail + " VARCHAR)";
     }
 

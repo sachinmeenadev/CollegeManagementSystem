@@ -19,9 +19,9 @@ public class TutorRepo {
 
     public static String createTable() {
         return "CREATE TABLE " + Tutor.TABLE + "("
-                + Tutor.KEY_TutorId + " INT  PRIMARY KEY AUTOINCREMENT,"
-                + Tutor.KEY_TutorFacultyId + " INT,"
-                + Tutor.KEY_TutorBatch + " VARCHAR,"
+                + Tutor.KEY_TutorId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Tutor.KEY_TutorFacultyId + " INTEGER, "
+                + Tutor.KEY_TutorBatch + " VARCHAR, "
                 + Tutor.KEY_TutorSection + " VARCHAR)";
     }
 

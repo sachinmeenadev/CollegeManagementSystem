@@ -19,9 +19,9 @@ public class FacultyMemberSubjectRepo {
 
     public static String createTable() {
         return "CREATE TABLE " + FacultyMemberSubject.TABLE + "("
-                + FacultyMemberSubject.KEY_FMSId + " INT  PRIMARY KEY AUTOINCREMENT,"
-                + FacultyMemberSubject.KEY_FMSFacultyId + " INT,"
-                + FacultyMemberSubject.KEY_FMSSubjectId + " INT)";
+                + FacultyMemberSubject.KEY_FMSId + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + FacultyMemberSubject.KEY_FMSFacultyId + " INTEGER, "
+                + FacultyMemberSubject.KEY_FMSSubjectId + " INTEGER)";
     }
 
     public int insert(FacultyMemberSubject facultyMemberSubject) {

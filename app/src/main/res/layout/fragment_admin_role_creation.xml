@@ -9,12 +9,12 @@
     tools:context="com.wg.collegeManagementSystem.admin.AdminRoleCreation">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/admin_activity_role_input_role_layout"
+        android:id="@+id/fragment_admin_role_input_role_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/admin_activity_role_input_role"
+            android:id="@+id/fragment_admin_role_input_role"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Role Type"
@@ -22,10 +22,10 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatButton
+        android:id="@+id/fragment_admin_role_btn_insert"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:background="@color/colorBtnLoginBg"
-        android:onClick="admin_activity_role_btn_insert"
         android:text="Insert"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite" />
@@ -61,7 +61,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/admin_activity_role_list"
+            android:id="@+id/fragment_admin_role_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
