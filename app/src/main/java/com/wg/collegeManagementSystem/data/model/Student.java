@@ -1,4 +1,4 @@
-package com.wg.collegeManagementSystem.helper.model;
+package com.wg.collegeManagementSystem.data.model;
 
 /**
  * Created by Jerry on 11-06-2017.

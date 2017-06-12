@@ -1,10 +1,10 @@
-package com.wg.collegeManagementSystem.helper.repo;
+package com.wg.collegeManagementSystem.data.repo;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.wg.collegeManagementSystem.data.model.Subject;
 import com.wg.collegeManagementSystem.helper.DatabaseManager;
-import com.wg.collegeManagementSystem.helper.model.Subject;
 
 /**
  * Created by Jerry on 11-06-2017.

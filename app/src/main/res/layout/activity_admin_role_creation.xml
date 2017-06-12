@@ -1,8 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:orientation="vertical"
+    android:padding="20dp"
     tools:context="com.wg.collegeManagementSystem.admin.AdminRoleCreation">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/admin_activity_role_input_role_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/admin_activity_role_input_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Role Type"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBtnLoginBg"
+        android:onClick="admin_activity_role_btn_insert"
+        android:text="Insert"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sl. No."
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Role Type"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/admin_activity_role_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
+    </LinearLayout>
+</LinearLayout>
