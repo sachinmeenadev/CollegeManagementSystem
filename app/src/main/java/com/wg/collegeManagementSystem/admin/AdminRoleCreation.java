@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,16 +79,6 @@ public class AdminRoleCreation extends Fragment {
         List<RoleList> list = roleRepo.getRole();
         String[] roleType;
         roleType = new String[list.size()];
-        Log.d(TAG, String.format("%-11s", "Role ID") +
-                String.format("%-35s", "Role Type")
-        );
-        Log.d(TAG, "=============================================================");
-        for (int i = 0; i < list.size(); i++) {
-            Log.d(TAG, list.get(i).getRoleId() +
-                    " " + String.format("%-35s", list.get(i).getRoleType())
-            );
-        }
-        Log.d(TAG, "=============================================================");
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {

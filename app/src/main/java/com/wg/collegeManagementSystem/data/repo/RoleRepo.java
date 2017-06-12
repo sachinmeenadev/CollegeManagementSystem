@@ -21,7 +21,7 @@ public class RoleRepo {
     private Role role;
 
     public RoleRepo() {
-        role = new Role();
+
     }
 
     public static String createTable() {
@@ -44,7 +44,7 @@ public class RoleRepo {
     }
 
     public List<RoleList> getRole() {
-        RoleList roleList = new RoleList();
+        RoleList roleList;
         List<RoleList> roleLists = new ArrayList<RoleList>();
 
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
@@ -57,8 +57,7 @@ public class RoleRepo {
 
         if (cursor.moveToFirst()) {
             do {
-                Log.d(TAG, cursor.getInt(cursor.getColumnIndex(Role.KEY_RoleId)) + "  " + cursor.getString(cursor.getColumnIndex(Role.KEY_RoleType)));
-                roleList.setRoleId(cursor.getInt(cursor.getColumnIndex(Role.KEY_RoleId)));
+                roleList = new RoleList();
                 roleList.setRoleType(cursor.getString(cursor.getColumnIndex(Role.KEY_RoleType)));
 
                 roleLists.add(roleList);
