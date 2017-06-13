@@ -2,6 +2,7 @@ package com.wg.collegeManagementSystem.admin;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
@@ -15,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.data.model.Role;
 import com.wg.collegeManagementSystem.data.repo.RoleRepo;
@@ -29,6 +32,7 @@ public class AdminRoleCreation extends Fragment {
     private EditText input_role;
     private AppCompatButton fragmentAdminRoleBtnInsert;
     private CustomAdapter customAdapter;
+    private MaterialDialog.Builder builder;
 
     @Nullable
     @Override
@@ -36,12 +40,37 @@ public class AdminRoleCreation extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_admin_role_creation, container, false);
 
+        builder = new MaterialDialog.Builder(getActivity());
         input_role = (EditText) view.findViewById(R.id.fragment_admin_role_input_role);
         listView = (ListView) view.findViewById(R.id.fragment_admin_role_list);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
+                builder.title("Action");
+                builder.content("What Do You Want To Do ?");
+                builder.positiveText("Update");
+                builder.negativeText("Delete");
+                builder.neutralText("Cancel");
+                builder.onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        // TODO
+                    }
+                });
+                builder.onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        deleteRoleType();
+                    }
+                });
+                builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        // TODO
+                    }
+                });
+                MaterialDialog dialog = builder.build();
+                dialog.show();
                 return true;
             }
         });
@@ -81,6 +110,21 @@ public class AdminRoleCreation extends Fragment {
     }
 
     /**
+     * For inserting roles in database
+     */
+    public void deleteRoleType() {
+        String roleType = input_role.getText().toString();
+
+        RoleRepo roleRepo = new RoleRepo();
+        Role role = new Role();
+
+        role.setRoleType(roleType);
+        roleRepo.delete(role);
+        Toast.makeText(getActivity(), "Role Deleted Successfully", Toast.LENGTH_SHORT).show();
+        show_data();
+    }
+
+    /**
      * For showing added roles from database
      */
     public void show_data() {
@@ -114,7 +158,7 @@ public class AdminRoleCreation extends Fragment {
 
     /**
      * Custom adapter to fill list view
-     * */
+     */
     public class CustomAdapter extends ArrayAdapter<String> {
         String[] mRoleType;
         Context mContext;

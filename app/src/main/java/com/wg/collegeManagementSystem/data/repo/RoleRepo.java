@@ -43,6 +43,13 @@ public class RoleRepo {
         return roleId;
     }
 
+    public void delete(Role role) {
+        Log.d(TAG, role.getRoleType());
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        db.delete(Role.TABLE, Role.KEY_RoleType + " = ?", new String[]{role.getRoleType()});
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
     public List<RoleList> getRole() {
         RoleList roleList;
         List<RoleList> roleLists = new ArrayList<RoleList>();
@@ -68,11 +75,5 @@ public class RoleRepo {
         DatabaseManager.getInstance().closeDatabase();
 
         return roleLists;
-    }
-
-    public void delete() {
-        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        db.delete(Role.TABLE, null, null);
-        DatabaseManager.getInstance().closeDatabase();
     }
 }
