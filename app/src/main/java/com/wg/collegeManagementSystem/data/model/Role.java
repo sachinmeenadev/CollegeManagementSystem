@@ -14,6 +14,8 @@ public class Role {
 
     public int roleId;
     public String roleType;
+    public String oldRoleType;
+    public String newRoleType;
 
     public int getRoleId() {
         return roleId;
@@ -29,5 +31,21 @@ public class Role {
 
     public void setRoleType(String roleType) {
         this.roleType = roleType;
+    }
+
+    public String getOldRoleType() {
+        return oldRoleType;
+    }
+
+    public void setOldRoleType(String oldRoleType) {
+        this.oldRoleType = oldRoleType;
+    }
+
+    public String getNewRoleType() {
+        return newRoleType;
+    }
+
+    public void setNewRoleType(String newRoleType) {
+        this.newRoleType = newRoleType;
     }
 }
