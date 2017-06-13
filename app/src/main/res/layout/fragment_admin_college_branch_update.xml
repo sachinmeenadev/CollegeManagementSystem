@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_admin_role_update_layout"
+    android:id="@+id/fragment_admin_college_branch_update_branch_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,15 +14,28 @@
         android:textColor="@color/colorBlack" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_role_update_input_role_layout"
+        android:id="@+id/fragment_admin_college_branch_update_input_branch_name_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_role_update_input_role"
+            android:id="@+id/fragment_admin_college_branch_update_input_branch_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Role Type"
+            android:hint="Branch Name"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_admin_college_branch_update_input_branch_abbr_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/fragment_admin_college_branch_update_input_branch_abbr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Branch Abbreviation"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 

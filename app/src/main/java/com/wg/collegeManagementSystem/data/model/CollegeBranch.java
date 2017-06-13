@@ -17,6 +17,10 @@ public class CollegeBranch {
     public int collegeBranchId;
     public String collegeBranchName;
     public String collegeBranchAbbr;
+    public String oldCollegeBranchName;
+    public String oldCollegeBranchAbbr;
+    public String newCollegeBranchName;
+    public String newCollegeBranchAbbr;
 
     public int getCollegeBranchId() {
         return collegeBranchId;
@@ -40,5 +44,37 @@ public class CollegeBranch {
 
     public void setCollegeBranchAbbr(String collegeBranchAbbr) {
         this.collegeBranchAbbr = collegeBranchAbbr;
+    }
+
+    public String getOldCollegeBranchName() {
+        return oldCollegeBranchName;
+    }
+
+    public void setOldCollegeBranchName(String oldCollegeBranchName) {
+        this.oldCollegeBranchName = oldCollegeBranchName;
+    }
+
+    public String getOldCollegeBranchAbbr() {
+        return oldCollegeBranchAbbr;
+    }
+
+    public void setOldCollegeBranchAbbr(String oldCollegeBranchAbbr) {
+        this.oldCollegeBranchAbbr = oldCollegeBranchAbbr;
+    }
+
+    public String getNewCollegeBranchName() {
+        return newCollegeBranchName;
+    }
+
+    public void setNewCollegeBranchName(String newCollegeBranchName) {
+        this.newCollegeBranchName = newCollegeBranchName;
+    }
+
+    public String getNewCollegeBranchAbbr() {
+        return newCollegeBranchAbbr;
+    }
+
+    public void setNewCollegeBranchAbbr(String newCollegeBranchAbbr) {
+        this.newCollegeBranchAbbr = newCollegeBranchAbbr;
     }
 }

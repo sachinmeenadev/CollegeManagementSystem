@@ -27,7 +27,7 @@ import java.util.List;
 
 public class AdminRoleCreation extends Fragment {
 
-    public static final String TAG = AdminRoleCreation.class.getSimpleName();
+    private static final String TAG = AdminRoleCreation.class.getSimpleName();
     private ListView listView;
     private EditText inputRole;
     private AppCompatButton fragmentAdminRoleBtnInsert;
@@ -35,7 +35,7 @@ public class AdminRoleCreation extends Fragment {
     private MaterialDialog.Builder builder;
     private String oldRoleType, newRoleType;
     private boolean wrapInScrollView = true;
-    private EditText fragmentAdminRoleUpdateInputRoleLayout;
+    private EditText fragmentAdminRoleUpdateInputRoleType;
 
     @Nullable
     @Override
@@ -47,15 +47,16 @@ public class AdminRoleCreation extends Fragment {
         inputRole = (EditText) view.findViewById(R.id.fragment_admin_role_input_role);
         listView = (ListView) view.findViewById(R.id.fragment_admin_role_list);
 
-
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View mView = inflater.inflate(R.layout.fragment_admin_role_update, null);
+
                 oldRoleType = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_role_list_role_type)).getText().toString();
-                fragmentAdminRoleUpdateInputRoleLayout = (EditText) mView.findViewById(R.id.fragment_admin_role_update_input_role);
-                fragmentAdminRoleUpdateInputRoleLayout.setText(oldRoleType);
+                fragmentAdminRoleUpdateInputRoleType = (EditText) mView.findViewById(R.id.fragment_admin_role_update_input_role);
+                fragmentAdminRoleUpdateInputRoleType.setText(oldRoleType);
+
                 builder.title("Action");
                 builder.positiveText("Update");
                 builder.negativeText("Delete");
@@ -64,14 +65,14 @@ public class AdminRoleCreation extends Fragment {
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        newRoleType = fragmentAdminRoleUpdateInputRoleLayout.getText().toString().trim();
-                        updateRoleType(oldRoleType, newRoleType);
+                        newRoleType = fragmentAdminRoleUpdateInputRoleType.getText().toString().trim();
+                        update(oldRoleType, newRoleType);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        deleteRoleType();
+                        delete();
                     }
                 });
                 builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
@@ -80,8 +81,10 @@ public class AdminRoleCreation extends Fragment {
                         return;
                     }
                 });
+
                 MaterialDialog dialog = builder.build();
                 dialog.show();
+
                 return true;
             }
         });
@@ -90,7 +93,7 @@ public class AdminRoleCreation extends Fragment {
         fragmentAdminRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertRoleType();
+                insert();
             }
         });
         show_data();
@@ -105,47 +108,52 @@ public class AdminRoleCreation extends Fragment {
     }
 
     /**
-     * For inserting roles in database
+     * For inserting in database
      */
-    public void insertRoleType() {
+    public void insert() {
         String roleType = inputRole.getText().toString().trim();
+        if (roleType.isEmpty()) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
+        } else {
+            RoleRepo roleRepo = new RoleRepo();
+            Role role = new Role();
 
-        RoleRepo roleRepo = new RoleRepo();
-        Role role = new Role();
-
-        role.setRoleType(roleType);
-        int status = roleRepo.insert(role);
-        inputRole.setText("");
-        Toast.makeText(getActivity(), "Role Added Successfully", Toast.LENGTH_SHORT).show();
-        show_data();
+            role.setRoleType(roleType);
+            int status = roleRepo.insert(role);
+            inputRole.setText("");
+            Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+            show_data();
+        }
     }
 
     /**
-     * For updating roles in database
+     * For updating in database
      */
-    public void updateRoleType(String oldRoleType, String newRoleType) {
-        RoleRepo roleRepo = new RoleRepo();
-        Role role = new Role();
+    public void update(String oldRoleType, String newRoleType) {
+        if (newRoleType.isEmpty()) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
+        } else {
+            RoleRepo roleRepo = new RoleRepo();
+            Role role = new Role();
 
-        role.setOldRoleType(oldRoleType);
-        role.setNewRoleType(newRoleType);
-        roleRepo.update(role);
-        Toast.makeText(getActivity(), "Role Deleted Successfully", Toast.LENGTH_SHORT).show();
-        show_data();
+            role.setOldRoleType(oldRoleType);
+            role.setNewRoleType(newRoleType);
+            roleRepo.update(role);
+            Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+            show_data();
+        }
     }
 
     /**
      * For deleting roles in database
      */
-    public void deleteRoleType() {
-        String roleType = inputRole.getText().toString();
-
+    public void delete() {
         RoleRepo roleRepo = new RoleRepo();
         Role role = new Role();
 
-        role.setRoleType(roleType);
+        role.setRoleType(oldRoleType);
         roleRepo.delete(role);
-        Toast.makeText(getActivity(), "Role Deleted Successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
         show_data();
     }
 

@@ -75,9 +75,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
         Menu menu = navigationView.getMenu();
         menu.add(R.id.drawer_layout_menu_items, 120, Menu.NONE, "Role Creation");
-        menu.add(R.id.drawer_layout_menu_items, 121, Menu.NONE, "User Creation");
-        menu.add(R.id.drawer_layout_menu_items, 122, Menu.NONE, "College Branch Creation");
-        menu.add(R.id.drawer_layout_menu_items, 123, Menu.NONE, "Subject Creation");
+        menu.add(R.id.drawer_layout_menu_items, 121, Menu.NONE, "College Branch Creation");
+        menu.add(R.id.drawer_layout_menu_items, 122, Menu.NONE, "Subject Creation");
+        menu.add(R.id.drawer_layout_menu_items, 123, Menu.NONE, "User Creation");
         menu.add(R.id.drawer_layout_menu_items, 124, Menu.NONE, "Faculty Member Creation");
         menu.add(R.id.drawer_layout_menu_items, 125, Menu.NONE, "Faculty Member Subject Creation");
         menu.add(R.id.drawer_layout_menu_items, 126, Menu.NONE, "Tutor Creation");
@@ -105,6 +105,12 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         switch (itemId) {
             case 120:
                 fragment = new AdminRoleCreation();
+                break;
+            case 121:
+                fragment = new AdminCollegeBranchCreation();
+                break;
+            case 122:
+                fragment = new AdminSubjectCreation();
                 break;
         }
         //replacing the fragment

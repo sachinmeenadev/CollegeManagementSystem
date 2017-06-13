@@ -53,7 +53,6 @@ public class RoleRepo {
     }
 
     public void delete(Role role) {
-        Log.d(TAG, role.getRoleType());
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         db.delete(Role.TABLE, Role.KEY_RoleType + " = ?", new String[]{role.getRoleType()});
         DatabaseManager.getInstance().closeDatabase();
