@@ -13,21 +13,21 @@ By modifying this one can build basic ERP projects, such as Employee Management 
 	2. Shared preference
 	3. Login
 	5. Welcome
-	6. Faculty (By class selection, default showwn own class)
-		6.1 Student List
-		6.2 Student Profile
-		6.3 Student Update
+	6. Faculty (By class selection, default shown own class)
+		6.1 Student List  //Can see all list of student for particular class or section.
+		6.2 Student Profile //Can see individual profile of student.
+		6.3 Student Update // Can update individual student profile.
 	7. Placement (Only having placement access)
-		7.1 Student List
-			7.1.1 By Criteria
-			7.1.2 By Specific Student
-		7.2 Student Profile
+		7.1 Student List  //Can see all list of student for particular class or section.
+			7.1.1 By Criteria  //Medium of language, Percentage criteria.
+			7.1.2 By Specific Student Name
+		7.2 Student Profile  //Can see individual profile of student.
 		7.3 Student Volunteer
 	8. HOD
 		8.1 Student List
-			8.1.1 By class selection
-			8.1.2 By Criteria (Placement eligiblity)
-			8.1.3 By Specific Student
+			8.1.1 By class selection  //Can see all list of student for particular class or section.
+			8.1.2 By Criteria (Placement eligiblity)  //Medium of language, Percentage criteria.
+			8.1.3 By Specific Student  //Can see individual profile of student.
 		8.2 Student Profile
 		8.3 Tutor list
 		8.4 Faculty List	
