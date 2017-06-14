@@ -71,14 +71,13 @@ public class AdminUserCreation extends Fragment {
 
                 oldUserName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_user_list_user_name)).getText().toString();
                 oldUserEmail = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_user_list_user_email)).getText().toString();
-                fragmentAdminUserUpdateInputUserRoleSpinner = (AppCompatSpinner) view.findViewById(R.id.fragment_admin_user_update_input_user_role_spinner);
-                setRoleSpinner(1);
                 fragmentAdminUserUpdateInputUserName = (EditText) mView.findViewById(R.id.fragment_admin_user_update_input_user_name);
                 fragmentAdminUserUpdateInputUserName.setText(oldUserName);
                 fragmentAdminUserUpdateInputUserEmail = (EditText) mView.findViewById(R.id.fragment_admin_user_update_input_user_email);
                 fragmentAdminUserUpdateInputUserEmail.setText(oldUserEmail);
                 fragmentAdminUserUpdateInputUserPassword = (EditText) mView.findViewById(R.id.fragment_admin_user_update_input_user_password);
                 fragmentAdminUserUpdateInputUserRoleSpinner = (AppCompatSpinner) mView.findViewById(R.id.fragment_admin_user_update_input_user_role_spinner);
+                setRoleSpinner(1);
 
                 builder.title("Action");
                 builder.positiveText("Update");
