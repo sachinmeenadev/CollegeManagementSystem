@@ -79,10 +79,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         menu.add(R.id.drawer_layout_menu_items, 122, Menu.NONE, "Subject Creation");
         menu.add(R.id.drawer_layout_menu_items, 123, Menu.NONE, "User Creation");
         menu.add(R.id.drawer_layout_menu_items, 124, Menu.NONE, "Faculty Member Creation");
-        menu.add(R.id.drawer_layout_menu_items, 125, Menu.NONE, "Faculty Member Subject Creation");
-        menu.add(R.id.drawer_layout_menu_items, 126, Menu.NONE, "Tutor Creation");
-        menu.add(R.id.drawer_layout_menu_items, 127, Menu.NONE, "Student Creation");
-        menu.add(R.id.drawer_layout_menu_items, 128, Menu.NONE, "Student Academic Creation");
     }
 
     @Override

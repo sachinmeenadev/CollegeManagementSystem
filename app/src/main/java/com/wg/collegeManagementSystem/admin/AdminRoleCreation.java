@@ -120,7 +120,9 @@ public class AdminRoleCreation extends Fragment {
 
             role.setRoleType(roleType);
             int status = roleRepo.insert(role);
+
             inputRole.setText("");
+
             Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
             show_data();
         }
@@ -139,6 +141,7 @@ public class AdminRoleCreation extends Fragment {
             role.setOldRoleType(oldRoleType);
             role.setNewRoleType(newRoleType);
             roleRepo.update(role);
+
             Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
             show_data();
         }
@@ -153,6 +156,7 @@ public class AdminRoleCreation extends Fragment {
 
         role.setRoleType(oldRoleType);
         roleRepo.delete(role);
+
         Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
         show_data();
     }
@@ -163,7 +167,9 @@ public class AdminRoleCreation extends Fragment {
     public void show_data() {
         RoleRepo roleRepo = new RoleRepo();
         List<RoleList> list = roleRepo.getRole();
+
         String[] roleType;
+
         roleType = new String[list.size()];
 
         if (list.size() > 0) {

@@ -130,8 +130,10 @@ public class AdminCollegeBranchCreation extends Fragment {
             collegeBranch.setCollegeBranchName(branchName);
             collegeBranch.setCollegeBranchAbbr(branchAbbr);
             int status = collegeBranchRepo.insert(collegeBranch);
+
             inputBranchName.setText("");
             inputBranchAbbr.setText("");
+
             Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
             show_data();
         }
@@ -152,6 +154,7 @@ public class AdminCollegeBranchCreation extends Fragment {
             collegeBranch.setOldCollegeBranchAbbr(oldBranchAbbr);
             collegeBranch.setNewCollegeBranchAbbr(newBranchAbbr);
             collegeBranchRepo.update(collegeBranch);
+
             Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
             show_data();
         }
@@ -167,6 +170,7 @@ public class AdminCollegeBranchCreation extends Fragment {
         collegeBranch.setCollegeBranchName(oldBranchName);
         collegeBranch.setCollegeBranchAbbr(oldBranchAbbr);
         collegeBranchRepo.delete(collegeBranch);
+
         Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
         show_data();
     }
@@ -177,8 +181,10 @@ public class AdminCollegeBranchCreation extends Fragment {
     public void show_data() {
         CollegeBranchRepo collegeBranchRepo = new CollegeBranchRepo();
         List<CollegeBranchList> list = collegeBranchRepo.getCollegeBranch();
+
         String[] branchName;
         String[] branchAbbr;
+
         branchName = new String[list.size()];
         branchAbbr = new String[list.size()];
 
