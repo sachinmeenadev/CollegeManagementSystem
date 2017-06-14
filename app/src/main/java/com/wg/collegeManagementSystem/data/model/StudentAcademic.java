@@ -23,7 +23,7 @@ public class StudentAcademic {
     public static final String KEY_StudentAcademicDiplomaBoard = "studentAcademicDiplomaBoard";
     public static final String KEY_StudentAcademicDiplomaMedium = "studentAcademicDiplomaMedium";
     public static final String KEY_StudentAcademicDiplomaInstituteName = "studentAcademicDiplomaInstituteName";
-    public static final String KEY_StudentAcademicCollegeAggre = "studentAcademicCollegeAggre";
+    public static final String KEY_StudentAcademicCollegeAgg = "studentAcademicCollegeAgg";
     public static final String KEY_StudentAcademicCollegeBackCount = "studentAcademicCollegeBackCount";
     public static final String KEY_StudentAcademicCollegeBackSubject = "studentAcademicCollegeBackSubject";
     public static final String KEY_StudentAcademicHobbies = "studentAcademicHobbies";
@@ -42,7 +42,7 @@ public class StudentAcademic {
     public String studentAcademicDiplomaBoard;
     public String studentAcademicDiplomaMedium;
     public String studentAcademicDiplomaInstituteName;
-    public String studentAcademicCollegeAggre;
+    public String studentAcademicCollegeAgg;
     public String studentAcademicCollegeBackCount;
     public String studentAcademicCollegeBackSubject;
     public String studentAcademicHobbies;
@@ -159,12 +159,12 @@ public class StudentAcademic {
         this.studentAcademicDiplomaInstituteName = studentAcademicDiplomaInstituteName;
     }
 
-    public String getStudentAcademicCollegeAggre() {
-        return studentAcademicCollegeAggre;
+    public String getStudentAcademicCollegeAgg() {
+        return studentAcademicCollegeAgg;
     }
 
-    public void setStudentAcademicCollegeAggre(String studentAcademicCollegeAggre) {
-        this.studentAcademicCollegeAggre = studentAcademicCollegeAggre;
+    public void setStudentAcademicCollegeAgg(String studentAcademicCollegeAgg) {
+        this.studentAcademicCollegeAgg = studentAcademicCollegeAgg;
     }
 
     public String getStudentAcademicCollegeBackCount() {

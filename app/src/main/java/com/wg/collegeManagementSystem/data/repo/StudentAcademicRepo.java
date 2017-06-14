@@ -33,7 +33,7 @@ public class StudentAcademicRepo {
                 + StudentAcademic.KEY_StudentAcademicDiplomaBoard + " VARCHAR, "
                 + StudentAcademic.KEY_StudentAcademicDiplomaMedium + " VARCHAR, "
                 + StudentAcademic.KEY_StudentAcademicDiplomaInstituteName + " VARCHAR, "
-                + StudentAcademic.KEY_StudentAcademicCollegeAggre + " VARCHAR, "
+                + StudentAcademic.KEY_StudentAcademicCollegeAgg + " VARCHAR, "
                 + StudentAcademic.KEY_StudentAcademicCollegeBackCount + " VARCHAR, "
                 + StudentAcademic.KEY_StudentAcademicCollegeBackSubject + " VARCHAR, "
                 + StudentAcademic.KEY_StudentAcademicHobbies + " VARCHAR)";
@@ -56,7 +56,7 @@ public class StudentAcademicRepo {
         values.put(StudentAcademic.KEY_StudentAcademicDiplomaBoard, studentAcademic.getStudentAcademicDiplomaBoard());
         values.put(StudentAcademic.KEY_StudentAcademicDiplomaMedium, studentAcademic.getStudentAcademicDiplomaMedium());
         values.put(StudentAcademic.KEY_StudentAcademicDiplomaInstituteName, studentAcademic.getStudentAcademicDiplomaInstituteName());
-        values.put(StudentAcademic.KEY_StudentAcademicCollegeAggre, studentAcademic.getStudentAcademicCollegeAggre());
+        values.put(StudentAcademic.KEY_StudentAcademicCollegeAgg, studentAcademic.getStudentAcademicCollegeAgg());
         values.put(StudentAcademic.KEY_StudentAcademicCollegeBackCount, studentAcademic.getStudentAcademicCollegeBackCount());
         values.put(StudentAcademic.KEY_StudentAcademicCollegeBackSubject, studentAcademic.getStudentAcademicCollegeBackSubject());
         values.put(StudentAcademic.KEY_StudentAcademicHobbies, studentAcademic.getStudentAcademicHobbies());

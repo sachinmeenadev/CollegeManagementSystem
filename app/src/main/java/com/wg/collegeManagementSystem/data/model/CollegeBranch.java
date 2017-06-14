@@ -7,12 +7,12 @@ package com.wg.collegeManagementSystem.data.model;
 public class CollegeBranch {
 
     public static final String TAG = CollegeBranch.class.getSimpleName();
-    public static final String TABLE = "collegeBranch";
+    public static final String TABLE = "collegeBranches";
 
     // Labels Table Columns names
     public static final String KEY_CollegeBranchId = "collegeBranchId";
     public static final String KEY_CollegeBranchName = "collegeBranchName";
-    public static final String KEY_CollegeBranchAbbr = "collegeBranchAbbbr";
+    public static final String KEY_CollegeBranchAbbr = "collegeBranchAbbr";
 
     public int collegeBranchId;
     public String collegeBranchName;
