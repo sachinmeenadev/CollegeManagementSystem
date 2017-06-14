@@ -20,6 +20,10 @@ public class User {
     public String userEmail;
     public String userPassword;
     public int userRoleId;
+    public String oldUserName;
+    public String oldUserEmail;
+    public String newUserName;
+    public String newUserEmail;
 
     public int getUserId() {
         return userId;
@@ -59,5 +63,37 @@ public class User {
 
     public void setUserRoleId(int userRoleId) {
         this.userRoleId = userRoleId;
+    }
+
+    public String getOldUserName() {
+        return oldUserName;
+    }
+
+    public void setOldUserName(String oldUserName) {
+        this.oldUserName = oldUserName;
+    }
+
+    public String getOldUserEmail() {
+        return oldUserEmail;
+    }
+
+    public void setOldUserEmail(String oldUserEmail) {
+        this.oldUserEmail = oldUserEmail;
+    }
+
+    public String getNewUserName() {
+        return newUserName;
+    }
+
+    public void setNewUserName(String newUserName) {
+        this.newUserName = newUserName;
+    }
+
+    public String getNewUserEmail() {
+        return newUserEmail;
+    }
+
+    public void setNewUserEmail(String newUserEmail) {
+        this.newUserEmail = newUserEmail;
     }
 }

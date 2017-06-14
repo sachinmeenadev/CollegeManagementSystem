@@ -30,6 +30,7 @@ import java.util.List;
  */
 
 public class AdminCollegeBranchCreation extends Fragment {
+
     private static final String TAG = AdminCollegeBranchCreation.class.getSimpleName();
     private ListView listView;
     private EditText inputBranchName, inputBranchAbbr;

@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 public class CollegeBranchRepo {
-    private final String TAG = CollegeBranch.class.getSimpleName().toString();
+    private final String TAG = CollegeBranchRepo.class.getSimpleName().toString();
     private CollegeBranch collegeBranch;
 
     public CollegeBranchRepo() {

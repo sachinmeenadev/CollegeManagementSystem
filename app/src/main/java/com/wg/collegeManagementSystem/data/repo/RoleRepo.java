@@ -72,6 +72,7 @@ public class RoleRepo {
         if (cursor.moveToFirst()) {
             do {
                 roleList = new RoleList();
+                roleList.setRoleId(cursor.getInt(cursor.getColumnIndex(Role.KEY_RoleId)));
                 roleList.setRoleType(cursor.getString(cursor.getColumnIndex(Role.KEY_RoleType)));
 
                 roleLists.add(roleList);

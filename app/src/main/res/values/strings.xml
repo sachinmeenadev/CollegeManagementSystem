@@ -3,4 +3,5 @@
     <string name="app_name_admin">PIET - AIM Admin</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="spinner_title">Select</string>
 </resources>

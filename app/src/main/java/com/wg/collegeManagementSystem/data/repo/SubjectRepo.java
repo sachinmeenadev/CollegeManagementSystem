@@ -60,7 +60,7 @@ public class SubjectRepo {
 
     public void delete(Subject subject) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        db.delete(Subject.TABLE, Subject.KEY_SubjectName + " = ? AND " + Subject.KEY_SubjectAbbr + " = ? AND " + Subject.KEY_SubjectCode + " = ?", new String[]{subject.getOldSubjectName(), subject.getOldSubjectAbbr(), subject.getOldSubjectCode()});
+        db.delete(Subject.TABLE, Subject.KEY_SubjectName + " = ? AND " + Subject.KEY_SubjectAbbr + " = ? AND " + Subject.KEY_SubjectCode + " = ?", new String[]{subject.getSubjectName(), subject.getSubjectAbbr(), subject.getSubjectCode()});
         DatabaseManager.getInstance().closeDatabase();
     }
 
