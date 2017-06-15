@@ -159,3 +159,10 @@ This is a small College ERP system demo android application. It is the first dem
     
     3. http://www.materialdoc.com/
     ->For material design guides
+
+#### Feedback
+
+Thank you for all the great feedback so far. If you have further questions you can either create an issue on the item here on github that we can discuss via comments, or you can reach out to me on either Twitter or Email.
+
+    Twitter: Twitter @_sachinmeena (Be sure to follow me too)
+    Email: sachinmeena.dev@gmail.com
