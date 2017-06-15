@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_admin_college_branch_update_branch_layout"
+    android:id="@+id/admin_fragment_college_branch_update_branch_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,12 +14,12 @@
         android:textColor="@color/colorBlack" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_subject_update_input_subject_name_layout"
+        android:id="@+id/admin_fragment_subject_update_input_subject_name_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_subject_update_input_subject_name"
+            android:id="@+id/admin_fragment_subject_update_input_subject_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Subject Name"
@@ -27,12 +27,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_subject_update_input_subject_abbr_layout"
+        android:id="@+id/admin_fragment_subject_update_input_subject_abbr_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_subject_update_input_subject_abbr"
+            android:id="@+id/admin_fragment_subject_update_input_subject_abbr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Subject Abbr"
@@ -40,12 +40,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_subject_update_input_subject_code_layout"
+        android:id="@+id/admin_fragment_subject_update_input_subject_code_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_subject_update_input_subject_code"
+            android:id="@+id/admin_fragment_subject_update_input_subject_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Subject Code"

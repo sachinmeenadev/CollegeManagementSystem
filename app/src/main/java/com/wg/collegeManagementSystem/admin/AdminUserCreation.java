@@ -40,14 +40,14 @@ public class AdminUserCreation extends Fragment {
     public static final String TAG = AdminUserCreation.class.getSimpleName();
     private ListView listView;
     private EditText inputUserName, inputUserEmail, inputUserPassword;
-    private AppCompatButton fragmentAdminUserBtnInsert;
+    private AppCompatButton adminFragmentUserBtnInsert;
     private AdminUserCreation.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
     private String oldUserName, newUserName, oldUserEmail, newUserEmail, newUserPassword, newUserRole;
     private boolean wrapInScrollView = true;
-    private EditText fragmentAdminUserUpdateInputUserName, fragmentAdminUserUpdateInputUserEmail, fragmentAdminUserUpdateInputUserPassword;
+    private EditText adminFragmentUserUpdateInputUserName, adminFragmentUserUpdateInputUserEmail, adminFragmentUserUpdateInputUserPassword;
     private AppCompatSpinner inputUserRoleSpinner;
-    private AppCompatSpinner fragmentAdminUserUpdateInputUserRoleSpinner;
+    private AppCompatSpinner adminFragmentUserUpdateInputUserRoleSpinner;
     private HashMap<Integer, String> roleMap;
 
     @Nullable
@@ -57,26 +57,26 @@ public class AdminUserCreation extends Fragment {
         View view = inflater.inflate(R.layout.admin_fragment_user_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
-        inputUserName = (EditText) view.findViewById(R.id.fragment_admin_user_input_user_name);
-        inputUserEmail = (EditText) view.findViewById(R.id.fragment_admin_user_input_user_email);
-        inputUserPassword = (EditText) view.findViewById(R.id.fragment_admin_user_input_user_password);
-        inputUserRoleSpinner = (AppCompatSpinner) view.findViewById(R.id.fragment_admin_user_input_user_role_spinner);
+        inputUserName = (EditText) view.findViewById(R.id.admin_fragment_user_input_user_name);
+        inputUserEmail = (EditText) view.findViewById(R.id.admin_fragment_user_input_user_email);
+        inputUserPassword = (EditText) view.findViewById(R.id.admin_fragment_user_input_user_password);
+        inputUserRoleSpinner = (AppCompatSpinner) view.findViewById(R.id.admin_fragment_user_input_user_role_spinner);
         setRoleSpinner(0);
-        listView = (ListView) view.findViewById(R.id.fragment_admin_user_list);
+        listView = (ListView) view.findViewById(R.id.admin_fragment_user_list);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View mView = inflater.inflate(R.layout.admin_fragment_user_update, null);
 
-                oldUserName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_user_list_user_name)).getText().toString();
-                oldUserEmail = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_user_list_user_email)).getText().toString();
-                fragmentAdminUserUpdateInputUserName = (EditText) mView.findViewById(R.id.fragment_admin_user_update_input_user_name);
-                fragmentAdminUserUpdateInputUserName.setText(oldUserName);
-                fragmentAdminUserUpdateInputUserEmail = (EditText) mView.findViewById(R.id.fragment_admin_user_update_input_user_email);
-                fragmentAdminUserUpdateInputUserEmail.setText(oldUserEmail);
-                fragmentAdminUserUpdateInputUserPassword = (EditText) mView.findViewById(R.id.fragment_admin_user_update_input_user_password);
-                fragmentAdminUserUpdateInputUserRoleSpinner = (AppCompatSpinner) mView.findViewById(R.id.fragment_admin_user_update_input_user_role_spinner);
+                oldUserName = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_user_list_user_name)).getText().toString();
+                oldUserEmail = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_user_list_user_email)).getText().toString();
+                adminFragmentUserUpdateInputUserName = (EditText) mView.findViewById(R.id.admin_fragment_user_update_input_user_name);
+                adminFragmentUserUpdateInputUserName.setText(oldUserName);
+                adminFragmentUserUpdateInputUserEmail = (EditText) mView.findViewById(R.id.admin_fragment_user_update_input_user_email);
+                adminFragmentUserUpdateInputUserEmail.setText(oldUserEmail);
+                adminFragmentUserUpdateInputUserPassword = (EditText) mView.findViewById(R.id.admin_fragment_user_update_input_user_password);
+                adminFragmentUserUpdateInputUserRoleSpinner = (AppCompatSpinner) mView.findViewById(R.id.admin_fragment_user_update_input_user_role_spinner);
                 setRoleSpinner(1);
 
                 builder.title("Action");
@@ -87,10 +87,10 @@ public class AdminUserCreation extends Fragment {
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        newUserName = fragmentAdminUserUpdateInputUserName.getText().toString().trim();
-                        newUserEmail = fragmentAdminUserUpdateInputUserEmail.getText().toString().trim();
-                        newUserPassword = fragmentAdminUserUpdateInputUserPassword.getText().toString().trim();
-                        newUserRole = fragmentAdminUserUpdateInputUserRoleSpinner.getSelectedItem().toString().trim();
+                        newUserName = adminFragmentUserUpdateInputUserName.getText().toString().trim();
+                        newUserEmail = adminFragmentUserUpdateInputUserEmail.getText().toString().trim();
+                        newUserPassword = adminFragmentUserUpdateInputUserPassword.getText().toString().trim();
+                        newUserRole = adminFragmentUserUpdateInputUserRoleSpinner.getSelectedItem().toString().trim();
                         update(newUserName, newUserEmail, newUserPassword, newUserRole);
                     }
                 });
@@ -114,8 +114,8 @@ public class AdminUserCreation extends Fragment {
             }
         });
 
-        fragmentAdminUserBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_user_btn_insert);
-        fragmentAdminUserBtnInsert.setOnClickListener(new View.OnClickListener() {
+        adminFragmentUserBtnInsert = (AppCompatButton) view.findViewById(R.id.admin_fragment_user_btn_insert);
+        adminFragmentUserBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insert();
@@ -159,7 +159,7 @@ public class AdminUserCreation extends Fragment {
         if (id == 0) {
             inputUserRoleSpinner.setAdapter(adapter);
         } else if (id == 1) {
-            fragmentAdminUserUpdateInputUserRoleSpinner.setAdapter(adapter);
+            adminFragmentUserUpdateInputUserRoleSpinner.setAdapter(adapter);
         }
     }
 
@@ -295,10 +295,10 @@ public class AdminUserCreation extends Fragment {
         AppCompatTextView lblSlNo, lblUserName, lblUserEmail, lblUserRole;
 
         public ViewHolder(View v) {
-            lblSlNo = (AppCompatTextView) v.findViewById(R.id.fragment_admin_user_list_sl_no);
-            lblUserName = (AppCompatTextView) v.findViewById(R.id.fragment_admin_user_list_user_name);
-            lblUserEmail = (AppCompatTextView) v.findViewById(R.id.fragment_admin_user_list_user_email);
-            lblUserRole = (AppCompatTextView) v.findViewById(R.id.fragment_admin_user_list_user_role);
+            lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_user_list_sl_no);
+            lblUserName = (AppCompatTextView) v.findViewById(R.id.admin_fragment_user_list_user_name);
+            lblUserEmail = (AppCompatTextView) v.findViewById(R.id.admin_fragment_user_list_user_email);
+            lblUserRole = (AppCompatTextView) v.findViewById(R.id.admin_fragment_user_list_user_role);
         }
     }
 
@@ -312,7 +312,7 @@ public class AdminUserCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] userName, String[] userEmail, String[] userRole) {
-            super(context, R.layout.admin_fragment_user_row, R.id.fragment_admin_user_list_user_name, userName);
+            super(context, R.layout.admin_fragment_user_row, R.id.admin_fragment_user_list_user_name, userName);
             mUserName = userName;
             mUserEmail = userEmail;
             mUserRole = userRole;

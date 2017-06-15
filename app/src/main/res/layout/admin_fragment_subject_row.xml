@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/fragment_admin_subject_list_sl_no"
+        android:id="@+id/admin_fragment_subject_list_sl_no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight=".5"
@@ -13,7 +13,7 @@
         android:textSize="15sp" />
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/fragment_admin_subject_list_subject_name"
+        android:id="@+id/admin_fragment_subject_list_subject_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"
@@ -21,7 +21,7 @@
         android:textSize="15sp" />
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/fragment_admin_subject_list_subject_abbr"
+        android:id="@+id/admin_fragment_subject_list_subject_abbr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"
@@ -29,7 +29,7 @@
         android:textSize="15sp" />
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/fragment_admin_subject_list_subject_code"
+        android:id="@+id/admin_fragment_subject_list_subject_code"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"

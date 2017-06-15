@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_admin_college_branch_update_branch_layout"
+    android:id="@+id/admin_fragment_college_branch_update_branch_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,12 +14,12 @@
         android:textColor="@color/colorBlack" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_user_update_input_user_name_layout"
+        android:id="@+id/admin_fragment_user_update_input_user_name_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_user_update_input_user_name"
+            android:id="@+id/admin_fragment_user_update_input_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="User Name"
@@ -27,12 +27,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_user_update_input_user_email_layout"
+        android:id="@+id/admin_fragment_user_update_input_user_email_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_user_update_input_user_email"
+            android:id="@+id/admin_fragment_user_update_input_user_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="User Email"
@@ -40,12 +40,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_user_update_input_user_password_layout"
+        android:id="@+id/admin_fragment_user_update_input_user_password_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_user_update_input_user_password"
+            android:id="@+id/admin_fragment_user_update_input_user_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="User Password"
@@ -53,7 +53,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/fragment_admin_user_update_input_user_role_spinner"
+        android:id="@+id/admin_fragment_user_update_input_user_role_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spinner_title"

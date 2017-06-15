@@ -30,12 +30,12 @@ public class AdminRoleCreation extends Fragment {
     private static final String TAG = AdminRoleCreation.class.getSimpleName();
     private ListView listView;
     private EditText inputRole;
-    private AppCompatButton fragmentAdminRoleBtnInsert;
+    private AppCompatButton adminFragmentRoleBtnInsert;
     private CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
     private String oldRoleType, newRoleType;
     private boolean wrapInScrollView = true;
-    private EditText fragmentAdminRoleUpdateInputRoleType;
+    private EditText adminFragmentRoleUpdateInputRoleType;
 
     @Nullable
     @Override
@@ -44,8 +44,8 @@ public class AdminRoleCreation extends Fragment {
         View view = inflater.inflate(R.layout.admin_fragment_role_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
-        inputRole = (EditText) view.findViewById(R.id.fragment_admin_role_input_role);
-        listView = (ListView) view.findViewById(R.id.fragment_admin_role_list);
+        inputRole = (EditText) view.findViewById(R.id.admin_fragment_role_input_role);
+        listView = (ListView) view.findViewById(R.id.admin_fragment_role_list);
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -53,9 +53,9 @@ public class AdminRoleCreation extends Fragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View mView = inflater.inflate(R.layout.admin_fragment_role_update, null);
 
-                oldRoleType = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_role_list_role_type)).getText().toString();
-                fragmentAdminRoleUpdateInputRoleType = (EditText) mView.findViewById(R.id.fragment_admin_role_update_input_role);
-                fragmentAdminRoleUpdateInputRoleType.setText(oldRoleType);
+                oldRoleType = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_role_list_role_type)).getText().toString();
+                adminFragmentRoleUpdateInputRoleType = (EditText) mView.findViewById(R.id.admin_fragment_role_update_input_role);
+                adminFragmentRoleUpdateInputRoleType.setText(oldRoleType);
 
                 builder.title("Action");
                 builder.positiveText("Update");
@@ -65,7 +65,7 @@ public class AdminRoleCreation extends Fragment {
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        newRoleType = fragmentAdminRoleUpdateInputRoleType.getText().toString().trim();
+                        newRoleType = adminFragmentRoleUpdateInputRoleType.getText().toString().trim();
                         update(oldRoleType, newRoleType);
                     }
                 });
@@ -89,8 +89,8 @@ public class AdminRoleCreation extends Fragment {
             }
         });
 
-        fragmentAdminRoleBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_role_btn_insert);
-        fragmentAdminRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
+        adminFragmentRoleBtnInsert = (AppCompatButton) view.findViewById(R.id.admin_fragment_role_btn_insert);
+        adminFragmentRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insert();
@@ -196,8 +196,8 @@ public class AdminRoleCreation extends Fragment {
         AppCompatTextView lblSlNo, lblRoleType;
 
         public ViewHolder(View v) {
-            lblSlNo = (AppCompatTextView) v.findViewById(R.id.fragment_admin_role_list_sl_no);
-            lblRoleType = (AppCompatTextView) v.findViewById(R.id.fragment_admin_role_list_role_type);
+            lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_role_list_sl_no);
+            lblRoleType = (AppCompatTextView) v.findViewById(R.id.admin_fragment_role_list_role_type);
         }
     }
 
@@ -209,7 +209,7 @@ public class AdminRoleCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] roleType) {
-            super(context, R.layout.admin_fragment_role_row, R.id.fragment_admin_role_list_role_type, roleType);
+            super(context, R.layout.admin_fragment_role_row, R.id.admin_fragment_role_list_role_type, roleType);
             mRoleType = roleType;
             mContext = context;
         }

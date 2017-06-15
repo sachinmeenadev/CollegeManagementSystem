@@ -40,14 +40,14 @@ public class AdminFacultyMemberCreation extends Fragment {
     public static final String TAG = AdminFacultyMemberCreation.class.getSimpleName();
     private ListView listView;
     private EditText inputFacultyName, inputFacultyDesignation, inputFacultyEmail, inputFacultyContact;
-    private AppCompatButton fragmentAdminRoleBtnInsert;
+    private AppCompatButton adminFragmentRoleBtnInsert;
     private AdminFacultyMemberCreation.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
     private String oldFacultyName, newFacultyName, oldFacultyDesignation, newFacultyDesignation, oldFacultyEmail, newFacultyEmail, oldFacultyContact, newFacultyContact, newFacultyBranch;
     private boolean wrapInScrollView = true;
-    private EditText fragmentAdminFacultyUpdateInputName, fragmentAdminFacultyUpdateInputDesignation, fragmentAdminFacultyUpdateInputEmail, fragmentAdminFacultyUpdateInputContact;
+    private EditText adminFragmentFacultyUpdateInputName, adminFragmentFacultyUpdateInputDesignation, adminFragmentFacultyUpdateInputEmail, adminFragmentFacultyUpdateInputContact;
     private AppCompatSpinner inputFacultyBranchSpinner;
-    private AppCompatSpinner fragmentAdminFacultyUpdateInputFacultyBranchSpinner;
+    private AppCompatSpinner adminFragmentFacultyUpdateInputFacultyBranchSpinner;
     private HashMap<Integer, String> collegeBranchMap;
 
     @Nullable
@@ -57,34 +57,34 @@ public class AdminFacultyMemberCreation extends Fragment {
         View view = inflater.inflate(R.layout.admin_fragment_faculty_member_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
-        inputFacultyName = (EditText) view.findViewById(R.id.fragment_admin_faculty_member_input_name);
-        inputFacultyDesignation = (EditText) view.findViewById(R.id.fragment_admin_faculty_member_input_designation);
-        inputFacultyEmail = (EditText) view.findViewById(R.id.fragment_admin_faculty_member_input_email);
-        inputFacultyContact = (EditText) view.findViewById(R.id.fragment_admin_faculty_member_input_contact);
-        inputFacultyBranchSpinner = (AppCompatSpinner) view.findViewById(R.id.fragment_admin_faculty_member_input_branch_spinner);
+        inputFacultyName = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_name);
+        inputFacultyDesignation = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_designation);
+        inputFacultyEmail = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_email);
+        inputFacultyContact = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_contact);
+        inputFacultyBranchSpinner = (AppCompatSpinner) view.findViewById(R.id.admin_fragment_faculty_member_input_branch_spinner);
         setBranchSpinner(0);
-        listView = (ListView) view.findViewById(R.id.fragment_admin_faculty_member_list);
+        listView = (ListView) view.findViewById(R.id.admin_fragment_faculty_member_list);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View mView = inflater.inflate(R.layout.admin_fragment_faculty_member_update, null);
 
-                oldFacultyName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_faculty_member_list_name)).getText().toString();
-                oldFacultyDesignation = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_faculty_member_list_designation)).getText().toString();
-                oldFacultyEmail = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_faculty_member_list_email)).getText().toString();
-                oldFacultyContact = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_faculty_member_list_contact)).getText().toString();
+                oldFacultyName = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_faculty_member_list_name)).getText().toString();
+                oldFacultyDesignation = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_faculty_member_list_designation)).getText().toString();
+                oldFacultyEmail = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_faculty_member_list_email)).getText().toString();
+                oldFacultyContact = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_faculty_member_list_contact)).getText().toString();
 
-                fragmentAdminFacultyUpdateInputName = (EditText) mView.findViewById(R.id.fragment_admin_faculty_member_update_input_name);
-                fragmentAdminFacultyUpdateInputName.setText(oldFacultyName);
-                fragmentAdminFacultyUpdateInputDesignation = (EditText) mView.findViewById(R.id.fragment_admin_faculty_member_update_input_designation);
-                fragmentAdminFacultyUpdateInputDesignation.setText(oldFacultyDesignation);
-                fragmentAdminFacultyUpdateInputEmail = (EditText) mView.findViewById(R.id.fragment_admin_faculty_member_update_input_email);
-                fragmentAdminFacultyUpdateInputEmail.setText(oldFacultyEmail);
-                fragmentAdminFacultyUpdateInputContact = (EditText) mView.findViewById(R.id.fragment_admin_faculty_member_update_input_contact);
-                fragmentAdminFacultyUpdateInputContact.setText(oldFacultyContact);
+                adminFragmentFacultyUpdateInputName = (EditText) mView.findViewById(R.id.admin_fragment_faculty_member_update_input_name);
+                adminFragmentFacultyUpdateInputName.setText(oldFacultyName);
+                adminFragmentFacultyUpdateInputDesignation = (EditText) mView.findViewById(R.id.admin_fragment_faculty_member_update_input_designation);
+                adminFragmentFacultyUpdateInputDesignation.setText(oldFacultyDesignation);
+                adminFragmentFacultyUpdateInputEmail = (EditText) mView.findViewById(R.id.admin_fragment_faculty_member_update_input_email);
+                adminFragmentFacultyUpdateInputEmail.setText(oldFacultyEmail);
+                adminFragmentFacultyUpdateInputContact = (EditText) mView.findViewById(R.id.admin_fragment_faculty_member_update_input_contact);
+                adminFragmentFacultyUpdateInputContact.setText(oldFacultyContact);
 
-                fragmentAdminFacultyUpdateInputFacultyBranchSpinner = (AppCompatSpinner) mView.findViewById(R.id.fragment_admin_faculty_member_update_input_branch_spinner);
+                adminFragmentFacultyUpdateInputFacultyBranchSpinner = (AppCompatSpinner) mView.findViewById(R.id.admin_fragment_faculty_member_update_input_branch_spinner);
                 setBranchSpinner(1);
 
                 builder.title("Action");
@@ -95,11 +95,11 @@ public class AdminFacultyMemberCreation extends Fragment {
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        newFacultyName = fragmentAdminFacultyUpdateInputName.getText().toString().trim();
-                        newFacultyDesignation = fragmentAdminFacultyUpdateInputDesignation.getText().toString().trim();
-                        newFacultyEmail = fragmentAdminFacultyUpdateInputEmail.getText().toString().trim();
-                        newFacultyContact = fragmentAdminFacultyUpdateInputContact.getText().toString().trim();
-                        newFacultyBranch = fragmentAdminFacultyUpdateInputFacultyBranchSpinner.getSelectedItem().toString().trim();
+                        newFacultyName = adminFragmentFacultyUpdateInputName.getText().toString().trim();
+                        newFacultyDesignation = adminFragmentFacultyUpdateInputDesignation.getText().toString().trim();
+                        newFacultyEmail = adminFragmentFacultyUpdateInputEmail.getText().toString().trim();
+                        newFacultyContact = adminFragmentFacultyUpdateInputContact.getText().toString().trim();
+                        newFacultyBranch = adminFragmentFacultyUpdateInputFacultyBranchSpinner.getSelectedItem().toString().trim();
                         update(newFacultyName, newFacultyDesignation, newFacultyEmail, newFacultyContact, newFacultyBranch);
                     }
                 });
@@ -123,8 +123,8 @@ public class AdminFacultyMemberCreation extends Fragment {
             }
         });
 
-        fragmentAdminRoleBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_faculty_member_btn_insert);
-        fragmentAdminRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
+        adminFragmentRoleBtnInsert = (AppCompatButton) view.findViewById(R.id.admin_fragment_faculty_member_btn_insert);
+        adminFragmentRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insert();
@@ -168,7 +168,7 @@ public class AdminFacultyMemberCreation extends Fragment {
         if (id == 0) {
             inputFacultyBranchSpinner.setAdapter(adapter);
         } else if (id == 1) {
-            fragmentAdminFacultyUpdateInputFacultyBranchSpinner.setAdapter(adapter);
+            adminFragmentFacultyUpdateInputFacultyBranchSpinner.setAdapter(adapter);
         }
     }
 
@@ -314,12 +314,12 @@ public class AdminFacultyMemberCreation extends Fragment {
         AppCompatTextView lblSlNo, lblFacultyName, lblFacultyDesignation, lblFacultyEmail, lblFacultyContact, lblFacultyBranch;
 
         public ViewHolder(View v) {
-            lblSlNo = (AppCompatTextView) v.findViewById(R.id.fragment_admin_faculty_member_list_sl_no);
-            lblFacultyName = (AppCompatTextView) v.findViewById(R.id.fragment_admin_faculty_member_list_name);
-            lblFacultyDesignation = (AppCompatTextView) v.findViewById(R.id.fragment_admin_faculty_member_list_designation);
-            lblFacultyEmail = (AppCompatTextView) v.findViewById(R.id.fragment_admin_faculty_member_list_contact);
-            lblFacultyContact = (AppCompatTextView) v.findViewById(R.id.fragment_admin_faculty_member_list_email);
-            lblFacultyBranch = (AppCompatTextView) v.findViewById(R.id.fragment_admin_faculty_member_list_branch);
+            lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_sl_no);
+            lblFacultyName = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_name);
+            lblFacultyDesignation = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_designation);
+            lblFacultyEmail = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_contact);
+            lblFacultyContact = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_email);
+            lblFacultyBranch = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_branch);
         }
     }
 
@@ -336,7 +336,7 @@ public class AdminFacultyMemberCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] facultyName, String[] facultyDesignation, String[] facultyContact, String[] facultyEmail, String[] facultyBranch) {
-            super(context, R.layout.admin_fragment_faculty_member_row, R.id.fragment_admin_faculty_member_list_name, facultyName);
+            super(context, R.layout.admin_fragment_faculty_member_row, R.id.admin_fragment_faculty_member_list_name, facultyName);
             mFacultyName = facultyName;
             mFacultyDesignation = facultyDesignation;
             mFacultyContact = facultyContact;

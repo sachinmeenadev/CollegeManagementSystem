@@ -34,12 +34,12 @@ public class AdminCollegeBranchCreation extends Fragment {
     private static final String TAG = AdminCollegeBranchCreation.class.getSimpleName();
     private ListView listView;
     private EditText inputBranchName, inputBranchAbbr;
-    private AppCompatButton fragmentAdminCollegeBranchBtnInsert;
+    private AppCompatButton adminFragmentCollegeBranchBtnInsert;
     private AdminCollegeBranchCreation.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
     private String oldBranchName, newBranchName, oldBranchAbbr, newBranchAbbr;
     private boolean wrapInScrollView = true;
-    private EditText fragmentAdminCollegeBranchUpdateInputBranchName, fragmentAdminCollegeBranchUpdateInputBranchAbbr;
+    private EditText adminFragmentCollegeBranchUpdateInputBranchName, adminFragmentCollegeBranchUpdateInputBranchAbbr;
 
     @Nullable
     @Override
@@ -48,9 +48,9 @@ public class AdminCollegeBranchCreation extends Fragment {
         View view = inflater.inflate(R.layout.admin_fragment_college_branch_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
-        inputBranchName = (EditText) view.findViewById(R.id.fragment_admin_college_branch_input_branch_name);
-        inputBranchAbbr = (EditText) view.findViewById(R.id.fragment_admin_college_branch_input_branch_abbr);
-        listView = (ListView) view.findViewById(R.id.fragment_admin_college_branch_list);
+        inputBranchName = (EditText) view.findViewById(R.id.admin_fragment_college_branch_input_branch_name);
+        inputBranchAbbr = (EditText) view.findViewById(R.id.admin_fragment_college_branch_input_branch_abbr);
+        listView = (ListView) view.findViewById(R.id.admin_fragment_college_branch_list);
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -58,12 +58,12 @@ public class AdminCollegeBranchCreation extends Fragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View mView = inflater.inflate(R.layout.admin_fragment_college_branch_update, null);
 
-                oldBranchName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_college_branch_list_college_name)).getText().toString();
-                oldBranchAbbr = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_college_branch_list_college_abbr)).getText().toString();
-                fragmentAdminCollegeBranchUpdateInputBranchName = (EditText) mView.findViewById(R.id.fragment_admin_college_branch_update_input_branch_name);
-                fragmentAdminCollegeBranchUpdateInputBranchName.setText(oldBranchName);
-                fragmentAdminCollegeBranchUpdateInputBranchAbbr = (EditText) mView.findViewById(R.id.fragment_admin_college_branch_update_input_branch_abbr);
-                fragmentAdminCollegeBranchUpdateInputBranchAbbr.setText(oldBranchAbbr);
+                oldBranchName = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_college_branch_list_college_name)).getText().toString();
+                oldBranchAbbr = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_college_branch_list_college_abbr)).getText().toString();
+                adminFragmentCollegeBranchUpdateInputBranchName = (EditText) mView.findViewById(R.id.admin_fragment_college_branch_update_input_branch_name);
+                adminFragmentCollegeBranchUpdateInputBranchName.setText(oldBranchName);
+                adminFragmentCollegeBranchUpdateInputBranchAbbr = (EditText) mView.findViewById(R.id.admin_fragment_college_branch_update_input_branch_abbr);
+                adminFragmentCollegeBranchUpdateInputBranchAbbr.setText(oldBranchAbbr);
 
                 builder.title("Action");
                 builder.positiveText("Update");
@@ -73,8 +73,8 @@ public class AdminCollegeBranchCreation extends Fragment {
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        newBranchName = fragmentAdminCollegeBranchUpdateInputBranchName.getText().toString().trim();
-                        newBranchAbbr = fragmentAdminCollegeBranchUpdateInputBranchAbbr.getText().toString().trim();
+                        newBranchName = adminFragmentCollegeBranchUpdateInputBranchName.getText().toString().trim();
+                        newBranchAbbr = adminFragmentCollegeBranchUpdateInputBranchAbbr.getText().toString().trim();
                         update(oldBranchName, newBranchName, oldBranchAbbr, newBranchAbbr);
                     }
                 });
@@ -98,8 +98,8 @@ public class AdminCollegeBranchCreation extends Fragment {
             }
         });
 
-        fragmentAdminCollegeBranchBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_college_branch_btn_insert);
-        fragmentAdminCollegeBranchBtnInsert.setOnClickListener(new View.OnClickListener() {
+        adminFragmentCollegeBranchBtnInsert = (AppCompatButton) view.findViewById(R.id.admin_fragment_college_branch_btn_insert);
+        adminFragmentCollegeBranchBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insert();
@@ -212,9 +212,9 @@ public class AdminCollegeBranchCreation extends Fragment {
         AppCompatTextView lblSlNo, lblBranchName, lblBranchAbbr;
 
         public ViewHolder(View v) {
-            lblSlNo = (AppCompatTextView) v.findViewById(R.id.fragment_admin_college_branch_list_sl_no);
-            lblBranchName = (AppCompatTextView) v.findViewById(R.id.fragment_admin_college_branch_list_college_name);
-            lblBranchAbbr = (AppCompatTextView) v.findViewById(R.id.fragment_admin_college_branch_list_college_abbr);
+            lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_college_branch_list_sl_no);
+            lblBranchName = (AppCompatTextView) v.findViewById(R.id.admin_fragment_college_branch_list_college_name);
+            lblBranchAbbr = (AppCompatTextView) v.findViewById(R.id.admin_fragment_college_branch_list_college_abbr);
         }
     }
 
@@ -227,7 +227,7 @@ public class AdminCollegeBranchCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] branchName, String[] branchAbbr) {
-            super(context, R.layout.admin_fragment_college_branch_row, R.id.fragment_admin_college_branch_list_college_name, branchName);
+            super(context, R.layout.admin_fragment_college_branch_row, R.id.admin_fragment_college_branch_list_college_name, branchName);
             mBranchName = branchName;
             mBranchAbbr = branchAbbr;
             mContext = context;

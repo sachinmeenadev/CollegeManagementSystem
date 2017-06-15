@@ -34,12 +34,12 @@ public class AdminSubjectCreation extends Fragment {
     private static final String TAG = AdminSubjectCreation.class.getSimpleName();
     private ListView listView;
     private EditText inputSubjectName, inputSubjectAbbr, inputSubjectCode;
-    private AppCompatButton fragmentAdminSubjectBtnInsert;
+    private AppCompatButton adminFragmentSubjectBtnInsert;
     private AdminSubjectCreation.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
     private String oldSubjectName, newSubjectName, oldSubjectAbbr, newSubjectAbbr, oldSubjectCode, newSubjectCode;
     private boolean wrapInScrollView = true;
-    private EditText fragmentAdminSubjectUpdateInputSubjectName, fragmentAdminSubjectUpdateInputSubjectAbbr, fragmentAdminSubjectUpdateInputSubjectCode;
+    private EditText adminFragmentSubjectUpdateInputSubjectName, adminFragmentSubjectUpdateInputSubjectAbbr, adminFragmentSubjectUpdateInputSubjectCode;
 
     @Nullable
     @Override
@@ -48,10 +48,10 @@ public class AdminSubjectCreation extends Fragment {
         View view = inflater.inflate(R.layout.admin_fragment_subject_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
-        inputSubjectName = (EditText) view.findViewById(R.id.fragment_admin_subject_input_subject_name);
-        inputSubjectAbbr = (EditText) view.findViewById(R.id.fragment_admin_subject_input_subject_abbr);
-        inputSubjectCode = (EditText) view.findViewById(R.id.fragment_admin_subject_input_subject_code);
-        listView = (ListView) view.findViewById(R.id.fragment_admin_subject_list);
+        inputSubjectName = (EditText) view.findViewById(R.id.admin_fragment_subject_input_subject_name);
+        inputSubjectAbbr = (EditText) view.findViewById(R.id.admin_fragment_subject_input_subject_abbr);
+        inputSubjectCode = (EditText) view.findViewById(R.id.admin_fragment_subject_input_subject_code);
+        listView = (ListView) view.findViewById(R.id.admin_fragment_subject_list);
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -59,15 +59,15 @@ public class AdminSubjectCreation extends Fragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View mView = inflater.inflate(R.layout.admin_fragment_subject_update, null);
 
-                oldSubjectName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_subject_list_subject_name)).getText().toString();
-                oldSubjectAbbr = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_subject_list_subject_abbr)).getText().toString();
-                oldSubjectCode = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_subject_list_subject_code)).getText().toString();
-                fragmentAdminSubjectUpdateInputSubjectName = (EditText) mView.findViewById(R.id.fragment_admin_subject_update_input_subject_name);
-                fragmentAdminSubjectUpdateInputSubjectName.setText(oldSubjectName);
-                fragmentAdminSubjectUpdateInputSubjectAbbr = (EditText) mView.findViewById(R.id.fragment_admin_subject_update_input_subject_abbr);
-                fragmentAdminSubjectUpdateInputSubjectAbbr.setText(oldSubjectAbbr);
-                fragmentAdminSubjectUpdateInputSubjectCode = (EditText) mView.findViewById(R.id.fragment_admin_subject_update_input_subject_code);
-                fragmentAdminSubjectUpdateInputSubjectCode.setText(oldSubjectCode);
+                oldSubjectName = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_subject_list_subject_name)).getText().toString();
+                oldSubjectAbbr = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_subject_list_subject_abbr)).getText().toString();
+                oldSubjectCode = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_subject_list_subject_code)).getText().toString();
+                adminFragmentSubjectUpdateInputSubjectName = (EditText) mView.findViewById(R.id.admin_fragment_subject_update_input_subject_name);
+                adminFragmentSubjectUpdateInputSubjectName.setText(oldSubjectName);
+                adminFragmentSubjectUpdateInputSubjectAbbr = (EditText) mView.findViewById(R.id.admin_fragment_subject_update_input_subject_abbr);
+                adminFragmentSubjectUpdateInputSubjectAbbr.setText(oldSubjectAbbr);
+                adminFragmentSubjectUpdateInputSubjectCode = (EditText) mView.findViewById(R.id.admin_fragment_subject_update_input_subject_code);
+                adminFragmentSubjectUpdateInputSubjectCode.setText(oldSubjectCode);
 
                 builder.title("Action");
                 builder.positiveText("Update");
@@ -77,9 +77,9 @@ public class AdminSubjectCreation extends Fragment {
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        newSubjectName = fragmentAdminSubjectUpdateInputSubjectName.getText().toString().trim();
-                        newSubjectAbbr = fragmentAdminSubjectUpdateInputSubjectAbbr.getText().toString().trim();
-                        newSubjectCode = fragmentAdminSubjectUpdateInputSubjectCode.getText().toString().trim();
+                        newSubjectName = adminFragmentSubjectUpdateInputSubjectName.getText().toString().trim();
+                        newSubjectAbbr = adminFragmentSubjectUpdateInputSubjectAbbr.getText().toString().trim();
+                        newSubjectCode = adminFragmentSubjectUpdateInputSubjectCode.getText().toString().trim();
                         update(oldSubjectName, newSubjectName, oldSubjectAbbr, newSubjectAbbr, oldSubjectCode, newSubjectCode);
                     }
                 });
@@ -103,8 +103,8 @@ public class AdminSubjectCreation extends Fragment {
             }
         });
 
-        fragmentAdminSubjectBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_subject_btn_insert);
-        fragmentAdminSubjectBtnInsert.setOnClickListener(new View.OnClickListener() {
+        adminFragmentSubjectBtnInsert = (AppCompatButton) view.findViewById(R.id.admin_fragment_subject_btn_insert);
+        adminFragmentSubjectBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insert();
@@ -227,10 +227,10 @@ public class AdminSubjectCreation extends Fragment {
         AppCompatTextView lblSlNo, lblSubjectName, lblSubjectAbbr, lblSubjectCode;
 
         public ViewHolder(View v) {
-            lblSlNo = (AppCompatTextView) v.findViewById(R.id.fragment_admin_subject_list_sl_no);
-            lblSubjectName = (AppCompatTextView) v.findViewById(R.id.fragment_admin_subject_list_subject_name);
-            lblSubjectAbbr = (AppCompatTextView) v.findViewById(R.id.fragment_admin_subject_list_subject_abbr);
-            lblSubjectCode = (AppCompatTextView) v.findViewById(R.id.fragment_admin_subject_list_subject_code);
+            lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_sl_no);
+            lblSubjectName = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_subject_name);
+            lblSubjectAbbr = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_subject_abbr);
+            lblSubjectCode = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_subject_code);
         }
     }
 
@@ -244,7 +244,7 @@ public class AdminSubjectCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] subjectName, String[] subjectAbbr, String[] subjectCode) {
-            super(context, R.layout.admin_fragment_subject_row, R.id.fragment_admin_subject_list_subject_name, subjectName);
+            super(context, R.layout.admin_fragment_subject_row, R.id.admin_fragment_subject_list_subject_name, subjectName);
             mSubjectName = subjectName;
             mSubjectAbbr = subjectAbbr;
             mSubjectCode = subjectCode;

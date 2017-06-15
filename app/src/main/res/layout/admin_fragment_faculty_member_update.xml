@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_admin_college_branch_update_branch_layout"
+    android:id="@+id/admin_fragment_college_branch_update_branch_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,12 +14,12 @@
         android:textColor="@color/colorBlack" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_faculty_member_update_input_name_layout"
+        android:id="@+id/admin_fragment_faculty_member_update_input_name_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_faculty_member_update_input_name"
+            android:id="@+id/admin_fragment_faculty_member_update_input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Faculty Member Name"
@@ -27,12 +27,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_faculty_member_update_input_designation_layout"
+        android:id="@+id/admin_fragment_faculty_member_update_input_designation_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_faculty_member_update_input_designation"
+            android:id="@+id/admin_fragment_faculty_member_update_input_designation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Faculty Member Designation"
@@ -40,12 +40,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_faculty_member_update_input_email_layout"
+        android:id="@+id/admin_fragment_faculty_member_update_input_email_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_faculty_member_update_input_email"
+            android:id="@+id/admin_fragment_faculty_member_update_input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Faculty Member Email"
@@ -53,12 +53,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_faculty_member_update_input_contact_layout"
+        android:id="@+id/admin_fragment_faculty_member_update_input_contact_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_faculty_member_update_input_contact"
+            android:id="@+id/admin_fragment_faculty_member_update_input_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Faculty Member Contact"
@@ -66,7 +66,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/fragment_admin_faculty_member_update_input_branch_spinner"
+        android:id="@+id/admin_fragment_faculty_member_update_input_branch_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spinner_title"

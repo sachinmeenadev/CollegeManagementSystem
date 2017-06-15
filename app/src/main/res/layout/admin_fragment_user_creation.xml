@@ -9,12 +9,12 @@
     tools:context="com.wg.collegeManagementSystem.admin.AdminUserCreation">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_user_input_user_name_layout"
+        android:id="@+id/admin_fragment_user_input_user_name_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_user_input_user_name"
+            android:id="@+id/admin_fragment_user_input_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="User Name"
@@ -22,12 +22,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_user_input_user_email_layout"
+        android:id="@+id/admin_fragment_user_input_user_email_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_user_input_user_email"
+            android:id="@+id/admin_fragment_user_input_user_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="User Email"
@@ -35,12 +35,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_user_input_user_password_layout"
+        android:id="@+id/admin_fragment_user_input_user_password_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_user_input_user_password"
+            android:id="@+id/admin_fragment_user_input_user_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="User Password"
@@ -48,14 +48,14 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/fragment_admin_user_input_user_role_spinner"
+        android:id="@+id/admin_fragment_user_input_user_role_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spinner_title"
         android:textColor="@color/colorInputHint" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/fragment_admin_user_btn_insert"
+        android:id="@+id/admin_fragment_user_btn_insert"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:background="@color/colorBtnLoginBg"
@@ -112,7 +112,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/fragment_admin_user_list"
+            android:id="@+id/admin_fragment_user_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

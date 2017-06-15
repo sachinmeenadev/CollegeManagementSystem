@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_admin_role_update_layout"
+    android:id="@+id/admin_fragment_role_update_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,12 +14,12 @@
         android:textColor="@color/colorBlack" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_role_update_input_role_layout"
+        android:id="@+id/admin_fragment_role_update_input_role_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_role_update_input_role"
+            android:id="@+id/admin_fragment_role_update_input_role"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Role Type"

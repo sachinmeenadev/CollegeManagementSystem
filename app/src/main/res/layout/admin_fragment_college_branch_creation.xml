@@ -9,12 +9,12 @@
     tools:context="com.wg.collegeManagementSystem.admin.AdminCollegeBranchCreation">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_college_branch_input_branch_name_layout"
+        android:id="@+id/admin_fragment_college_branch_input_branch_name_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_college_branch_input_branch_name"
+            android:id="@+id/admin_fragment_college_branch_input_branch_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Branch Name"
@@ -22,12 +22,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/fragment_admin_college_branch_input_branch_abbr_layout"
+        android:id="@+id/admin_fragment_college_branch_input_branch_abbr_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/fragment_admin_college_branch_input_branch_abbr"
+            android:id="@+id/admin_fragment_college_branch_input_branch_abbr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Branch Abbreviation"
@@ -35,7 +35,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/fragment_admin_college_branch_btn_insert"
+        android:id="@+id/admin_fragment_college_branch_btn_insert"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:background="@color/colorBtnLoginBg"
@@ -83,7 +83,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/fragment_admin_college_branch_list"
+            android:id="@+id/admin_fragment_college_branch_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
