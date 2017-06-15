@@ -2,9 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="2dp"
-    android:layout_marginTop="2dp"
-    android:background="@color/colorWhite"
     android:orientation="horizontal"
     android:padding="2dp">
 
