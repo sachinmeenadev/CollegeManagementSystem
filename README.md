@@ -3,7 +3,9 @@
 ## Welcome to https://sachinmeenadev.github.io/CollegeManagementSystem/
 
 This is a small College ERP system demo android application. It is the first demo version of this app. By modifying this, one can build basic ERP projects, such as Employee Management System etc.
+
 	>For Web Application of this go to https://github.com/sachinmeenadev/CollegeManagementSystemWebApp/
+	
 #### Structure of project (Functional Requirements)
     1. Splash
 	2. Shared preference
