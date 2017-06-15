@@ -125,7 +125,7 @@ public class AdminCollegeBranchCreation extends Fragment {
         if (branchName.isEmpty() || branchAbbr.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            if (branchName.equals(oldBranchName) || branchAbbr.equals(oldBranchAbbr)) {
+            if (branchName.equals(oldBranchName) && branchAbbr.equals(oldBranchAbbr)) {
                 Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
             } else {
                 CollegeBranchRepo collegeBranchRepo = new CollegeBranchRepo();

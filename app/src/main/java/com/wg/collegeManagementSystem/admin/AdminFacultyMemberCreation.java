@@ -201,7 +201,7 @@ public class AdminFacultyMemberCreation extends Fragment {
         if (facultyName.isEmpty() || facultyDesignation.isEmpty() || facultyContact.isEmpty() || facultyEmail.isEmpty() || facultyBranchId == 0) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            if (facultyName.equals(oldFacultyName) || facultyEmail.equals(oldFacultyEmail) || facultyDesignation.equals(oldFacultyDesignation)) {
+            if (facultyName.equals(oldFacultyName) && facultyEmail.equals(oldFacultyEmail) && facultyDesignation.equals(oldFacultyDesignation)) {
                 Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
             } else {
                 FacultyMemberRepo facultyMemberRepo = new FacultyMemberRepo();

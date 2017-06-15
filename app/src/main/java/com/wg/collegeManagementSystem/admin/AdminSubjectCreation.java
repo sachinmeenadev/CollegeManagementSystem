@@ -132,7 +132,7 @@ public class AdminSubjectCreation extends Fragment {
         if (subjectName.isEmpty() || subjectAbbr.isEmpty() || subjectCode.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            if (subjectName.equals(oldSubjectName) || subjectAbbr.equals(oldSubjectAbbr) || subjectCode.equals(oldSubjectCode)) {
+            if (subjectName.equals(oldSubjectName) && subjectAbbr.equals(oldSubjectAbbr) && subjectCode.equals(oldSubjectCode)) {
                 Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
             } else {
                 SubjectRepo subjectRepo = new SubjectRepo();

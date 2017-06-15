@@ -191,7 +191,7 @@ public class AdminUserCreation extends Fragment {
         if (userName.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userRoleId == 0) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            if (userName.equals(oldUserName) || userEmail.equals(oldUserEmail)) {
+            if (userName.equals(oldUserName) && userEmail.equals(oldUserEmail)) {
                 Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
             } else {
                 UserRepo userRepo = new UserRepo();
