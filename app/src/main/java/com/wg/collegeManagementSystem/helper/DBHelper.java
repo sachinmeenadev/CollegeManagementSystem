@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.wg.collegeManagementSystem.app.App;
+import com.wg.collegeManagementSystem.app.AppController;
 import com.wg.collegeManagementSystem.data.model.CollegeBranch;
 import com.wg.collegeManagementSystem.data.model.FacultyMember;
 import com.wg.collegeManagementSystem.data.model.FacultyMemberSubject;
@@ -34,11 +34,11 @@ public class DBHelper extends SQLiteOpenHelper {
     //version number.
     private static final int DATABASE_VERSION = 3;
     // Database Name
-    private static final String DATABASE_NAME = "CollegeManagementSystem";
+    private static final String DATABASE_NAME = "collegemanagementsystem";
     private static final String TAG = DBHelper.class.getSimpleName().toString();
 
     public DBHelper() {
-        super(App.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
+        super(AppController.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
