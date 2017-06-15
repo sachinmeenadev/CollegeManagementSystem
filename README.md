@@ -2,7 +2,7 @@
 
 ## Welcome to https://sachinmeenadev.github.io/CollegeManagementSystem/
 
-This is a small College ERP system demo android application. It is the first demo version of this app. This version is completely based on SQLite Database (Local DB).By modifying this, one can build basic ERP projects, such as Employee Management System etc.
+This is a small College ERP system demo android application. It is the first demo version of this app. This version is completely based on SQLite Database (Local DB). By modifying this, one can build basic ERP projects, such as Employee Management System etc.
     
     >IF you want to suggest any changes, then let me know.
 
