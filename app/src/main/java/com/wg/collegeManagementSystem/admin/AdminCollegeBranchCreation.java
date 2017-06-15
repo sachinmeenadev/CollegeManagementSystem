@@ -113,7 +113,7 @@ public class AdminCollegeBranchCreation extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("PIET-AIM, College Branch Creation");
+        getActivity().setTitle("College Branch Creation");
     }
 
     /**

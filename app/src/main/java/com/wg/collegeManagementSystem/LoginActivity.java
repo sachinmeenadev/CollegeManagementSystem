@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.wg.collegeManagementSystem.admin.AdminActivity;
 import com.wg.collegeManagementSystem.helper.SessionManager;
+import com.wg.collegeManagementSystem.hod.HodActivity;
 
 public class LoginActivity extends AppCompatActivity {
     public SessionManager session;
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         } else {
-            startActivity(new Intent(this, WelcomeActivity.class));
+            startActivity(new Intent(this, HodActivity.class));
         }
     }
 

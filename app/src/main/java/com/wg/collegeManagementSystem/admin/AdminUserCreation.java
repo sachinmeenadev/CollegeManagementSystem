@@ -129,7 +129,7 @@ public class AdminUserCreation extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("PIET-AIM, User Creation");
+        getActivity().setTitle("User Login Creation");
     }
 
     /**
@@ -148,8 +148,9 @@ public class AdminUserCreation extends Fragment {
         List<RoleList> list = roleRepo.getRole();
         if (list.size() > 0) {
             roleSpinnerArray.add("Select Role");
+            roleMap.put(0, "Select Role");
             for (int i = 0; i < list.size(); i++) {
-                roleMap.put(list.get(i).getRoleId() + 1, list.get(i).getRoleType());
+                roleMap.put(list.get(i).getRoleId(), list.get(i).getRoleType());
                 roleSpinnerArray.add(list.get(i).getRoleType());
             }
         }

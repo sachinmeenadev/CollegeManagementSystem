@@ -29,7 +29,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_welcome);
+        setContentView(R.layout.activity_admin);
 
         session = new SessionManager(getApplicationContext());
         if (!session.isLoggedIn()) {

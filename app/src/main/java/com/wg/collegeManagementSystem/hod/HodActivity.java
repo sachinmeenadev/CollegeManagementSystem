@@ -1,4 +1,4 @@
-package com.wg.collegeManagementSystem;
+package com.wg.collegeManagementSystem.hod;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,14 +12,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-public class WelcomeActivity extends AppCompatActivity
+import com.wg.collegeManagementSystem.R;
+
+public class HodActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_hod);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         linearLayout = (LinearLayout) findViewById(R.id.welcome_linear_layout);

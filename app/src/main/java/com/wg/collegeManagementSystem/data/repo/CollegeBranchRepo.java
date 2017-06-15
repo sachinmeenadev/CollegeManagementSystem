@@ -77,6 +77,7 @@ public class CollegeBranchRepo {
         if (cursor.moveToFirst()) {
             do {
                 collegeBranchList = new CollegeBranchList();
+                collegeBranchList.setCollegeBranchId(cursor.getInt(cursor.getColumnIndex(CollegeBranch.KEY_CollegeBranchId)));
                 collegeBranchList.setCollegeBranchName(cursor.getString(cursor.getColumnIndex(CollegeBranch.KEY_CollegeBranchName)));
                 collegeBranchList.setCollegeBranchAbbr(cursor.getString(cursor.getColumnIndex(CollegeBranch.KEY_CollegeBranchAbbr)));
 

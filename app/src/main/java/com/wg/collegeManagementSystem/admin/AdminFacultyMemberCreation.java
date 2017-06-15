@@ -138,7 +138,7 @@ public class AdminFacultyMemberCreation extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("PIET-AIM, Faculty Member Creation");
+        getActivity().setTitle("Faculty Member Creation");
     }
 
     /**
@@ -157,8 +157,9 @@ public class AdminFacultyMemberCreation extends Fragment {
         List<CollegeBranchList> list = collegeBranchRepo.getCollegeBranch();
         if (list.size() > 0) {
             roleSpinnerArray.add("Select Branch");
+            collegeBranchMap.put(0, "Select Branch");
             for (int i = 0; i < list.size(); i++) {
-                collegeBranchMap.put(list.get(i).getCollegeBranchId() + 1, list.get(i).getCollegeBranchName() + ", " + list.get(i).getCollegeBranchAbbr());
+                collegeBranchMap.put(list.get(i).getCollegeBranchId(), list.get(i).getCollegeBranchName() + ", " + list.get(i).getCollegeBranchAbbr());
                 roleSpinnerArray.add(list.get(i).getCollegeBranchName() + ", " + list.get(i).getCollegeBranchAbbr());
             }
         }
