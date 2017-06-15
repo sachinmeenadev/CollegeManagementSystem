@@ -243,10 +243,10 @@ public class AdminFacultyMemberCreation extends Fragment {
             facultyMember.setNewFacultyMemberName(newFacultyName);
             facultyMember.setOldFacultyMemberDesignation(oldFacultyDesignation);
             facultyMember.setNewFacultyMemberDesignation(newFacultyDesignation);
-            facultyMember.setOldFacultyMemberContact(oldFacultyEmail);
-            facultyMember.setNewFacultyMemberContact(newFacultyEmail);
-            facultyMember.setOldFacultyMemberEmail(oldFacultyContact);
-            facultyMember.setNewFacultyMemberEmail(newFacultyContact);
+            facultyMember.setOldFacultyMemberContact(oldFacultyContact);
+            facultyMember.setNewFacultyMemberContact(newFacultyContact);
+            facultyMember.setOldFacultyMemberEmail(oldFacultyEmail);
+            facultyMember.setNewFacultyMemberEmail(newFacultyEmail);
             facultyMember.setFacultyMemberBranchId(facultyBranchId);
 
             facultyMemberRepo.update(facultyMember, updateFacultyBranchStatus);
@@ -263,9 +263,9 @@ public class AdminFacultyMemberCreation extends Fragment {
         FacultyMemberRepo facultyMemberRepo = new FacultyMemberRepo();
         FacultyMember facultyMember = new FacultyMember();
 
-        facultyMember.setOldFacultyMemberName(oldFacultyName);
-        facultyMember.setOldFacultyMemberDesignation(oldFacultyDesignation);
-        facultyMember.setOldFacultyMemberContact(oldFacultyEmail);
+        facultyMember.setFacultyMemberName(oldFacultyName);
+        facultyMember.setFacultyMemberDesignation(oldFacultyDesignation);
+        facultyMember.setFacultyMemberEmail(oldFacultyEmail);
         facultyMemberRepo.delete(facultyMember);
 
         Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
