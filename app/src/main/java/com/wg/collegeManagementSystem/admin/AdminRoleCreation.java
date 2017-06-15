@@ -112,25 +112,31 @@ public class AdminRoleCreation extends Fragment {
      */
     public void insert() {
         String roleType = inputRole.getText().toString().trim();
+
         if (roleType.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            RoleRepo roleRepo = new RoleRepo();
-            Role role = new Role();
+            if (roleType.equals(oldRoleType)) {
+                Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
+            } else {
+                RoleRepo roleRepo = new RoleRepo();
+                Role role = new Role();
 
-            role.setRoleType(roleType);
-            int status = roleRepo.insert(role);
+                role.setRoleType(roleType);
+                int status = roleRepo.insert(role);
 
-            inputRole.setText("");
+                inputRole.setText("");
 
-            Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
-            show_data();
+                Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                show_data();
+            }
         }
     }
 
     /**
      * For updating in database
      */
+
     public void update(String oldRoleType, String newRoleType) {
         if (newRoleType.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();

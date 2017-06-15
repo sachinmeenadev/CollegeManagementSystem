@@ -3,7 +3,6 @@ package com.wg.collegeManagementSystem.admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wg.collegeManagementSystem.LoginActivity;
@@ -25,7 +23,6 @@ import com.wg.collegeManagementSystem.helper.SessionManager;
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public SessionManager session;
     private Fragment fragment = null;
-    private LinearLayout linearLayout;
     private TextView navDrawerHeaderLblName, navDrawerHeaderLblEmail;
     private AppCompatButton navDrawerHeaderBtnLogout;
 
@@ -42,8 +39,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_admin_frame, fragment);
         fragmentTransaction.commit();
-
-        linearLayout = (LinearLayout) findViewById(R.id.admin_welcome_linear_layout);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.admin_toolbar);
         setSupportActionBar(toolbar);
@@ -111,6 +106,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             case 123:
                 fragment = new AdminUserCreation();
                 break;
+            case 124:
+                fragment = new AdminFacultyMemberCreation();
+                break;
         }
         //replacing the fragment
         if (fragment != null) {
@@ -118,9 +116,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             fragmentTransaction.replace(R.id.content_admin_frame, fragment);
             fragmentTransaction.commit();
         }
-        Snackbar snackbar = Snackbar.make(linearLayout, "You selected " + itemName, Snackbar.LENGTH_LONG);
-        snackbar.show();
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 

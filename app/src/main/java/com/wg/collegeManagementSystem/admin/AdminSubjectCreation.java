@@ -128,23 +128,28 @@ public class AdminSubjectCreation extends Fragment {
         String subjectName = inputSubjectName.getText().toString().trim();
         String subjectAbbr = inputSubjectAbbr.getText().toString().trim();
         String subjectCode = inputSubjectCode.getText().toString().trim();
+
         if (subjectName.isEmpty() || subjectAbbr.isEmpty() || subjectCode.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            SubjectRepo subjectRepo = new SubjectRepo();
-            Subject subject = new Subject();
+            if (subjectName.equals(oldSubjectName) || subjectAbbr.equals(oldSubjectAbbr) || subjectCode.equals(oldSubjectCode)) {
+                Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
+            } else {
+                SubjectRepo subjectRepo = new SubjectRepo();
+                Subject subject = new Subject();
 
-            subject.setSubjectName(subjectName);
-            subject.setSubjectAbbr(subjectAbbr);
-            subject.setSubjectCode(subjectCode);
-            int status = subjectRepo.insert(subject);
+                subject.setSubjectName(subjectName);
+                subject.setSubjectAbbr(subjectAbbr);
+                subject.setSubjectCode(subjectCode);
+                int status = subjectRepo.insert(subject);
 
-            inputSubjectName.setText("");
-            inputSubjectAbbr.setText("");
-            inputSubjectCode.setText("");
+                inputSubjectName.setText("");
+                inputSubjectAbbr.setText("");
+                inputSubjectCode.setText("");
 
-            Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
-            show_data();
+                Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                show_data();
+            }
         }
     }
 

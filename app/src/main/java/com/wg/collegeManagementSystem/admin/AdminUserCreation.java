@@ -40,7 +40,7 @@ public class AdminUserCreation extends Fragment {
     public static final String TAG = AdminUserCreation.class.getSimpleName();
     private ListView listView;
     private EditText inputUserName, inputUserEmail, inputUserPassword;
-    private AppCompatButton fragmentAdminRoleBtnInsert;
+    private AppCompatButton fragmentAdminUserBtnInsert;
     private AdminUserCreation.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
     private String oldUserName, newUserName, oldUserEmail, newUserEmail, newUserPassword, newUserRole;
@@ -114,8 +114,8 @@ public class AdminUserCreation extends Fragment {
             }
         });
 
-        fragmentAdminRoleBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_user_btn_insert);
-        fragmentAdminRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
+        fragmentAdminUserBtnInsert = (AppCompatButton) view.findViewById(R.id.fragment_admin_user_btn_insert);
+        fragmentAdminUserBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insert();
@@ -149,7 +149,7 @@ public class AdminUserCreation extends Fragment {
         if (list.size() > 0) {
             roleSpinnerArray.add("Select Role");
             for (int i = 0; i < list.size(); i++) {
-                roleMap.put(list.get(i).getRoleId(), list.get(i).getRoleType());
+                roleMap.put(list.get(i).getRoleId() + 1, list.get(i).getRoleType());
                 roleSpinnerArray.add(list.get(i).getRoleType());
             }
         }
@@ -190,21 +190,25 @@ public class AdminUserCreation extends Fragment {
         if (userName.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userRoleId == 0) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            UserRepo userRepo = new UserRepo();
-            User user = new User();
+            if (userName.equals(oldUserName) || userEmail.equals(oldUserEmail)) {
+                Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
+            } else {
+                UserRepo userRepo = new UserRepo();
+                User user = new User();
 
-            user.setUserName(userName);
-            user.setUserEmail(userEmail);
-            user.setUserPassword(userPassword);
-            user.setUserRoleId(userRoleId);
-            int status = userRepo.insert(user);
+                user.setUserName(userName);
+                user.setUserEmail(userEmail);
+                user.setUserPassword(userPassword);
+                user.setUserRoleId(userRoleId);
+                int status = userRepo.insert(user);
 
-            inputUserName.setText("");
-            inputUserEmail.setText("");
-            inputUserPassword.setText("");
+                inputUserName.setText("");
+                inputUserEmail.setText("");
+                inputUserPassword.setText("");
 
-            Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
-            show_data();
+                Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                show_data();
+            }
         }
     }
 
@@ -337,5 +341,3 @@ public class AdminUserCreation extends Fragment {
         }
     }
 }
-
-

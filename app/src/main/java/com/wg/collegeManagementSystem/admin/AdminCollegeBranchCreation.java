@@ -125,18 +125,22 @@ public class AdminCollegeBranchCreation extends Fragment {
         if (branchName.isEmpty() || branchAbbr.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            CollegeBranchRepo collegeBranchRepo = new CollegeBranchRepo();
-            CollegeBranch collegeBranch = new CollegeBranch();
+            if (branchName.equals(oldBranchName) || branchAbbr.equals(oldBranchAbbr)) {
+                Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
+            } else {
+                CollegeBranchRepo collegeBranchRepo = new CollegeBranchRepo();
+                CollegeBranch collegeBranch = new CollegeBranch();
 
-            collegeBranch.setCollegeBranchName(branchName);
-            collegeBranch.setCollegeBranchAbbr(branchAbbr);
-            int status = collegeBranchRepo.insert(collegeBranch);
+                collegeBranch.setCollegeBranchName(branchName);
+                collegeBranch.setCollegeBranchAbbr(branchAbbr);
+                int status = collegeBranchRepo.insert(collegeBranch);
 
-            inputBranchName.setText("");
-            inputBranchAbbr.setText("");
+                inputBranchName.setText("");
+                inputBranchAbbr.setText("");
 
-            Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
-            show_data();
+                Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                show_data();
+            }
         }
     }
 
