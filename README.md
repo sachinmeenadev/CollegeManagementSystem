@@ -46,7 +46,7 @@ This is a small College ERP system demo android application. It is the first dem
 		9.5 Manage Faculty Members list
 
 #### Project database structure
-    > All column name ending with Id are INTEGER Type, rest all ate VRCHAR
+    > All column name ending with Id are INTEGER Type, rest all are VARCHAR
 
     *users
 		->userId 
