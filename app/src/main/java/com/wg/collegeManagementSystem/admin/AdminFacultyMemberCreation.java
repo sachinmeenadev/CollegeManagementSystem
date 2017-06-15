@@ -54,7 +54,7 @@ public class AdminFacultyMemberCreation extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_admin_faculty_member_creation, container, false);
+        View view = inflater.inflate(R.layout.admin_fragment_faculty_member_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
         inputFacultyName = (EditText) view.findViewById(R.id.fragment_admin_faculty_member_input_name);
@@ -68,7 +68,7 @@ public class AdminFacultyMemberCreation extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View mView = inflater.inflate(R.layout.fragment_admin_faculty_member_update, null);
+                View mView = inflater.inflate(R.layout.admin_fragment_faculty_member_update, null);
 
                 oldFacultyName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_faculty_member_list_name)).getText().toString();
                 oldFacultyDesignation = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_faculty_member_list_designation)).getText().toString();
@@ -336,7 +336,7 @@ public class AdminFacultyMemberCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] facultyName, String[] facultyDesignation, String[] facultyContact, String[] facultyEmail, String[] facultyBranch) {
-            super(context, R.layout.fragment_admin_faculty_member_row, R.id.fragment_admin_faculty_member_list_name, facultyName);
+            super(context, R.layout.admin_fragment_faculty_member_row, R.id.fragment_admin_faculty_member_list_name, facultyName);
             mFacultyName = facultyName;
             mFacultyDesignation = facultyDesignation;
             mFacultyContact = facultyContact;
@@ -352,7 +352,7 @@ public class AdminFacultyMemberCreation extends Fragment {
 
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(R.layout.fragment_admin_faculty_member_row, parent, false);
+                row = inflater.inflate(R.layout.admin_fragment_faculty_member_row, parent, false);
                 viewHolder = new AdminFacultyMemberCreation.ViewHolder(row);
                 row.setTag(viewHolder);
             } else {

@@ -45,7 +45,7 @@ public class AdminSubjectCreation extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_admin_subject_creation, container, false);
+        View view = inflater.inflate(R.layout.admin_fragment_subject_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
         inputSubjectName = (EditText) view.findViewById(R.id.fragment_admin_subject_input_subject_name);
@@ -57,7 +57,7 @@ public class AdminSubjectCreation extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View mView = inflater.inflate(R.layout.fragment_admin_subject_update, null);
+                View mView = inflater.inflate(R.layout.admin_fragment_subject_update, null);
 
                 oldSubjectName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_subject_list_subject_name)).getText().toString();
                 oldSubjectAbbr = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_subject_list_subject_abbr)).getText().toString();
@@ -244,7 +244,7 @@ public class AdminSubjectCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] subjectName, String[] subjectAbbr, String[] subjectCode) {
-            super(context, R.layout.fragment_admin_subject_row, R.id.fragment_admin_subject_list_subject_name, subjectName);
+            super(context, R.layout.admin_fragment_subject_row, R.id.fragment_admin_subject_list_subject_name, subjectName);
             mSubjectName = subjectName;
             mSubjectAbbr = subjectAbbr;
             mSubjectCode = subjectCode;
@@ -258,7 +258,7 @@ public class AdminSubjectCreation extends Fragment {
 
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(R.layout.fragment_admin_subject_row, parent, false);
+                row = inflater.inflate(R.layout.admin_fragment_subject_row, parent, false);
                 viewHolder = new AdminSubjectCreation.ViewHolder(row);
                 row.setTag(viewHolder);
             } else {

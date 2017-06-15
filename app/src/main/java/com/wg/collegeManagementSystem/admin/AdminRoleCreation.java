@@ -41,7 +41,7 @@ public class AdminRoleCreation extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_admin_role_creation, container, false);
+        View view = inflater.inflate(R.layout.admin_fragment_role_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
         inputRole = (EditText) view.findViewById(R.id.fragment_admin_role_input_role);
@@ -51,7 +51,7 @@ public class AdminRoleCreation extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View mView = inflater.inflate(R.layout.fragment_admin_role_update, null);
+                View mView = inflater.inflate(R.layout.admin_fragment_role_update, null);
 
                 oldRoleType = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_role_list_role_type)).getText().toString();
                 fragmentAdminRoleUpdateInputRoleType = (EditText) mView.findViewById(R.id.fragment_admin_role_update_input_role);
@@ -209,7 +209,7 @@ public class AdminRoleCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] roleType) {
-            super(context, R.layout.fragment_admin_role_row, R.id.fragment_admin_role_list_role_type, roleType);
+            super(context, R.layout.admin_fragment_role_row, R.id.fragment_admin_role_list_role_type, roleType);
             mRoleType = roleType;
             mContext = context;
         }
@@ -221,7 +221,7 @@ public class AdminRoleCreation extends Fragment {
 
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(R.layout.fragment_admin_role_row, parent, false);
+                row = inflater.inflate(R.layout.admin_fragment_role_row, parent, false);
                 viewHolder = new ViewHolder(row);
                 row.setTag(viewHolder);
             } else {

@@ -54,7 +54,7 @@ public class AdminUserCreation extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_admin_user_creation, container, false);
+        View view = inflater.inflate(R.layout.admin_fragment_user_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
         inputUserName = (EditText) view.findViewById(R.id.fragment_admin_user_input_user_name);
@@ -67,7 +67,7 @@ public class AdminUserCreation extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View mView = inflater.inflate(R.layout.fragment_admin_user_update, null);
+                View mView = inflater.inflate(R.layout.admin_fragment_user_update, null);
 
                 oldUserName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_user_list_user_name)).getText().toString();
                 oldUserEmail = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_user_list_user_email)).getText().toString();
@@ -312,7 +312,7 @@ public class AdminUserCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] userName, String[] userEmail, String[] userRole) {
-            super(context, R.layout.fragment_admin_user_row, R.id.fragment_admin_user_list_user_name, userName);
+            super(context, R.layout.admin_fragment_user_row, R.id.fragment_admin_user_list_user_name, userName);
             mUserName = userName;
             mUserEmail = userEmail;
             mUserRole = userRole;
@@ -326,7 +326,7 @@ public class AdminUserCreation extends Fragment {
 
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(R.layout.fragment_admin_user_row, parent, false);
+                row = inflater.inflate(R.layout.admin_fragment_user_row, parent, false);
                 viewHolder = new AdminUserCreation.ViewHolder(row);
                 row.setTag(viewHolder);
             } else {

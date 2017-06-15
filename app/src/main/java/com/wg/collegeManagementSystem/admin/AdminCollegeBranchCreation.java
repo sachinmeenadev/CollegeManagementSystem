@@ -45,7 +45,7 @@ public class AdminCollegeBranchCreation extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_admin_college_branch_creation, container, false);
+        View view = inflater.inflate(R.layout.admin_fragment_college_branch_creation, container, false);
 
         builder = new MaterialDialog.Builder(getActivity());
         inputBranchName = (EditText) view.findViewById(R.id.fragment_admin_college_branch_input_branch_name);
@@ -56,7 +56,7 @@ public class AdminCollegeBranchCreation extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View mView = inflater.inflate(R.layout.fragment_admin_college_branch_update, null);
+                View mView = inflater.inflate(R.layout.admin_fragment_college_branch_update, null);
 
                 oldBranchName = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_college_branch_list_college_name)).getText().toString();
                 oldBranchAbbr = ((AppCompatTextView) view.findViewById(R.id.fragment_admin_college_branch_list_college_abbr)).getText().toString();
@@ -227,7 +227,7 @@ public class AdminCollegeBranchCreation extends Fragment {
         Context mContext;
 
         public CustomAdapter(Context context, String[] branchName, String[] branchAbbr) {
-            super(context, R.layout.fragment_admin_college_branch_row, R.id.fragment_admin_college_branch_list_college_name, branchName);
+            super(context, R.layout.admin_fragment_college_branch_row, R.id.fragment_admin_college_branch_list_college_name, branchName);
             mBranchName = branchName;
             mBranchAbbr = branchAbbr;
             mContext = context;
@@ -240,7 +240,7 @@ public class AdminCollegeBranchCreation extends Fragment {
 
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(R.layout.fragment_admin_college_branch_row, parent, false);
+                row = inflater.inflate(R.layout.admin_fragment_college_branch_row, parent, false);
                 viewHolder = new AdminCollegeBranchCreation.ViewHolder(row);
                 row.setTag(viewHolder);
             } else {
