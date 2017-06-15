@@ -108,4 +108,41 @@ public class UserRepo {
 
         return userLists;
     }
+
+    public List<UserList> getLoginUser(User user) {
+        UserList userList;
+        List<UserList> userLists = new ArrayList<UserList>();
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String selectQuery = " SELECT " + User.KEY_UserId
+                + ", User." + User.KEY_UserName
+                + ", User." + User.KEY_UserEmail
+                + ", User." + User.KEY_UserRoleId
+                + ", User." + User.KEY_UserRoleId
+                + ", Role." + Role.KEY_RoleType
+                + " FROM " + User.TABLE + "  As User "
+                + " INNER JOIN " + Role.TABLE + " Role ON Role." + Role.KEY_RoleId + " =  User." + User.KEY_UserRoleId
+                + " WHERE User." + User.KEY_UserEmail + " =?"
+                + " AND User." + User.KEY_UserPassword + " =?";
+
+
+        Log.d(TAG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{user.getUserEmail(), user.getUserPassword()});
+
+        if (cursor.moveToFirst()) {
+            do {
+                userList = new UserList();
+                userList.setUserName(cursor.getString(cursor.getColumnIndex(User.KEY_UserName)));
+                userList.setUserEmail(cursor.getString(cursor.getColumnIndex(User.KEY_UserEmail)));
+                userList.setRoleType(cursor.getString(cursor.getColumnIndex(Role.KEY_RoleType)));
+
+                userLists.add(userList);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        DatabaseManager.getInstance().closeDatabase();
+
+        return userLists;
+    }
 }

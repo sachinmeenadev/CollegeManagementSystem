@@ -21,6 +21,7 @@ import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.helper.SessionManager;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     public SessionManager session;
     private Fragment fragment = null;
     private TextView navDrawerHeaderLblName, navDrawerHeaderLblEmail;
@@ -69,11 +70,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
 
         Menu menu = navigationView.getMenu();
-        menu.add(R.id.drawer_layout_menu_items, 120, Menu.NONE, "Role Creation");
-        menu.add(R.id.drawer_layout_menu_items, 121, Menu.NONE, "College Branch Creation");
-        menu.add(R.id.drawer_layout_menu_items, 122, Menu.NONE, "Subject Creation");
-        menu.add(R.id.drawer_layout_menu_items, 123, Menu.NONE, "User Creation");
-        menu.add(R.id.drawer_layout_menu_items, 124, Menu.NONE, "Faculty Member Creation");
+        menu.add(R.id.drawer_layout_menu_items, 10, Menu.NONE, "Role Creation");
+        menu.add(R.id.drawer_layout_menu_items, 11, Menu.NONE, "College Branch Creation");
+        menu.add(R.id.drawer_layout_menu_items, 12, Menu.NONE, "Subject Creation");
+        menu.add(R.id.drawer_layout_menu_items, 13, Menu.NONE, "User Creation");
+        menu.add(R.id.drawer_layout_menu_items, 14, Menu.NONE, "Faculty Member Creation");
     }
 
     @Override
@@ -94,19 +95,19 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         String itemName = item.getTitle().toString();
         //initializing the fragment object which is selected
         switch (itemId) {
-            case 120:
+            case 10:
                 fragment = new AdminRoleCreation();
                 break;
-            case 121:
+            case 11:
                 fragment = new AdminCollegeBranchCreation();
                 break;
-            case 122:
+            case 12:
                 fragment = new AdminSubjectCreation();
                 break;
-            case 123:
+            case 13:
                 fragment = new AdminUserCreation();
                 break;
-            case 124:
+            case 14:
                 fragment = new AdminFacultyMemberCreation();
                 break;
         }
