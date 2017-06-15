@@ -75,6 +75,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         menu.add(R.id.drawer_layout_menu_items, 12, Menu.NONE, "Subject Creation");
         menu.add(R.id.drawer_layout_menu_items, 13, Menu.NONE, "User Creation");
         menu.add(R.id.drawer_layout_menu_items, 14, Menu.NONE, "Faculty Member Creation");
+        menu.add(R.id.drawer_layout_menu_items, 15, Menu.NONE, "Import CSVs");
     }
 
     @Override
@@ -109,6 +110,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case 14:
                 fragment = new AdminFacultyMemberCreation();
+                break;
+            case 15:
+                fragment = new AdminImportData();
                 break;
         }
         //replacing the fragment
