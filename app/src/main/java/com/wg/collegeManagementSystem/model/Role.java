@@ -1,12 +1,14 @@
 package com.wg.collegeManagementSystem.model;
 
 /**
- * Created by Jerry on 12-06-2017.
+ * Created by Jerry on 11-06-2017.
  */
 
-public class RoleList {
-    private int roleId;
-    private String roleType;
+public class Role {
+    public static final String TAG = Role.class.getSimpleName();
+
+    public int roleId;
+    public String roleType;
 
     public int getRoleId() {
         return roleId;
@@ -23,4 +25,5 @@ public class RoleList {
     public void setRoleType(String roleType) {
         this.roleType = roleType;
     }
+
 }

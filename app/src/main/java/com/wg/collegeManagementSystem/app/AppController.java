@@ -7,8 +7,6 @@ import android.text.TextUtils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.wg.collegeManagementSystem.helper.DBHelper;
-import com.wg.collegeManagementSystem.helper.DatabaseManager;
 
 /**
  * Created by Jerry on 11-06-2017.
@@ -19,7 +17,6 @@ public class AppController extends Application {
     public static final String TAG = AppController.class.getSimpleName();
     private static AppController mInstance;
     private static Context context;
-    private static DBHelper dbHelper;
     private RequestQueue mRequestQueue;
 
     public static Context getContext() {
@@ -34,9 +31,7 @@ public class AppController extends Application {
     public void onCreate() {
         super.onCreate();
         context = this.getApplicationContext();
-        dbHelper = new DBHelper();
         mInstance = this;
-        DatabaseManager.initializeInstance(dbHelper);
     }
 
     public RequestQueue getRequestQueue() {

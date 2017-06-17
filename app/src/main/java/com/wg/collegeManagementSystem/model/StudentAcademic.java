@@ -1,4 +1,4 @@
-package com.wg.collegeManagementSystem.data.model;
+package com.wg.collegeManagementSystem.model;
 
 /**
  * Created by Jerry on 11-06-2017.
@@ -6,9 +6,7 @@ package com.wg.collegeManagementSystem.data.model;
 
 public class StudentAcademic {
     public static final String TAG = StudentAcademic.class.getSimpleName();
-    public static final String TABLE = "studentAcademics";
 
-    // Labels Table Columns names
     public static final String KEY_StudentAcademicId = "studentAcademicId";
     public static final String KEY_StudentAcademicStudentId = "studentAcademicStudentId";
     public static final String KEY_StudentAcademicSecPercentage = "studentAcademicSecPercentage";
@@ -43,7 +41,7 @@ public class StudentAcademic {
     public String studentAcademicDiplomaMedium;
     public String studentAcademicDiplomaInstituteName;
     public String studentAcademicCollegeAgg;
-    public String studentAcademicCollegeBackCount;
+    public int studentAcademicCollegeBackCount;
     public String studentAcademicCollegeBackSubject;
     public String studentAcademicHobbies;
 
@@ -167,11 +165,11 @@ public class StudentAcademic {
         this.studentAcademicCollegeAgg = studentAcademicCollegeAgg;
     }
 
-    public String getStudentAcademicCollegeBackCount() {
+    public int getStudentAcademicCollegeBackCount() {
         return studentAcademicCollegeBackCount;
     }
 
-    public void setStudentAcademicCollegeBackCount(String studentAcademicCollegeBackCount) {
+    public void setStudentAcademicCollegeBackCount(int studentAcademicCollegeBackCount) {
         this.studentAcademicCollegeBackCount = studentAcademicCollegeBackCount;
     }
 

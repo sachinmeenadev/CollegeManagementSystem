@@ -5,8 +5,7 @@ package com.wg.collegeManagementSystem.app;
  */
 
 public class AppConfig {
-    public static String URL_LOGIN = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/login.php";
-
-    // Server user register url
-    public static String URL_REGISTER = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/register.php";
+    public static String BASE_URL = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/api/";
+    public static String ADMIN_BASE_URL = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/api/admin/";
+    public static String URL_LOGIN = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/api/login/";
 }

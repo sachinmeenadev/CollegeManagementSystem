@@ -1,4 +1,4 @@
-package com.wg.collegeManagementSystem.helper;
+package com.wg.collegeManagementSystem.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,6 +16,7 @@ public class SessionManager {
     private static String USER_NAME = "USER_NAME";
     private static String USER_EMAIL = "USER_EMAIL";
     private static String USER_ROLE = "USER_ROLE";
+    private static String USER_UNIQUE_ID = "USER_UNIQUE_ID";
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
     // Shared Preferences
@@ -41,26 +42,45 @@ public class SessionManager {
         return pref.getBoolean(KEY_IS_LOGGED_IN, false);
     }
 
-    public void setUserNameEmailRole(String userName, String userEmail, String userRole) {
-        editor.putString(USER_NAME, userName);
-        editor.putString(USER_EMAIL, userEmail);
-        editor.putString(USER_ROLE, userRole);
-        editor.commit();
-        Log.d(TAG, "User name modified!");
-        Log.d(TAG, "User email modified!");
-        Log.d(TAG, "User role modified!");
-    }
-
     public String getUserName() {
         return pref.getString(USER_NAME, "userName");
+    }
+
+    public void setUserName(String userName) {
+        editor.putString(USER_NAME, userName);
+        editor.commit();
+        Log.d(TAG, "User name modified!");
+
     }
 
     public String getUserEmail() {
         return pref.getString(USER_EMAIL, "userEmail");
     }
 
+    public void setUserEmail(String userEmail) {
+        editor.putString(USER_EMAIL, userEmail);
+        editor.commit();
+        Log.d(TAG, "User email modified!");
+    }
+
     public String getUserRole() {
         return pref.getString(USER_ROLE, "userRole");
+    }
+
+    public void setUserRole(String userRole) {
+        editor.putString(USER_ROLE, userRole);
+        editor.commit();
+        Log.d(TAG, "User role modified!");
+    }
+
+    public String getUserUniqueId() {
+        return pref.getString(USER_UNIQUE_ID, "userUniqueId");
+    }
+
+    public void setUserUniqueId(String userUniqueId) {
+        editor.putString(USER_UNIQUE_ID, userUniqueId);
+        editor.commit();
+        Log.d(TAG, "User unique id modified!");
     }
 }
 

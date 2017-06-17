@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.wg.collegeManagementSystem.LoginActivity;
 import com.wg.collegeManagementSystem.R;
-import com.wg.collegeManagementSystem.helper.SessionManager;
+import com.wg.collegeManagementSystem.app.SessionManager;
 
 public class HodActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

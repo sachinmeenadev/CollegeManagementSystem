@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.wg.collegeManagementSystem.LoginActivity;
 import com.wg.collegeManagementSystem.R;
-import com.wg.collegeManagementSystem.helper.SessionManager;
+import com.wg.collegeManagementSystem.app.SessionManager;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -73,9 +73,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         menu.add(R.id.drawer_layout_menu_items, 10, Menu.NONE, "Role Creation");
         menu.add(R.id.drawer_layout_menu_items, 11, Menu.NONE, "College Branch Creation");
         menu.add(R.id.drawer_layout_menu_items, 12, Menu.NONE, "Subject Creation");
-        menu.add(R.id.drawer_layout_menu_items, 13, Menu.NONE, "User Creation");
-        menu.add(R.id.drawer_layout_menu_items, 14, Menu.NONE, "Faculty Member Creation");
-        menu.add(R.id.drawer_layout_menu_items, 15, Menu.NONE, "Import CSVs");
+        menu.add(R.id.drawer_layout_menu_items, 13, Menu.NONE, "Faculty Member Creation");
     }
 
     @Override
@@ -98,21 +96,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         switch (itemId) {
             case 10:
                 fragment = new AdminRoleCreation();
-                break;
-            case 11:
-                fragment = new AdminCollegeBranchCreation();
-                break;
-            case 12:
-                fragment = new AdminSubjectCreation();
-                break;
-            case 13:
-                fragment = new AdminUserCreation();
-                break;
-            case 14:
-                fragment = new AdminFacultyMemberCreation();
-                break;
-            case 15:
-                fragment = new AdminImportData();
                 break;
         }
         //replacing the fragment

@@ -1,4 +1,4 @@
-package com.wg.collegeManagementSystem.data.model;
+package com.wg.collegeManagementSystem.model;
 
 /**
  * Created by Jerry on 11-06-2017.
@@ -6,7 +6,6 @@ package com.wg.collegeManagementSystem.data.model;
 
 public class FacultyMemberSubject {
     public static final String TAG = FacultyMemberSubject.class.getSimpleName();
-    public static final String TABLE = "facultyMemberSubjects";
 
     // Labels Table Columns names
     public static final String KEY_FMSId = "fmsId";

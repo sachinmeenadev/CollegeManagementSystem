@@ -1,29 +1,44 @@
 package com.wg.collegeManagementSystem;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.wg.collegeManagementSystem.admin.AdminActivity;
-import com.wg.collegeManagementSystem.data.model.User;
-import com.wg.collegeManagementSystem.data.repo.UserRepo;
-import com.wg.collegeManagementSystem.helper.SessionManager;
+import com.wg.collegeManagementSystem.app.AppConfig;
+import com.wg.collegeManagementSystem.app.AppController;
+import com.wg.collegeManagementSystem.app.SessionManager;
 import com.wg.collegeManagementSystem.hod.HodActivity;
-import com.wg.collegeManagementSystem.model.UserList;
 
-import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class LoginActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
+
+public class LoginActivity extends Activity {
+    private static final String TAG = LoginActivity.class.getSimpleName();
     public SessionManager session;
     private EditText inputEmail, inputPassword;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // Progress dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+
         session = new SessionManager(getApplicationContext());
         if (session.isLoggedIn()) {
             if (session.getUserRole().equals("Admin")) {
@@ -56,8 +71,6 @@ public class LoginActivity extends AppCompatActivity {
      * On login button click
      */
     public void activity_login_btn_login(View v) {
-        UserRepo userRepo = new UserRepo();
-        User user = new User();
 
         String email, password;
         String userName = null, userEmail = null, userRole = null;
@@ -66,58 +79,96 @@ public class LoginActivity extends AppCompatActivity {
         password = inputPassword.getText().toString().trim();
 
         if (!email.isEmpty() && !password.isEmpty()) {
-            if (email.equals("admin") && password.equals("password")) {
-                session.setLogin(true);
-                session.setUserNameEmailRole("Jerry", "jerry@sachin.com", "Admin");
-                startActivity(new Intent(this, AdminActivity.class));
-                finish();
-            } else {
-                user.setUserEmail(email);
-                user.setUserPassword(password);
-                List<UserList> list = userRepo.getLoginUser(user);
-                if (list.size() > 0) {
-                    for (int i = 0; i < list.size(); i++) {
-                        userName = list.get(i).getUserName();
-                        userEmail = list.get(i).getUserEmail();
-                        userRole = list.get(i).getRoleType();
-                    }
-                    session.setLogin(true);
-                    session.setUserNameEmailRole(userName, userEmail, userRole);
-                    if (userRole.equals("Admin")) {
-                        startActivity(new Intent(this, AdminActivity.class));
-                        finish();
-                    } else if (userRole.equals("HOD")) {
-                        startActivity(new Intent(this, HodActivity.class));
-                        finish();
-                    } else if (userRole.equals("Faculty")) {
-                        startActivity(new Intent(this, AdminActivity.class));
-                        finish();
-                    } else if (userRole.equals("Tutor")) {
-                        startActivity(new Intent(this, AdminActivity.class));
-                        finish();
-                    } else {
-                        Toast.makeText(this, "Either Email or Password is wrong", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(this, "Either Email or Password is wrong or User doesn't exists.", Toast.LENGTH_SHORT).show();
-                }
-            }
+            checkLogin(email, password);
         } else {
             Toast.makeText(this, "Please fill email and password", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * On forgot password button click
+     * function to verify login details in mysql db
      */
-    public void activity_login_btn_forgot_password(View v) {
-        startActivity(new Intent(this, ForgotPasswordActivity.class));
+    private void checkLogin(final String email, final String password) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+
+        pDialog.setMessage("Logging in ...");
+        showDialog();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_LOGIN, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Login Response: " + response.toString());
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if (!error) {
+                        session.setLogin(true);
+                        String userUniqueId = jObj.getString("userUniqueId");
+
+                        JSONObject user = jObj.getJSONObject("user");
+                        String userName = user.getString("userName");
+                        String userEmail = user.getString("userEmail");
+                        String userRole = user.getString("userRole");
+
+                        session.setLogin(true);
+                        session.setUserUniqueId(userUniqueId);
+                        session.setUserName(userName);
+                        session.setUserEmail(userEmail);
+                        session.setUserRole(userRole);
+                        if (userRole.equals("Admin")) {
+                            startActivity(new Intent(getBaseContext(), AdminActivity.class));
+                            finish();
+                        }
+                    } else {
+                        // Error in login. Get the error message
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(),
+                                errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("userEmail", email);
+                params.put("userPassword", password);
+
+                return params;
+            }
+        };
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-    /**
-     * On image click button
-     */
-    public void activity_login_register(View v) {
-        startActivity(new Intent(this, RegisterActivity.class));
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
     }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
 }

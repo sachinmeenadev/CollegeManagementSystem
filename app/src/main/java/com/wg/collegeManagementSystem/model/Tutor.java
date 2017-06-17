@@ -1,4 +1,4 @@
-package com.wg.collegeManagementSystem.data.model;
+package com.wg.collegeManagementSystem.model;
 
 /**
  * Created by Jerry on 11-06-2017.
@@ -6,16 +6,17 @@ package com.wg.collegeManagementSystem.data.model;
 
 public class Tutor {
     public static final String TAG = Tutor.class.getSimpleName();
-    public static final String TABLE = "tutors";
 
     // Labels Table Columns names
     public static final String KEY_TutorId = "tutorId";
     public static final String KEY_TutorFacultyId = "tutorFacultyId";
+    public static final String KEY_TutorClass = "tutorClass";
     public static final String KEY_TutorSection = "tutorSection";
     public static final String KEY_TutorBatch = "tutorBatch";
 
     public int tutorId;
     public int tutorFacultyId;
+    public String tutorClass;
     public String tutorSection;
     public String tutorBatch;
 
@@ -33,6 +34,14 @@ public class Tutor {
 
     public void setTutorFacultyId(int tutorFacultyId) {
         this.tutorFacultyId = tutorFacultyId;
+    }
+
+    public String getTutorClass() {
+        return tutorClass;
+    }
+
+    public void setTutorClass(String tutorClass) {
+        this.tutorClass = tutorClass;
     }
 
     public String getTutorSection() {
