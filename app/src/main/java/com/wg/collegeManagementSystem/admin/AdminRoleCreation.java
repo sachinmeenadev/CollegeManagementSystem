@@ -178,21 +178,20 @@ public class AdminRoleCreation extends Fragment {
                 .build();
         AdminAPI adminApi = retrofit.create(AdminAPI.class);
         //Defining the method
-        Call<List<Role>> list = adminApi.getRoles();
-        list.enqueue(new Callback<List<Role>>() {
+        adminApi.getRoles(new Callback<Role>() {
+
             @Override
-            public void onResponse(Call<List<Role>> call, Response<List<Role>> response) {
+            public void onResponse(Call<Role> call, Response<Role> response) {
                 if (response.isSuccessful()) {//Dismissing the loading progressbar
                     if (pDialog.isShowing()) {
                         pDialog.dismiss();
                     }
-                    roleList = response.body();
+                    response.body();
                 }
-                //showList();
             }
 
             @Override
-            public void onFailure(Call<List<Role>> call, Throwable t) {
+            public void onFailure(Call<Role> call, Throwable t) {
                 call.cancel();
             }
         });

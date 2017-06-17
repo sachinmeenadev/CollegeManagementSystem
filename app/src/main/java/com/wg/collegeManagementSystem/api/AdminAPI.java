@@ -2,9 +2,8 @@ package com.wg.collegeManagementSystem.api;
 
 import com.wg.collegeManagementSystem.model.Role;
 
-import java.util.List;
-
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.GET;
 
 /**
@@ -12,6 +11,6 @@ import retrofit2.http.GET;
  */
 
 public interface AdminAPI {
-    @GET("/roles")
-    Call<List<Role>> getRoles();
+    @GET("roles/")
+    Call<Role> getRoles(Callback<Role> callback);
 }

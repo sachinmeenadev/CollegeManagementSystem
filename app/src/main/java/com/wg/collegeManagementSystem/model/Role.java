@@ -1,20 +1,32 @@
 package com.wg.collegeManagementSystem.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
- * Created by Jerry on 11-06-2017.
+ * Created by Jerry on 17-06-2017.
  */
 
 public class Role {
-    public static final String TAG = Role.class.getSimpleName();
 
-    public int roleId;
-    public String roleType;
+    @SerializedName("roleId")
+    @Expose
+    private Integer roleId;
+    @SerializedName("roleType")
+    @Expose
+    private String roleType;
+    @SerializedName("roleCreatedAt")
+    @Expose
+    private String roleCreatedAt;
+    @SerializedName("roleUpdatedAt")
+    @Expose
+    private String roleUpdatedAt;
 
-    public int getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 
@@ -26,4 +38,19 @@ public class Role {
         this.roleType = roleType;
     }
 
+    public String getRoleCreatedAt() {
+        return roleCreatedAt;
+    }
+
+    public void setRoleCreatedAt(String roleCreatedAt) {
+        this.roleCreatedAt = roleCreatedAt;
+    }
+
+    public String getRoleUpdatedAt() {
+        return roleUpdatedAt;
+    }
+
+    public void setRoleUpdatedAt(String roleUpdatedAt) {
+        this.roleUpdatedAt = roleUpdatedAt;
+    }
 }
