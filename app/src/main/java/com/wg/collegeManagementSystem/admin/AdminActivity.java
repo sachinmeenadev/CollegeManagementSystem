@@ -14,10 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.wg.collegeManagementSystem.LoginActivity;
 import com.wg.collegeManagementSystem.R;
+import com.wg.collegeManagementSystem.app.config.AppConfig;
 import com.wg.collegeManagementSystem.app.helper.SessionManager;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +29,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     private Fragment fragment = null;
     private TextView navDrawerHeaderLblName, navDrawerHeaderLblEmail;
     private AppCompatButton navDrawerHeaderBtnLogout;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +57,14 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
 
+        imageView = (ImageView) headerView.findViewById(R.id.nav_drawer_header_img);
         navDrawerHeaderLblName = (TextView) headerView.findViewById(R.id.nav_drawer_header_lbl_name);
         navDrawerHeaderLblEmail = (TextView) headerView.findViewById(R.id.nav_drawer_header_lbl_email);
         navDrawerHeaderLblName.setText("Welcome, " + session.getUserName());
         navDrawerHeaderLblEmail.setText(session.getUserEmail());
-
+        Picasso.with(this)
+                .load(AppConfig.PUBLIC_URL + "/img/user.png")
+                .into(imageView);
         navDrawerHeaderBtnLogout = (AppCompatButton) headerView.findViewById(R.id.nav_drawer_header_btn_logout);
         navDrawerHeaderBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override

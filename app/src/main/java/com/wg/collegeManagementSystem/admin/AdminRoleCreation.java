@@ -1,12 +1,12 @@
 package com.wg.collegeManagementSystem.admin;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ import com.wg.collegeManagementSystem.model.RoleList;
 import java.io.IOException;
 import java.util.List;
 
-public class AdminRoleCreation extends Fragment {
+public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = AdminRoleCreation.class.getSimpleName();
     private String URL = AppConfig.ADMIN_ROLE_URL;
@@ -43,7 +43,7 @@ public class AdminRoleCreation extends Fragment {
     private int lblRoleId;
     private boolean wrapInScrollView = true;
     private EditText adminFragmentRoleUpdateInputRoleType;
-    private ProgressDialog pDialog;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
@@ -52,12 +52,20 @@ public class AdminRoleCreation extends Fragment {
         View view = inflater.inflate(R.layout.admin_fragment_role_creation, container, false);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        pDialog = new ProgressDialog(getActivity());
-        pDialog.setCancelable(false);
+
         builder = new MaterialDialog.Builder(getActivity());
         inputRole = (EditText) view.findViewById(R.id.admin_fragment_role_input_role);
         listView = (ListView) view.findViewById(R.id.admin_fragment_role_list);
-
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.admin_fragment_role_list_swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        swipeRefreshLayout.setRefreshing(true);
+                                        show_data();
+                                    }
+                                }
+        );
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -119,14 +127,12 @@ public class AdminRoleCreation extends Fragment {
         getActivity().setTitle("User Role Creation");
     }
 
-    private void showDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-
-    private void hideDialog() {
-        if (pDialog.isShowing())
-            pDialog.dismiss();
+    /**
+     * This method is called when swipe refresh is pulled down
+     */
+    @Override
+    public void onRefresh() {
+        show_data();
     }
 
     public String sendRequest(String url) {
@@ -144,16 +150,19 @@ public class AdminRoleCreation extends Fragment {
      * For showing added roles from database
      */
     public void show_data() {
-        pDialog.setMessage("Loading ...");
-        showDialog();
+        // showing refresh animation before making http call
+        swipeRefreshLayout.setRefreshing(true);
+
         String url = URL;
         String response = sendRequest(url);
         String[] responseArray = response.split(" ");
         if (responseArray[0].equals("ERROR")) {
-            hideDialog();
+            // stopping swipe refresh
+            swipeRefreshLayout.setRefreshing(false);
             Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
         } else {
-            hideDialog();
+            // stopping swipe refresh
+            swipeRefreshLayout.setRefreshing(false);
 
             RoleRepo roleRepo = new RoleRepo();
             List<RoleList> list = roleRepo.getRole(response);
