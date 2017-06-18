@@ -74,6 +74,5 @@ If you have any feedback,further questions you can either create an issue on the
     Twitter: Twitter @_sachinmeena (Be sure to follow me too)
     Email: sachinmeena.dev@gmail.com
 
-
-## NOTE 
-    >This project is made for learning only and made with some reference of my college. All the images and content regarding college are property of my college. Action can be taken, if someone found to use these images as a mode of business.
+### NOTE
+ *_This project is made for learning only and made with some reference of my college. All the images and content regarding college are property of my college. Action can be taken, if someone found to use these images as a mode of business._*
