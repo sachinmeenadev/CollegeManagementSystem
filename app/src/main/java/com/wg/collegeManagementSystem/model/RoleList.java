@@ -1,35 +1,44 @@
 package com.wg.collegeManagementSystem.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
-
 /**
  * Created by Jerry on 17-06-2017.
  */
 
 public class RoleList {
-    @SerializedName("error")
-    @Expose
-    private Boolean error;
-    @SerializedName("roles")
-    @Expose
-    private List<Role> roles = null;
+    private Integer roleId;
+    private String roleType;
+    private String roleCreatedAt;
+    private String roleUpdatedAt;
 
-    public Boolean getError() {
-        return error;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setError(Boolean error) {
-        this.error = error;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public String getRoleType() {
+        return roleType;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRoleType(String roleType) {
+        this.roleType = roleType;
+    }
+
+    public String getRoleCreatedAt() {
+        return roleCreatedAt;
+    }
+
+    public void setRoleCreatedAt(String roleCreatedAt) {
+        this.roleCreatedAt = roleCreatedAt;
+    }
+
+    public String getRoleUpdatedAt() {
+        return roleUpdatedAt;
+    }
+
+    public void setRoleUpdatedAt(String roleUpdatedAt) {
+        this.roleUpdatedAt = roleUpdatedAt;
     }
 }

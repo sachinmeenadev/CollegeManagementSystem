@@ -3,11 +3,13 @@ package com.wg.collegeManagementSystem.admin;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,18 +22,14 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
-import com.wg.collegeManagementSystem.api.AdminAPI;
-import com.wg.collegeManagementSystem.model.Role;
+import com.wg.collegeManagementSystem.app.AppConfig;
+import com.wg.collegeManagementSystem.app.UrlRequest;
+import com.wg.collegeManagementSystem.model.RoleList;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.wg.collegeManagementSystem.app.AppConfig.ADMIN_BASE_URL;
 
 public class AdminRoleCreation extends Fragment {
 
@@ -45,13 +43,15 @@ public class AdminRoleCreation extends Fragment {
     private boolean wrapInScrollView = true;
     private EditText adminFragmentRoleUpdateInputRoleType;
     private ProgressDialog pDialog;
-    private List<Role> roleList;
+    private List<RoleList> roleList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.admin_fragment_role_creation, container, false);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
         builder = new MaterialDialog.Builder(getActivity());
@@ -77,13 +77,13 @@ public class AdminRoleCreation extends Fragment {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         newRoleType = adminFragmentRoleUpdateInputRoleType.getText().toString().trim();
-                        update(oldRoleType, newRoleType);
+                        //update(oldRoleType, newRoleType);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        delete();
+                        //delete();
                     }
                 });
                 builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
@@ -104,7 +104,7 @@ public class AdminRoleCreation extends Fragment {
         adminFragmentRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insert();
+                // insert();
             }
         });
         show_data();
@@ -118,83 +118,30 @@ public class AdminRoleCreation extends Fragment {
         getActivity().setTitle("User Role Creation");
     }
 
-    /**
-     * For inserting in database
-     */
-    public void insert() {
-        String roleType = inputRole.getText().toString().trim();
-
-        if (roleType.isEmpty()) {
-            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
-        } else {
-            if (roleType.equals(oldRoleType)) {
-                Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
-            } else {
-
-
-                inputRole.setText("");
-
-                Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
-                show_data();
-            }
+    public String sendRequest(String url) {
+        String response = null;
+        UrlRequest urlRequest = new UrlRequest();
+        try {
+            response = urlRequest.getUrlData(url);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-
-    /**
-     * For updating in database
-     */
-
-    public void update(String oldRoleType, String newRoleType) {
-        if (newRoleType.isEmpty()) {
-            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
-        } else {
-
-            Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
-            show_data();
-        }
-    }
-
-    /**
-     * For deleting roles in database
-     */
-    public void delete() {
-
-
-        Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
-        show_data();
+        Log.d(TAG, response);
+        return response;
     }
 
     /**
      * For showing added roles from database
      */
     public void show_data() {
-        pDialog.setMessage("Fetching Data ...");
-        if (!pDialog.isShowing()) {
-            pDialog.show();
+        String url = AppConfig.ADMIN_BASE_URL + "roles";
+        String response = sendRequest(url);
+        try {
+            JSONObject role = (new JSONObject(response)).getJSONObject("role");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ADMIN_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        AdminAPI adminApi = retrofit.create(AdminAPI.class);
-        //Defining the method
-        adminApi.getRoles(new Callback<Role>() {
-
-            @Override
-            public void onResponse(Call<Role> call, Response<Role> response) {
-                if (response.isSuccessful()) {//Dismissing the loading progressbar
-                    if (pDialog.isShowing()) {
-                        pDialog.dismiss();
-                    }
-                    response.body();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Role> call, Throwable t) {
-                call.cancel();
-            }
-        });
 
         String[] roleType = new String[roleList.size()];
 
