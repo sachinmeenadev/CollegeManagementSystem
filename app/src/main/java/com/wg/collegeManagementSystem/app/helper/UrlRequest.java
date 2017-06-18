@@ -1,4 +1,4 @@
-package com.wg.collegeManagementSystem.app;
+package com.wg.collegeManagementSystem.app.helper;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,7 +28,12 @@ public class UrlRequest {
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        int responseCode = response.code();
+        if (responseCode >= 200 && responseCode < 300) {
+            return response.body().string();
+        } else {
+            return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+        }
     }
 
     public String postUrlData(String url, HashMap<String, String> params) throws IOException {
@@ -44,7 +49,12 @@ public class UrlRequest {
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        int responseCode = response.code();
+        if (responseCode >= 200 && responseCode < 300) {
+            return response.body().string();
+        } else {
+            return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+        }
     }
 
     public String putUrlData(String url, int id, HashMap<String, String> params) throws IOException {
@@ -62,7 +72,12 @@ public class UrlRequest {
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        int responseCode = response.code();
+        if (responseCode >= 200 && responseCode < 300) {
+            return response.body().string();
+        } else {
+            return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+        }
     }
 
     public String deleteUrlData(String url, int id) throws IOException {
@@ -73,6 +88,11 @@ public class UrlRequest {
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        int responseCode = response.code();
+        if (responseCode >= 200 && responseCode < 300) {
+            return response.body().string();
+        } else {
+            return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+        }
     }
 }

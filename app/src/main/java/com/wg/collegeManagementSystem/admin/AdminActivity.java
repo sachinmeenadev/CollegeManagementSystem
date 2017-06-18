@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.wg.collegeManagementSystem.LoginActivity;
 import com.wg.collegeManagementSystem.R;
-import com.wg.collegeManagementSystem.app.SessionManager;
+import com.wg.collegeManagementSystem.app.helper.SessionManager;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

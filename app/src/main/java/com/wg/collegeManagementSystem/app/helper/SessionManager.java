@@ -1,4 +1,4 @@
-package com.wg.collegeManagementSystem.app;
+package com.wg.collegeManagementSystem.app.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;

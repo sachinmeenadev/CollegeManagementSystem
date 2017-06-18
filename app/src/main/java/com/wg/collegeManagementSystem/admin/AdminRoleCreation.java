@@ -21,8 +21,8 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
-import com.wg.collegeManagementSystem.app.AppConfig;
-import com.wg.collegeManagementSystem.app.UrlRequest;
+import com.wg.collegeManagementSystem.app.config.AppConfig;
+import com.wg.collegeManagementSystem.app.helper.UrlRequest;
 import com.wg.collegeManagementSystem.data.model.Role;
 import com.wg.collegeManagementSystem.data.repo.RoleRepo;
 import com.wg.collegeManagementSystem.model.RoleList;
@@ -119,6 +119,16 @@ public class AdminRoleCreation extends Fragment {
         getActivity().setTitle("User Role Creation");
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     public String sendRequest(String url) {
         String response = null;
         UrlRequest urlRequest = new UrlRequest();
@@ -134,22 +144,32 @@ public class AdminRoleCreation extends Fragment {
      * For showing added roles from database
      */
     public void show_data() {
+        pDialog.setMessage("Loading ...");
+        showDialog();
         String url = URL;
         String response = sendRequest(url);
-        RoleRepo roleRepo = new RoleRepo();
-        List<RoleList> list = roleRepo.getRole(response);
-
-        int[] roleId = new int[list.size()];
-        String[] roleType = new String[list.size()];
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
-                roleId[i] = list.get(i).getRoleId();
-                roleType[i] = list.get(i).getRoleType();
-            }
-            customAdapter = new CustomAdapter(getActivity(), roleId, roleType);
-            listView.setAdapter(customAdapter);
+        String[] responseArray = response.split(" ");
+        if (responseArray[0].equals("ERROR")) {
+            hideDialog();
+            Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
+            hideDialog();
+
+            RoleRepo roleRepo = new RoleRepo();
+            List<RoleList> list = roleRepo.getRole(response);
+
+            int[] roleId = new int[list.size()];
+            String[] roleType = new String[list.size()];
+            if (list.size() > 0) {
+                for (int i = 0; i < list.size(); i++) {
+                    roleId[i] = list.get(i).getRoleId();
+                    roleType[i] = list.get(i).getRoleType();
+                }
+                customAdapter = new CustomAdapter(getActivity(), roleId, roleType);
+                listView.setAdapter(customAdapter);
+            } else {
+                Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

@@ -14,9 +14,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.wg.collegeManagementSystem.admin.AdminActivity;
-import com.wg.collegeManagementSystem.app.AppConfig;
-import com.wg.collegeManagementSystem.app.AppController;
-import com.wg.collegeManagementSystem.app.SessionManager;
+import com.wg.collegeManagementSystem.app.config.AppConfig;
+import com.wg.collegeManagementSystem.app.config.AppController;
+import com.wg.collegeManagementSystem.app.helper.SessionManager;
 import com.wg.collegeManagementSystem.hod.HodActivity;
 
 import org.json.JSONException;

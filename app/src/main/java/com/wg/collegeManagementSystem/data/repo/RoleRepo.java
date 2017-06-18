@@ -2,7 +2,7 @@ package com.wg.collegeManagementSystem.data.repo;
 
 import android.util.Log;
 
-import com.wg.collegeManagementSystem.app.UrlRequest;
+import com.wg.collegeManagementSystem.app.helper.UrlRequest;
 import com.wg.collegeManagementSystem.data.model.Role;
 import com.wg.collegeManagementSystem.model.RoleList;
 
