@@ -284,5 +284,4 @@ public class AdminRoleCreation extends Fragment {
             return row;
         }
     }
-
 }
