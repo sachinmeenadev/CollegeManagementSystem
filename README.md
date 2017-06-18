@@ -47,101 +47,6 @@ This is a small College ERP system demo android application. It is the first dem
 		9.4 Manage Users list		
 		9.5 Manage Faculty Members list
 
-#### Project database structure
-    > All column name ending with Id are INTEGER Type, rest all are VARCHAR
-
-    *users
-		->userId 
-		->userName
-		->userEmail
-		->userPassword
-		->userRoleId
-		
-	*roles
-		->roleId
-		->roleType
-		
-	*student 
-		->studentId
-		->studentName
-		->studentRegNumber
-		->studentBranch
-		->studentSem
-		->studentSemSection
-		->studentSemBatch
-		->studentEmail
-		->studentContact
-		->studentFatherName
-		->studentFatherContact
-		->studentFatherEmail
-		->studentFatherOccupation
-		->studentFatherIncome
-		->studentMotherName
-		->studentMotherContact
-		->studentMotherEmail
-		->studentMotherOccupation
-		->studentMotherIncome
-		->studentLocalGuardianName
-		->studentLocalGuardianContact
-		->studentLocalGuardianEmail
-		->studentResidentType
-		->studentLocalAddress
-		->studentPermanentAddress
-		->studentCity
-		->studentState
-		->studentCountry
-		->studentPinCode
-		
-	*studentAcademics
-		->studentAcademicId
-		->studentAcademicStudentId
-		->studentAcademicSecPercentage
-		->studentAcademicSecBoard
-		->studentAcademicSecMedium
-		->studentAcademicSecSchoolName
-		->studentAcademicSrSecPercentage
-		->studentAcademicSrSecBoard
-		->studentAcademicSrSecMedium
-		->studentAcademicSrSecSchoolName
-		->studentAcademicDiplomaPercentage
-		->studentAcademicDiplomaBoard
-		->studentAcademicDiplomaMedium
-		->studentAcademicDiplomaInstituteName
-		->studentAcademicCollegeAgg
-		->studentAcademicCollegeBackCount
-		->studentAcademicCollegeBackSubject
-		->studentAcademicHobbies
-		
-	*collegeBranches
-		->collegeBranchId
-		->collegeBranchName
-		->collegeBranchAbbr
-		
-	*tutors
-		->tutorId
-		->tutorFacultyId
-		->tutorSection
-		->tutorBatch
-		
-	*facultyMembers
-		->facultyMemberId
-		->facultyMemberName
-		->facultyMemberBranchId
-		->facultyMemberDesignation
-		->facultyMemberContact
-		->facultyMemberEmail
-		
-	*subjects
-		->subjectId
-		->subjectName
-		->subjectAbbr
-		->subjectCode
-		
-	*facultyMemberSubjects
-		->fmsId
-		->fmsFacultyId
-		->fmsSubjectId
-
 #### Project configuration
     Compile Sdk Version => 25
     Build Tools Version => 25.0.3
@@ -149,15 +54,18 @@ This is a small College ERP system demo android application. It is the first dem
 #### Used dependencies
     1.  https://github.com/afollestad/material-dialogs 
     ->For Material Alert Dialog 
+    2. http://square.github.io/okhttp/
+    ->For  HTTP & HTTP/2 support
+    3. https://github.com/google/volley
+    ->For HTTP library
+    4. http://square.github.io/picasso/
+    ->For image downloading and caching
       
 #### Taken references from
-    1. http://instinctcoder.com/android-studio-sqlite-database-multiple-tables-example/
-    ->For multiple database table use
-    
-    2. http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
+    1. http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
     ->For session management
     
-    3. http://www.materialdoc.com/
+    2. http://www.materialdoc.com/
     ->For material design guides
 
 #### Feedback
