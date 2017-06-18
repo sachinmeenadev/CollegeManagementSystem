@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.app.AppConfig;
 import com.wg.collegeManagementSystem.app.UrlRequest;
-import com.wg.collegeManagementSystem.model.Role;
+import com.wg.collegeManagementSystem.data.model.Role;
+import com.wg.collegeManagementSystem.data.repo.RoleRepo;
 import com.wg.collegeManagementSystem.model.RoleList;
 
 import java.io.IOException;
@@ -33,16 +33,17 @@ import java.util.List;
 public class AdminRoleCreation extends Fragment {
 
     private static final String TAG = AdminRoleCreation.class.getSimpleName();
+    private String URL = AppConfig.ADMIN_ROLE_URL;
     private ListView listView;
     private EditText inputRole;
     private AppCompatButton adminFragmentRoleBtnInsert;
     private CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
-    private String oldRoleType, newRoleType;
+    private String lblRoleType, newLblRoleType;
+    private int lblRoleId;
     private boolean wrapInScrollView = true;
     private EditText adminFragmentRoleUpdateInputRoleType;
     private ProgressDialog pDialog;
-    private List<RoleList> roleList;
 
     @Nullable
     @Override
@@ -63,9 +64,10 @@ public class AdminRoleCreation extends Fragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View mView = inflater.inflate(R.layout.admin_fragment_role_update, null);
 
-                oldRoleType = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_role_list_role_type)).getText().toString();
+                lblRoleId = Integer.parseInt(((AppCompatTextView) view.findViewById(R.id.admin_fragment_role_list_role_id)).getText().toString());
+                lblRoleType = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_role_list_role_type)).getText().toString();
                 adminFragmentRoleUpdateInputRoleType = (EditText) mView.findViewById(R.id.admin_fragment_role_update_input_role);
-                adminFragmentRoleUpdateInputRoleType.setText(oldRoleType);
+                adminFragmentRoleUpdateInputRoleType.setText(lblRoleType);
 
                 builder.title("Action");
                 builder.positiveText("Update");
@@ -75,14 +77,14 @@ public class AdminRoleCreation extends Fragment {
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        newRoleType = adminFragmentRoleUpdateInputRoleType.getText().toString().trim();
-                        //update(oldRoleType, newRoleType);
+                        newLblRoleType = adminFragmentRoleUpdateInputRoleType.getText().toString().trim();
+                        update(lblRoleId, newLblRoleType);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        //delete();
+                        delete();
                     }
                 });
                 builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
@@ -103,7 +105,7 @@ public class AdminRoleCreation extends Fragment {
         adminFragmentRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // insert();
+                insert();
             }
         });
         show_data();
@@ -125,7 +127,6 @@ public class AdminRoleCreation extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, response);
         return response;
     }
 
@@ -133,18 +134,19 @@ public class AdminRoleCreation extends Fragment {
      * For showing added roles from database
      */
     public void show_data() {
-        String url = AppConfig.ADMIN_BASE_URL + "roles";
+        String url = URL;
         String response = sendRequest(url);
-        Role role = new Role();
-        List<RoleList> list = role.getRole(response);
+        RoleRepo roleRepo = new RoleRepo();
+        List<RoleList> list = roleRepo.getRole(response);
 
+        int[] roleId = new int[list.size()];
         String[] roleType = new String[list.size()];
-
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
+                roleId[i] = list.get(i).getRoleId();
                 roleType[i] = list.get(i).getRoleType();
             }
-            customAdapter = new CustomAdapter(getActivity(), roleType);
+            customAdapter = new CustomAdapter(getActivity(), roleId, roleType);
             listView.setAdapter(customAdapter);
         } else {
             Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
@@ -152,13 +154,96 @@ public class AdminRoleCreation extends Fragment {
     }
 
     /**
+     * For inserting data
+     */
+    public void insert() {
+        String roleType = inputRole.getText().toString().trim();
+
+        if (roleType.isEmpty()) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
+        } else {
+            if (roleType.equals(lblRoleType)) {
+                Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
+            } else {
+                String url = URL;
+
+                RoleRepo roleRepo = new RoleRepo();
+                Role role = new Role();
+
+                role.setRoleType(roleType);
+                String status = roleRepo.insert(role, url);
+                String[] statusArray = status.replaceAll("[{}]", "").split(",");
+                if (statusArray[0].equals("\"error\":false")) {
+                    inputRole.setText("");
+                    Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                    show_data();
+                } else {
+                    Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                    show_data();
+                }
+            }
+        }
+    }
+
+    /**
+     * For updating data
+     */
+    public void update(int lblRoleId, String newLblRoleType) {
+
+        if (newLblRoleType.isEmpty()) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
+        } else {
+
+            String url = URL;
+
+            RoleRepo roleRepo = new RoleRepo();
+            Role role = new Role();
+
+            role.setRoleId(lblRoleId);
+            role.setRoleType(newLblRoleType);
+            String status = roleRepo.update(role, url);
+            String[] statusArray = status.replaceAll("[{}]", "").split(",");
+            if (statusArray[0].equals("\"error\":false")) {
+                inputRole.setText("");
+                Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+                show_data();
+            } else {
+                Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                show_data();
+            }
+        }
+    }
+
+    /**
+     * For deleting roles in database
+     */
+    public void delete() {
+        String url = URL;
+
+        RoleRepo roleRepo = new RoleRepo();
+        Role role = new Role();
+
+        role.setRoleId(lblRoleId);
+        String status = roleRepo.delete(role, url);
+        String[] statusArray = status.replaceAll("[{}]", "").split(",");
+        if (statusArray[0].equals("\"error\":false")) {
+            Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
+            show_data();
+        } else {
+            Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+            show_data();
+        }
+    }
+
+    /**
      * ViewHolder to hold elements from custom row layout
      */
     public class ViewHolder {
-        AppCompatTextView lblSlNo, lblRoleType;
+        AppCompatTextView lblSlNo, lblRoleId, lblRoleType;
 
         public ViewHolder(View v) {
             lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_role_list_sl_no);
+            lblRoleId = (AppCompatTextView) v.findViewById(R.id.admin_fragment_role_list_role_id);
             lblRoleType = (AppCompatTextView) v.findViewById(R.id.admin_fragment_role_list_role_type);
         }
     }
@@ -167,11 +252,13 @@ public class AdminRoleCreation extends Fragment {
      * Custom adapter to fill list view
      */
     public class CustomAdapter extends ArrayAdapter<String> {
+        int[] mRoleId;
         String[] mRoleType;
         Context mContext;
 
-        public CustomAdapter(Context context, String[] roleType) {
+        public CustomAdapter(Context context, int[] roleId, String[] roleType) {
             super(context, R.layout.admin_fragment_role_row, R.id.admin_fragment_role_list_role_type, roleType);
+            mRoleId = roleId;
             mRoleType = roleType;
             mContext = context;
         }
@@ -191,9 +278,11 @@ public class AdminRoleCreation extends Fragment {
             }
 
             viewHolder.lblSlNo.setText(String.valueOf(position + 1));
+            viewHolder.lblRoleId.setText(String.valueOf(mRoleId[position]));
             viewHolder.lblRoleType.setText(mRoleType[position]);
 
             return row;
         }
     }
+
 }

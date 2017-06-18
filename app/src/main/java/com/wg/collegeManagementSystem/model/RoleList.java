@@ -5,6 +5,7 @@ package com.wg.collegeManagementSystem.model;
  */
 
 public class RoleList {
+    private static final String TAG = RoleList.class.getSimpleName();
     private Integer roleId;
     private String roleType;
     private String roleCreatedAt;

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context="com.wg.collegeManagementSystem.admin.AdminSubjectCreation">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/admin_fragment_subject_input_subject_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/admin_fragment_subject_input_subject_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject Name"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/admin_fragment_subject_input_subject_abbr_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/admin_fragment_subject_input_subject_abbr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Suject Abbreviation"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/admin_fragment_subject_input_subject_code_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/admin_fragment_subject_input_subject_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject Code"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/admin_fragment_subject_btn_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:background="@color/colorBtnLoginBg"
+        android:text="Insert"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="#"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Subject Name"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Subject Abbr"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Subject Code"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/admin_fragment_subject_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
+    </LinearLayout>
+</LinearLayout>
