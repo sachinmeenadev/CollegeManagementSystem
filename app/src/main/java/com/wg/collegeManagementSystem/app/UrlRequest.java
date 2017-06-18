@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -15,6 +16,9 @@ import okhttp3.Response;
  */
 
 public class UrlRequest {
+
+    public static final MediaType MEDIA_TYPE_MARKDOWN
+            = MediaType.parse("text/x-markdown; charset=utf-8");
 
     OkHttpClient client = new OkHttpClient();
 
@@ -44,6 +48,7 @@ public class UrlRequest {
     }
 
     public String putUrlData(String url, int id, HashMap<String, String> params) throws IOException {
+
         FormBody.Builder builder = new FormBody.Builder();
         for (Map.Entry<String, String> entry : params.entrySet()) {
             builder.add(entry.getKey(), entry.getValue());
@@ -52,6 +57,7 @@ public class UrlRequest {
         RequestBody body = builder.build();
         Request request = new Request.Builder()
                 .url(url + "/" + id)
+                .addHeader("Accept", "application/x-www-form-urlencoded; q=0.5")
                 .put(body)
                 .build();
 
