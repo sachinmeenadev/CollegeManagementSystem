@@ -6,6 +6,7 @@ package com.wg.collegeManagementSystem.data.model;
 
 public class Role {
     private static final String TAG = Role.class.getSimpleName();
+
     public int roleId;
     public String roleType;
 
