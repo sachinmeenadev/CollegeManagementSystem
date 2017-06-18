@@ -24,9 +24,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.app.AppConfig;
 import com.wg.collegeManagementSystem.app.UrlRequest;
+import com.wg.collegeManagementSystem.model.Role;
 import com.wg.collegeManagementSystem.model.RoleList;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -136,18 +135,14 @@ public class AdminRoleCreation extends Fragment {
     public void show_data() {
         String url = AppConfig.ADMIN_BASE_URL + "roles";
         String response = sendRequest(url);
-        try {
-            JSONObject role = (new JSONObject(response)).getJSONObject("role");
+        Role role = new Role();
+        List<RoleList> list = role.getRole(response);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String[] roleType = new String[list.size()];
 
-        String[] roleType = new String[roleList.size()];
-
-        if (roleList.size() > 0) {
-            for (int i = 0; i < roleList.size(); i++) {
-                roleType[i] = roleList.get(i).getRoleType();
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                roleType[i] = list.get(i).getRoleType();
             }
             customAdapter = new CustomAdapter(getActivity(), roleType);
             listView.setAdapter(customAdapter);
