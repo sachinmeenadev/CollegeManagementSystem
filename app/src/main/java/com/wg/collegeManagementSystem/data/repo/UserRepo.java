@@ -85,6 +85,7 @@ public class UserRepo {
 
         String response = null;
 
+        int userId = user.getUserId();
         String userName = user.getUserName();
         String userEmail = user.getUserEmail();
         String userPassword = user.getUserPassword();
@@ -107,7 +108,7 @@ public class UserRepo {
         params.put("userUpdateStatus", String.valueOf(userUpdateStatus));
         UrlRequest urlRequest = new UrlRequest();
         try {
-            response = urlRequest.putUrlData(url, userRoleId, params);
+            response = urlRequest.putUrlData(url, userId, params);
         } catch (IOException e) {
             e.printStackTrace();
         }

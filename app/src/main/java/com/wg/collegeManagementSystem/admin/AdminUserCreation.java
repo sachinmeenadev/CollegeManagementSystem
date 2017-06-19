@@ -325,6 +325,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
             UserRepo userRepo = new UserRepo();
             User user = new User();
 
+            user.setUserId(lblUserId);
             user.setUserName(newLblUserName);
             user.setUserEmail(newLblUserEmail);
             user.setUserPassword(newLblUserPassword);
