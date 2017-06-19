@@ -9,7 +9,6 @@ import com.wg.collegeManagementSystem.model.RoleList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,11 +57,7 @@ public class RoleRepo {
         params.put("roleType", roleType);
 
         UrlRequest urlRequest = new UrlRequest();
-        try {
-            response = urlRequest.postUrlData(url, params);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response = urlRequest.postUrlData(url, params);
         Log.d(TAG, response);
         return response;
     }
@@ -77,11 +72,7 @@ public class RoleRepo {
         params.put("roleType", roleType);
 
         UrlRequest urlRequest = new UrlRequest();
-        try {
-            response = urlRequest.putUrlData(url, roleId, params);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response = urlRequest.putUrlData(url, roleId, params);
         Log.d(TAG, response);
         return response;
     }
@@ -92,11 +83,7 @@ public class RoleRepo {
         int roleId = role.getRoleId();
 
         UrlRequest urlRequest = new UrlRequest();
-        try {
-            response = urlRequest.deleteUrlData(url, roleId);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response = urlRequest.deleteUrlData(url, roleId);
         Log.d(TAG, response);
         return response;
     }

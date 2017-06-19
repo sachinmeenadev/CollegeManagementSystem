@@ -9,7 +9,6 @@ import com.wg.collegeManagementSystem.model.UserList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,11 +65,7 @@ public class UserRepo {
         params.put("userRoleId", String.valueOf(userRoleId));
 
         UrlRequest urlRequest = new UrlRequest();
-        try {
-            response = urlRequest.postUrlData(url, params);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response = urlRequest.postUrlData(url, params);
         Log.d(TAG, response);
         return response;
     }
@@ -107,11 +102,7 @@ public class UserRepo {
 
         params.put("userUpdateStatus", String.valueOf(userUpdateStatus));
         UrlRequest urlRequest = new UrlRequest();
-        try {
-            response = urlRequest.putUrlData(url, userId, params);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response = urlRequest.putUrlData(url, userId, params);
         Log.d(TAG, response);
         return response;
     }
@@ -122,11 +113,7 @@ public class UserRepo {
         int userId = user.getUserId();
 
         UrlRequest urlRequest = new UrlRequest();
-        try {
-            response = urlRequest.deleteUrlData(url, userId);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response = urlRequest.deleteUrlData(url, userId);
         Log.d(TAG, response);
         return response;
     }

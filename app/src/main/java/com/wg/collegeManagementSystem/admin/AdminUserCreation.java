@@ -199,7 +199,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     public String sendRequest(String url) {
         String response = null;
         UrlRequest urlRequest = new UrlRequest();
-            response = urlRequest.getUrlData(url);
+        response = urlRequest.getUrlData(url);
         return response;
     }
 

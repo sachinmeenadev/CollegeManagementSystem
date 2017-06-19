@@ -13,6 +13,13 @@
         android:textSize="15sp" />
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/admin_fragment_college_branch_list_college_branch_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/admin_fragment_college_branch_list_college_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 import com.wg.collegeManagementSystem.LoginActivity;
 import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.app.config.AppURL;
+import com.wg.collegeManagementSystem.app.helper.RoundedTransformation;
 import com.wg.collegeManagementSystem.app.helper.SessionManager;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,6 +65,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         navDrawerHeaderLblEmail.setText(session.getUserEmail());
         Picasso.with(this)
                 .load(AppURL.PUBLIC_URL + "/img/user.png")
+                .transform(new RoundedTransformation(50, 2))
                 .into(imageView);
         navDrawerHeaderBtnLogout = (AppCompatButton) headerView.findViewById(R.id.nav_drawer_header_btn_logout);
         navDrawerHeaderBtnLogout.setOnClickListener(new View.OnClickListener() {
