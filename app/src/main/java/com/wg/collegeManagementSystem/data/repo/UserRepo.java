@@ -1,12 +1,17 @@
 package com.wg.collegeManagementSystem.data.repo;
 
+import android.util.Log;
+
+import com.wg.collegeManagementSystem.app.helper.UrlRequest;
 import com.wg.collegeManagementSystem.data.model.User;
 import com.wg.collegeManagementSystem.model.UserList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -44,5 +49,84 @@ public class UserRepo {
         }
 
         return userLists;
+    }
+
+    public String insert(User user, String url) {
+        String response = null;
+
+        String userName = user.getUserName();
+        String userEmail = user.getUserEmail();
+        String userPassword = user.getUserPassword();
+        int userRoleId = user.getUserRoleId();
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userName", userName);
+        params.put("userEmail", userEmail);
+        params.put("userPassword", userPassword);
+        params.put("userRoleId", String.valueOf(userRoleId));
+
+        UrlRequest urlRequest = new UrlRequest();
+        try {
+            response = urlRequest.postUrlData(url, params);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d(TAG, response);
+        return response;
+    }
+
+    public String update(User user, String url, int updateUserRoleStatus, int updateUserPasswordStatus) {
+        /**
+         * 1. "0" For User Name & Email
+         * 2. "1" For Password
+         * 3. "2" For Role
+         * 4. "3" For all update
+         */
+
+        String response = null;
+
+        String userName = user.getUserName();
+        String userEmail = user.getUserEmail();
+        String userPassword = user.getUserPassword();
+        int userRoleId = user.getUserRoleId();
+        int userUpdateStatus = 0;
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userName", userName);
+        params.put("userEmail", userEmail);
+        params.put("userPassword", userPassword);
+        params.put("userRoleId", String.valueOf(userRoleId));
+
+        if (updateUserPasswordStatus == 1)
+            userUpdateStatus = 1;
+        if (updateUserRoleStatus == 1)
+            userUpdateStatus = 2;
+        if (updateUserPasswordStatus == 1 && updateUserRoleStatus == 1)
+            userUpdateStatus = 3;
+
+        params.put("userUpdateStatus", String.valueOf(userUpdateStatus));
+        UrlRequest urlRequest = new UrlRequest();
+        try {
+            response = urlRequest.putUrlData(url, userRoleId, params);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d(TAG, response);
+        return response;
+    }
+
+    public String delete(User user, String url) {
+        String response = null;
+
+        int userId = user.getUserId();
+
+        UrlRequest urlRequest = new UrlRequest();
+        try {
+            response = urlRequest.deleteUrlData(url, userId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d(TAG, response);
+        return response;
     }
 }

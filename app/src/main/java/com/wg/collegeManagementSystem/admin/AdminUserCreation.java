@@ -24,12 +24,17 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.app.config.AppURL;
 import com.wg.collegeManagementSystem.app.helper.UrlRequest;
+import com.wg.collegeManagementSystem.data.model.User;
+import com.wg.collegeManagementSystem.data.repo.RoleRepo;
 import com.wg.collegeManagementSystem.data.repo.UserRepo;
+import com.wg.collegeManagementSystem.model.RoleList;
 import com.wg.collegeManagementSystem.model.UserList;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Jerry on 19-06-2017.
@@ -67,7 +72,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
         inputUserEmail = (EditText) view.findViewById(R.id.admin_fragment_user_input_user_email);
         inputUserPassword = (EditText) view.findViewById(R.id.admin_fragment_user_input_user_password);
         inputUserRoleSpinner = (AppCompatSpinner) view.findViewById(R.id.admin_fragment_user_input_user_role_spinner);
-        //setRoleSpinner(0);
+        setRoleSpinner(0);
         listView = (ListView) view.findViewById(R.id.admin_fragment_user_list);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -84,7 +89,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
                 adminFragmentUserUpdateInputUserEmail.setText(lblUserEmail);
                 adminFragmentUserUpdateInputUserPassword = (EditText) mView.findViewById(R.id.admin_fragment_user_update_input_user_password);
                 adminFragmentUserUpdateInputUserRoleSpinner = (AppCompatSpinner) mView.findViewById(R.id.admin_fragment_user_update_input_user_role_spinner);
-                //setRoleSpinner(1);
+                setRoleSpinner(1);
 
                 builder.title("Action");
                 builder.positiveText("Update");
@@ -98,13 +103,13 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
                         newLblUserEmail = adminFragmentUserUpdateInputUserEmail.getText().toString().trim();
                         newLblUserPassword = adminFragmentUserUpdateInputUserPassword.getText().toString().trim();
                         newLblUserRole = adminFragmentUserUpdateInputUserRoleSpinner.getSelectedItem().toString().trim();
-                        //update(lblUserId,newUserName, newUserEmail, newUserPassword, newUserRole);
+                        update(lblUserId, newLblUserName, newLblUserEmail, newLblUserPassword, newLblUserRole);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        //delete();
+                        delete();
                     }
                 });
                 builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
@@ -136,7 +141,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
         adminFragmentUserBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert();
+                insert();
             }
         });
         show_data();
@@ -147,7 +152,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("User Login Creation");
+        getActivity().setTitle("User Creation");
     }
 
     /**
@@ -156,6 +161,37 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     @Override
     public void onRefresh() {
         show_data();
+    }
+
+    /**
+     * For showing data inside spinner
+     */
+    public void setRoleSpinner(int id) {
+        /**
+         * 1. "0" For initial spinner
+         * 2. "1" For update spinner
+         */
+        //For creating a array for spinner
+        List<String> roleSpinnerArray = new ArrayList<String>();
+        //For creating a associative array for comparing it with values later to get th key
+        roleMap = new HashMap<Integer, String>();
+        RoleRepo roleRepo = new RoleRepo();
+        List<RoleList> list = roleRepo.getRole(sendRequest(ROLE_URL));
+        if (list.size() > 0) {
+            roleSpinnerArray.add("Select Role");
+            roleMap.put(0, "Select Role");
+            for (int i = 0; i < list.size(); i++) {
+                roleMap.put(list.get(i).getRoleId(), list.get(i).getRoleType());
+                roleSpinnerArray.add(list.get(i).getRoleType());
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, roleSpinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        if (id == 0) {
+            inputUserRoleSpinner.setAdapter(adapter);
+        } else if (id == 1) {
+            adminFragmentUserUpdateInputUserRoleSpinner.setAdapter(adapter);
+        }
     }
 
     /**
@@ -209,6 +245,120 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
             } else {
                 Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    /**
+     * For getting value from spinner
+     */
+    public int getRoleSpinner(String userRole) {
+        int roleId = 0;
+        for (Map.Entry entry : roleMap.entrySet()) {
+            if (userRole.equals(entry.getValue())) {
+                roleId = Integer.parseInt(entry.getKey().toString());
+                break; //breaking because its one to one map
+            } else {
+                roleId = 0;
+            }
+        }
+        return roleId;
+    }
+
+    /**
+     * For inserting in database
+     */
+    public void insert() {
+        String userName = inputUserName.getText().toString().trim();
+        String userEmail = inputUserEmail.getText().toString().trim();
+        String userPassword = inputUserPassword.getText().toString().trim();
+        String userRole = inputUserRoleSpinner.getSelectedItem().toString().trim();
+        int userRoleId = getRoleSpinner(userRole);
+        if (userName.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userRoleId == 0) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
+        } else {
+            if (userName.equals(lblUserName) && userEmail.equals(lblUserEmail)) {
+                Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
+            } else {
+                String url = URL;
+
+                UserRepo userRepo = new UserRepo();
+                User user = new User();
+
+                user.setUserName(userName);
+                user.setUserEmail(userEmail);
+                user.setUserPassword(userPassword);
+                user.setUserRoleId(userRoleId);
+                String status = userRepo.insert(user, url);
+                String[] statusArray = status.replaceAll("[{}]", "").split(",");
+                if (statusArray[0].equals("\"error\":false")) {
+                    inputUserName.setText("");
+                    inputUserEmail.setText("");
+                    inputUserPassword.setText("");
+                    Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                    show_data();
+                } else {
+                    Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                    show_data();
+                }
+            }
+        }
+    }
+
+    /**
+     * For updating data
+     */
+    public void update(int lblUserId, String newLblUserName, String newLblUserEmail, String newLblUserPassword, String newLblUserRole) {
+        int userRoleId = getRoleSpinner(newLblUserRole);
+        int updateUserRoleStatus = 0, updateUserPasswordStatus = 0;
+        if (userRoleId != 0) {
+            updateUserRoleStatus = 1;
+        }
+        if (!newLblUserPassword.isEmpty()) {
+            updateUserPasswordStatus = 1;
+        }
+        if (newLblUserName.isEmpty() || newLblUserEmail.isEmpty()) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
+        } else {
+
+            String url = URL;
+
+            UserRepo userRepo = new UserRepo();
+            User user = new User();
+
+            user.setUserName(newLblUserName);
+            user.setUserEmail(newLblUserEmail);
+            user.setUserPassword(newLblUserPassword);
+            user.setUserRoleId(userRoleId);
+            String status = userRepo.update(user, url, updateUserRoleStatus, updateUserPasswordStatus);
+            String[] statusArray = status.replaceAll("[{}]", "").split(",");
+            if (statusArray[0].equals("\"error\":false")) {
+                Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+                show_data();
+            } else {
+                Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                show_data();
+            }
+        }
+    }
+
+    /**
+     * For deleting roles in database
+     */
+    public void delete() {
+        String url = URL;
+
+        UserRepo userRepo = new UserRepo();
+        User user = new User();
+
+        user.setUserId(lblUserId);
+        String status = userRepo.delete(user, url);
+        String[] statusArray = status.replaceAll("[{}]", "").split(",");
+        if (statusArray[0].equals("\"error\":false")) {
+            Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
+            show_data();
+        } else {
+            Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+            show_data();
         }
     }
 

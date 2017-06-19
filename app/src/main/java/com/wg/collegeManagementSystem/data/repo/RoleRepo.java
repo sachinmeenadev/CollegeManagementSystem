@@ -53,6 +53,7 @@ public class RoleRepo {
         String response = null;
 
         String roleType = role.getRoleType();
+
         HashMap<String, String> params = new HashMap<>();
         params.put("roleType", roleType);
 
@@ -71,6 +72,7 @@ public class RoleRepo {
 
         int roleId = role.getRoleId();
         String roleType = role.getRoleType();
+
         HashMap<String, String> params = new HashMap<>();
         params.put("roleType", roleType);
 
