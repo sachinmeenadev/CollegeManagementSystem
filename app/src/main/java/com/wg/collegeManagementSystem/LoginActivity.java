@@ -14,8 +14,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.wg.collegeManagementSystem.admin.AdminActivity;
-import com.wg.collegeManagementSystem.app.config.AppConfig;
 import com.wg.collegeManagementSystem.app.config.AppController;
+import com.wg.collegeManagementSystem.app.config.AppURL;
 import com.wg.collegeManagementSystem.app.helper.SessionManager;
 import com.wg.collegeManagementSystem.hod.HodActivity;
 
@@ -96,7 +96,7 @@ public class LoginActivity extends Activity {
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_LOGIN, new Response.Listener<String>() {
+                AppURL.URL_LOGIN, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {

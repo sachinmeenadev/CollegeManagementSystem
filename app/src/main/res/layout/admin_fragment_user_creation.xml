@@ -111,11 +111,17 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/admin_fragment_user_list"
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/admin_fragment_user_list_swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </ListView>
+            <ListView
+                android:id="@+id/admin_fragment_user_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 </LinearLayout>

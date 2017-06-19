@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
-import com.wg.collegeManagementSystem.app.config.AppConfig;
+import com.wg.collegeManagementSystem.app.config.AppURL;
 import com.wg.collegeManagementSystem.app.helper.UrlRequest;
 import com.wg.collegeManagementSystem.data.model.Role;
 import com.wg.collegeManagementSystem.data.repo.RoleRepo;
@@ -33,7 +33,7 @@ import java.util.List;
 public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = AdminRoleCreation.class.getSimpleName();
-    private String URL = AppConfig.ADMIN_ROLE_URL;
+    private String URL = AppURL.ADMIN_ROLE_URL;
     private ListView listView;
     private EditText inputRole;
     private AppCompatButton adminFragmentRoleBtnInsert;
@@ -56,16 +56,6 @@ public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.On
         builder = new MaterialDialog.Builder(getActivity());
         inputRole = (EditText) view.findViewById(R.id.admin_fragment_role_input_role);
         listView = (ListView) view.findViewById(R.id.admin_fragment_role_list);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.admin_fragment_role_list_swipe_refresh_layout);
-        swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        swipeRefreshLayout.setRefreshing(true);
-                                        show_data();
-                                    }
-                                }
-        );
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -109,6 +99,17 @@ public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.On
             }
         });
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.admin_fragment_role_list_swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        swipeRefreshLayout.setRefreshing(true);
+                                        show_data();
+                                    }
+                                }
+        );
+
         adminFragmentRoleBtnInsert = (AppCompatButton) view.findViewById(R.id.admin_fragment_role_btn_insert);
         adminFragmentRoleBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +136,9 @@ public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.On
         show_data();
     }
 
+    /**
+     * For sending request to web server and get data
+     */
     public String sendRequest(String url) {
         String response = null;
         UrlRequest urlRequest = new UrlRequest();

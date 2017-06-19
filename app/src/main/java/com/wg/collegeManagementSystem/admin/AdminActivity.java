@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.wg.collegeManagementSystem.LoginActivity;
 import com.wg.collegeManagementSystem.R;
-import com.wg.collegeManagementSystem.app.config.AppConfig;
+import com.wg.collegeManagementSystem.app.config.AppURL;
 import com.wg.collegeManagementSystem.app.helper.SessionManager;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -63,7 +63,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         navDrawerHeaderLblName.setText("Welcome, " + session.getUserName());
         navDrawerHeaderLblEmail.setText(session.getUserEmail());
         Picasso.with(this)
-                .load(AppConfig.PUBLIC_URL + "/img/user.png")
+                .load(AppURL.PUBLIC_URL + "/img/user.png")
                 .into(imageView);
         navDrawerHeaderBtnLogout = (AppCompatButton) headerView.findViewById(R.id.nav_drawer_header_btn_logout);
         navDrawerHeaderBtnLogout.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +80,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         menu.add(R.id.drawer_layout_menu_items, 10, Menu.NONE, "Role Creation");
         menu.add(R.id.drawer_layout_menu_items, 11, Menu.NONE, "College Branch Creation");
         menu.add(R.id.drawer_layout_menu_items, 12, Menu.NONE, "Subject Creation");
-        menu.add(R.id.drawer_layout_menu_items, 13, Menu.NONE, "Faculty Member Creation");
+        menu.add(R.id.drawer_layout_menu_items, 13, Menu.NONE, "User Creation");
+        menu.add(R.id.drawer_layout_menu_items, 14, Menu.NONE, "Faculty Member Creation");
     }
 
     @Override
@@ -103,6 +104,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         switch (itemId) {
             case 10:
                 fragment = new AdminRoleCreation();
+                break;
+            case 13:
+                fragment = new AdminUserCreation();
                 break;
         }
         //replacing the fragment
