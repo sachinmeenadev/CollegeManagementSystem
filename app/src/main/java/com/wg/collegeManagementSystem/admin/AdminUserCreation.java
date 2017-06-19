@@ -30,7 +30,6 @@ import com.wg.collegeManagementSystem.data.repo.UserRepo;
 import com.wg.collegeManagementSystem.model.RoleList;
 import com.wg.collegeManagementSystem.model.UserList;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -200,11 +199,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     public String sendRequest(String url) {
         String response = null;
         UrlRequest urlRequest = new UrlRequest();
-        try {
             response = urlRequest.getUrlData(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return response;
     }
 

@@ -27,7 +27,6 @@ import com.wg.collegeManagementSystem.data.model.Role;
 import com.wg.collegeManagementSystem.data.repo.RoleRepo;
 import com.wg.collegeManagementSystem.model.RoleList;
 
-import java.io.IOException;
 import java.util.List;
 
 public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -142,11 +141,7 @@ public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.On
     public String sendRequest(String url) {
         String response = null;
         UrlRequest urlRequest = new UrlRequest();
-        try {
-            response = urlRequest.getUrlData(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response = urlRequest.getUrlData(url);
         return response;
     }
 

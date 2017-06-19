@@ -1,6 +1,7 @@
 package com.wg.collegeManagementSystem.app.helper;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,21 +23,30 @@ public class UrlRequest {
 
     OkHttpClient client = new OkHttpClient();
 
-    public String getUrlData(String url) throws IOException {
+    public String getUrlData(String url) {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
 
-        Response response = client.newCall(request).execute();
-        int responseCode = response.code();
-        if (responseCode >= 200 && responseCode < 300) {
-            return response.body().string();
-        } else {
-            return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+            int responseCode = response.code();
+            if (responseCode >= 200 && responseCode < 300) {
+                return response.body().string();
+            } else {
+                return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+            }
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+            return "ERROR : Connection Time Out. Failed To Connect";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "ERROR : On Connection With Server";
         }
     }
 
-    public String postUrlData(String url, HashMap<String, String> params) throws IOException {
+    public String postUrlData(String url, HashMap<String, String> params) {
         FormBody.Builder builder = new FormBody.Builder();
         for (Map.Entry<String, String> entry : params.entrySet()) {
             builder.add(entry.getKey(), entry.getValue());
@@ -48,16 +58,25 @@ public class UrlRequest {
                 .post(body)
                 .build();
 
-        Response response = client.newCall(request).execute();
-        int responseCode = response.code();
-        if (responseCode >= 200 && responseCode < 300) {
-            return response.body().string();
-        } else {
-            return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+        try {
+            Response response = client.newCall(request).execute();
+
+            int responseCode = response.code();
+            if (responseCode >= 200 && responseCode < 300) {
+                return response.body().string();
+            } else {
+                return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+            }
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+            return "ERROR : Connection Time Out. Failed To Connect";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "ERROR : On Connection With Server";
         }
     }
 
-    public String putUrlData(String url, int id, HashMap<String, String> params) throws IOException {
+    public String putUrlData(String url, int id, HashMap<String, String> params) {
 
         FormBody.Builder builder = new FormBody.Builder();
         for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -70,29 +89,43 @@ public class UrlRequest {
                 .addHeader("Accept", "application/x-www-form-urlencoded; q=0.5")
                 .put(body)
                 .build();
-
-        Response response = client.newCall(request).execute();
-        int responseCode = response.code();
-        if (responseCode >= 200 && responseCode < 300) {
-            return response.body().string();
-        } else {
-            return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+        try {
+            Response response = client.newCall(request).execute();
+            int responseCode = response.code();
+            if (responseCode >= 200 && responseCode < 300) {
+                return response.body().string();
+            } else {
+                return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+            }
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+            return "ERROR : Connection Time Out. Failed To Connect";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "ERROR : On Connection With Server";
         }
     }
 
-    public String deleteUrlData(String url, int id) throws IOException {
+    public String deleteUrlData(String url, int id) {
 
         Request request = new Request.Builder()
                 .url(url + "/" + id)
                 .delete()
                 .build();
-
-        Response response = client.newCall(request).execute();
-        int responseCode = response.code();
-        if (responseCode >= 200 && responseCode < 300) {
-            return response.body().string();
-        } else {
-            return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+        try {
+            Response response = client.newCall(request).execute();
+            int responseCode = response.code();
+            if (responseCode >= 200 && responseCode < 300) {
+                return response.body().string();
+            } else {
+                return "ERROR : " + response.code() + "\nMESSAGE : " + response.message() + "\nNETWORK RESPONSE : " + response.networkResponse();
+            }
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+            return "ERROR : Connection Time Out. Failed To Connect";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "ERROR : On Connection With Server";
         }
     }
 }
