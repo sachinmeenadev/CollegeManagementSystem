@@ -102,7 +102,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
                         newLblUserEmail = adminFragmentUserUpdateInputUserEmail.getText().toString().trim();
                         newLblUserPassword = adminFragmentUserUpdateInputUserPassword.getText().toString().trim();
                         newLblUserRole = adminFragmentUserUpdateInputUserRoleSpinner.getSelectedItem().toString().trim();
-                        update(lblUserId, newLblUserName, newLblUserEmail, newLblUserPassword, newLblUserRole);
+                        update(newLblUserName, newLblUserEmail, newLblUserPassword, newLblUserRole);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -302,7 +302,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     /**
      * For updating data
      */
-    public void update(int lblUserId, String newLblUserName, String newLblUserEmail, String newLblUserPassword, String newLblUserRole) {
+    public void update(String newLblUserName, String newLblUserEmail, String newLblUserPassword, String newLblUserRole) {
         int userRoleId = getRoleSpinner(newLblUserRole);
         int updateUserRoleStatus = 0, updateUserPasswordStatus = 0;
         if (userRoleId != 0) {
@@ -314,7 +314,6 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
         if (newLblUserName.isEmpty() || newLblUserEmail.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-
             String url = URL;
 
             UserRepo userRepo = new UserRepo();

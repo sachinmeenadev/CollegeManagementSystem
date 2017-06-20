@@ -23,9 +23,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.app.config.AppURL;
 import com.wg.collegeManagementSystem.app.helper.UrlRequest;
-import com.wg.collegeManagementSystem.data.model.CollegeBranch;
-import com.wg.collegeManagementSystem.data.repo.CollegeBranchRepo;
-import com.wg.collegeManagementSystem.model.CollegeBranchList;
+import com.wg.collegeManagementSystem.data.model.Subject;
+import com.wg.collegeManagementSystem.data.repo.SubjectRepo;
+import com.wg.collegeManagementSystem.model.SubjectList;
 
 import java.util.List;
 
@@ -33,47 +33,51 @@ import java.util.List;
  * Created by Jerry on 20-06-2017.
  */
 
-public class AdminCollegeBranchCreation extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class AdminSubjectCreation extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    private static final String TAG = AdminCollegeBranchCreation.class.getSimpleName();
-    private String URL = AppURL.ADMIN_COLLEGE_BRANCH;
+    private static final String TAG = AdminSubjectCreation.class.getSimpleName();
+    private String URL = AppURL.ADMIN_SUBJECT;
     private ListView listView;
-    private EditText inputBranchName, inputBranchAbbr;
-    private AppCompatButton adminFragmentCollegeBranchBtnInsert;
-    private AdminCollegeBranchCreation.CustomAdapter customAdapter;
+    private EditText inputSubjectName, inputSubjectAbbr, inputSubjectCode;
+    private AppCompatButton adminFragmentSubjectBtnInsert;
+    private AdminSubjectCreation.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
-    private String lblBranchName, newLblBranchName, lblBranchAbbr, newLblBranchAbbr;
-    private int lblCollegeBranchId;
+    private String lblSubjectName, newLblSubjectName, lblSubjectAbbr, newLblSubjectAbbr, lblSubjectCode, newLblSubjectCode;
+    private int lblSubjectId;
     private boolean wrapInScrollView = true;
-    private EditText adminFragmentCollegeBranchUpdateInputBranchName, adminFragmentCollegeBranchUpdateInputBranchAbbr;
+    private EditText adminFragmentSubjectUpdateInputSubjectName, adminFragmentSubjectUpdateInputSubjectAbbr, adminFragmentSubjectUpdateInputSubjectCode;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.admin_fragment_college_branch_creation, container, false);
+        View view = inflater.inflate(R.layout.admin_fragment_subject_creation, container, false);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         builder = new MaterialDialog.Builder(getActivity());
-        inputBranchName = (EditText) view.findViewById(R.id.admin_fragment_college_branch_input_branch_name);
-        inputBranchAbbr = (EditText) view.findViewById(R.id.admin_fragment_college_branch_input_branch_abbr);
-        listView = (ListView) view.findViewById(R.id.admin_fragment_college_branch_list);
+        inputSubjectName = (EditText) view.findViewById(R.id.admin_fragment_subject_input_subject_name);
+        inputSubjectAbbr = (EditText) view.findViewById(R.id.admin_fragment_subject_input_subject_abbr);
+        inputSubjectCode = (EditText) view.findViewById(R.id.admin_fragment_subject_input_subject_code);
+        listView = (ListView) view.findViewById(R.id.admin_fragment_subject_list);
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View mView = inflater.inflate(R.layout.admin_fragment_college_branch_update, null);
+                View mView = inflater.inflate(R.layout.admin_fragment_subject_update, null);
 
-                lblCollegeBranchId = Integer.parseInt(((AppCompatTextView) view.findViewById(R.id.admin_fragment_college_branch_list_college_branch_id)).getText().toString());
-                lblBranchName = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_college_branch_list_college_name)).getText().toString();
-                lblBranchAbbr = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_college_branch_list_college_abbr)).getText().toString();
-                adminFragmentCollegeBranchUpdateInputBranchName = (EditText) mView.findViewById(R.id.admin_fragment_college_branch_update_input_branch_name);
-                adminFragmentCollegeBranchUpdateInputBranchName.setText(lblBranchName);
-                adminFragmentCollegeBranchUpdateInputBranchAbbr = (EditText) mView.findViewById(R.id.admin_fragment_college_branch_update_input_branch_abbr);
-                adminFragmentCollegeBranchUpdateInputBranchAbbr.setText(lblBranchAbbr);
+                lblSubjectId = Integer.parseInt(((AppCompatTextView) view.findViewById(R.id.admin_fragment_subject_list_subject_id)).getText().toString());
+                lblSubjectName = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_subject_list_subject_name)).getText().toString();
+                lblSubjectAbbr = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_subject_list_subject_abbr)).getText().toString();
+                lblSubjectCode = ((AppCompatTextView) view.findViewById(R.id.admin_fragment_subject_list_subject_code)).getText().toString();
+                adminFragmentSubjectUpdateInputSubjectName = (EditText) mView.findViewById(R.id.admin_fragment_subject_update_input_subject_name);
+                adminFragmentSubjectUpdateInputSubjectName.setText(lblSubjectName);
+                adminFragmentSubjectUpdateInputSubjectAbbr = (EditText) mView.findViewById(R.id.admin_fragment_subject_update_input_subject_abbr);
+                adminFragmentSubjectUpdateInputSubjectAbbr.setText(lblSubjectAbbr);
+                adminFragmentSubjectUpdateInputSubjectCode = (EditText) mView.findViewById(R.id.admin_fragment_subject_update_input_subject_code);
+                adminFragmentSubjectUpdateInputSubjectCode.setText(lblSubjectCode);
 
                 builder.title("Action");
                 builder.positiveText("Update");
@@ -83,9 +87,10 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        newLblBranchName = adminFragmentCollegeBranchUpdateInputBranchName.getText().toString().trim();
-                        newLblBranchAbbr = adminFragmentCollegeBranchUpdateInputBranchAbbr.getText().toString().trim();
-                        update(newLblBranchName, newLblBranchAbbr);
+                        newLblSubjectName = adminFragmentSubjectUpdateInputSubjectName.getText().toString().trim();
+                        newLblSubjectAbbr = adminFragmentSubjectUpdateInputSubjectAbbr.getText().toString().trim();
+                        newLblSubjectCode = adminFragmentSubjectUpdateInputSubjectCode.getText().toString().trim();
+                        update(newLblSubjectName, newLblSubjectAbbr, newLblSubjectCode);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -108,7 +113,7 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
             }
         });
 
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.admin_fragment_college_branch_list_swipe_refresh_layout);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.admin_fragment_subject_list_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.post(new Runnable() {
                                     @Override
@@ -119,8 +124,8 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
                                 }
         );
 
-        adminFragmentCollegeBranchBtnInsert = (AppCompatButton) view.findViewById(R.id.admin_fragment_college_branch_btn_insert);
-        adminFragmentCollegeBranchBtnInsert.setOnClickListener(new View.OnClickListener() {
+        adminFragmentSubjectBtnInsert = (AppCompatButton) view.findViewById(R.id.admin_fragment_subject_btn_insert);
+        adminFragmentSubjectBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insert();
@@ -134,7 +139,7 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("College Branch Creation");
+        getActivity().setTitle("Subject Creation");
     }
 
     /**
@@ -173,19 +178,21 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
             // stopping swipe refresh
             swipeRefreshLayout.setRefreshing(false);
 
-            CollegeBranchRepo collegeBranchRepo = new CollegeBranchRepo();
-            List<CollegeBranchList> list = collegeBranchRepo.getBranch(response);
+            SubjectRepo subjectRepo = new SubjectRepo();
+            List<SubjectList> list = subjectRepo.getSubject(response);
 
-            int[] collegeBranchId = new int[list.size()];
-            String[] collegeBranchName = new String[list.size()];
-            String[] collegeBranchAbbr = new String[list.size()];
+            int[] subjectId = new int[list.size()];
+            String[] subjectName = new String[list.size()];
+            String[] subjectAbbr = new String[list.size()];
+            String[] subjectCode = new String[list.size()];
             if (list.size() > 0) {
                 for (int i = 0; i < list.size(); i++) {
-                    collegeBranchId[i] = list.get(i).getCollegeBranchId();
-                    collegeBranchName[i] = list.get(i).getCollegeBranchName();
-                    collegeBranchAbbr[i] = list.get(i).getCollegeBranchAbbr();
+                    subjectId[i] = list.get(i).getSubjectId();
+                    subjectName[i] = list.get(i).getSubjectName();
+                    subjectAbbr[i] = list.get(i).getSubjectAbbr();
+                    subjectCode[i] = list.get(i).getSubjectCode();
                 }
-                customAdapter = new AdminCollegeBranchCreation.CustomAdapter(getActivity(), collegeBranchId, collegeBranchName, collegeBranchAbbr);
+                customAdapter = new AdminSubjectCreation.CustomAdapter(getActivity(), subjectId, subjectName, subjectAbbr, subjectCode);
                 listView.setAdapter(customAdapter);
             } else {
                 Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
@@ -197,26 +204,30 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
      * For inserting in database
      */
     public void insert() {
-        String branchName = inputBranchName.getText().toString().trim();
-        String branchAbbr = inputBranchAbbr.getText().toString().trim();
-        if (branchName.isEmpty() || branchAbbr.isEmpty()) {
+        String subjectName = inputSubjectName.getText().toString().trim();
+        String subjectAbbr = inputSubjectAbbr.getText().toString().trim();
+        String subjectCode = inputSubjectCode.getText().toString().trim();
+
+        if (subjectName.isEmpty() || subjectAbbr.isEmpty() || subjectCode.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            if (branchName.equals(lblBranchName) && branchAbbr.equals(lblBranchAbbr)) {
+            if (subjectName.equals(lblSubjectName) && subjectAbbr.equals(lblSubjectAbbr) && subjectCode.equals(lblSubjectCode)) {
                 Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
             } else {
                 String url = URL;
 
-                CollegeBranchRepo collegeBranchRepo = new CollegeBranchRepo();
-                CollegeBranch collegeBranch = new CollegeBranch();
+                SubjectRepo subjectRepo = new SubjectRepo();
+                Subject subject = new Subject();
 
-                collegeBranch.setCollegeBranchName(branchName);
-                collegeBranch.setCollegeBranchAbbr(branchAbbr);
-                String status = collegeBranchRepo.insert(collegeBranch, url);
+                subject.setSubjectName(subjectName);
+                subject.setSubjectAbbr(subjectAbbr);
+                subject.setSubjectCode(subjectCode);
+                String status = subjectRepo.insert(subject, url);
                 String[] statusArray = status.replaceAll("[{}]", "").split(",");
                 if (statusArray[0].equals("\"error\":false")) {
-                    inputBranchName.setText("");
-                    inputBranchAbbr.setText("");
+                    inputSubjectName.setText("");
+                    inputSubjectAbbr.setText("");
+                    inputSubjectCode.setText("");
                     Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
                     show_data();
                 } else {
@@ -228,22 +239,22 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
     }
 
     /**
-     * For updating data
+     * For updating in database
      */
-    public void update(String newLblBranchName, String newLblBranchAbbr) {
-
-        if (newLblBranchName.isEmpty() || newLblBranchAbbr.isEmpty()) {
+    public void update(String newLblSubjectName, String newLblSubjectAbbr, String newLblSubjectCode) {
+        if (newLblSubjectName.isEmpty() || newLblSubjectAbbr.isEmpty() || newLblSubjectCode.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
             String url = URL;
 
-            CollegeBranchRepo collegeBranchRepo = new CollegeBranchRepo();
-            CollegeBranch collegeBranch = new CollegeBranch();
+            SubjectRepo subjectRepo = new SubjectRepo();
+            Subject subject = new Subject();
 
-            collegeBranch.setCollegeBranchId(lblCollegeBranchId);
-            collegeBranch.setCollegeBranchName(newLblBranchName);
-            collegeBranch.setCollegeBranchAbbr(newLblBranchAbbr);
-            String status = collegeBranchRepo.update(collegeBranch, url);
+            subject.setSubjectId(lblSubjectId);
+            subject.setSubjectName(newLblSubjectName);
+            subject.setSubjectAbbr(newLblSubjectAbbr);
+            subject.setSubjectCode(newLblSubjectCode);
+            String status = subjectRepo.update(subject, url);
             String[] statusArray = status.replaceAll("[{}]", "").split(",");
             if (statusArray[0].equals("\"error\":false")) {
                 Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
@@ -261,11 +272,11 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
     public void delete() {
         String url = URL;
 
-        CollegeBranchRepo collegeBranchRepo = new CollegeBranchRepo();
-        CollegeBranch collegeBranch = new CollegeBranch();
+        SubjectRepo subjectRepo = new SubjectRepo();
+        Subject subject = new Subject();
 
-        collegeBranch.setCollegeBranchId(lblCollegeBranchId);
-        String status = collegeBranchRepo.delete(collegeBranch, url);
+        subject.setSubjectId(lblSubjectId);
+        String status = subjectRepo.delete(subject, url);
         String[] statusArray = status.replaceAll("[{}]", "").split(",");
         if (statusArray[0].equals("\"error\":false")) {
             Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
@@ -280,13 +291,14 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
      * ViewHolder to hold elements from custom row layout
      */
     public class ViewHolder {
-        AppCompatTextView lblSlNo, lblCollegeBranchId, lblCollegeBranchName, lblCollegeBranchAbbr;
+        AppCompatTextView lblSlNo, lblSubjectId, lblSubjectName, lblSubjectAbbr, lblSubjectCode;
 
         public ViewHolder(View v) {
-            lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_college_branch_list_sl_no);
-            lblCollegeBranchId = (AppCompatTextView) v.findViewById(R.id.admin_fragment_college_branch_list_college_branch_id);
-            lblCollegeBranchName = (AppCompatTextView) v.findViewById(R.id.admin_fragment_college_branch_list_college_name);
-            lblCollegeBranchAbbr = (AppCompatTextView) v.findViewById(R.id.admin_fragment_college_branch_list_college_abbr);
+            lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_sl_no);
+            lblSubjectId = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_subject_id);
+            lblSubjectName = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_subject_name);
+            lblSubjectAbbr = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_subject_abbr);
+            lblSubjectCode = (AppCompatTextView) v.findViewById(R.id.admin_fragment_subject_list_subject_code);
         }
     }
 
@@ -294,37 +306,40 @@ public class AdminCollegeBranchCreation extends Fragment implements SwipeRefresh
      * Custom adapter to fill list view
      */
     public class CustomAdapter extends ArrayAdapter<String> {
-        int[] mCollegeBranchId;
-        String[] mCollegeBranchName;
-        String[] mCollegeBranchAbbr;
+        int[] mSubjectId;
+        String[] mSubjectName;
+        String[] mSubjectAbbr;
+        String[] mSubjectCode;
         Context mContext;
 
-        public CustomAdapter(Context context, int[] collegeBranchId, String[] collegeBranchName, String[] collegeBranchAbbr) {
-            super(context, R.layout.admin_fragment_college_branch_row, R.id.admin_fragment_college_branch_list_college_name, collegeBranchName);
-            mCollegeBranchId = collegeBranchId;
-            mCollegeBranchName = collegeBranchName;
-            mCollegeBranchAbbr = collegeBranchAbbr;
+        public CustomAdapter(Context context, int[] subjectId, String[] subjectName, String[] subjectAbbr, String[] subjectCode) {
+            super(context, R.layout.admin_fragment_subject_row, R.id.admin_fragment_subject_list_subject_name, subjectName);
+            mSubjectId = subjectId;
+            mSubjectName = subjectName;
+            mSubjectAbbr = subjectAbbr;
+            mSubjectCode = subjectCode;
             mContext = context;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View row = convertView;
-            AdminCollegeBranchCreation.ViewHolder viewHolder;
+            AdminSubjectCreation.ViewHolder viewHolder;
 
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(R.layout.admin_fragment_college_branch_row, parent, false);
-                viewHolder = new AdminCollegeBranchCreation.ViewHolder(row);
+                row = inflater.inflate(R.layout.admin_fragment_subject_row, parent, false);
+                viewHolder = new AdminSubjectCreation.ViewHolder(row);
                 row.setTag(viewHolder);
             } else {
-                viewHolder = (AdminCollegeBranchCreation.ViewHolder) row.getTag();
+                viewHolder = (AdminSubjectCreation.ViewHolder) row.getTag();
             }
 
             viewHolder.lblSlNo.setText(String.valueOf(position + 1));
-            viewHolder.lblCollegeBranchId.setText(String.valueOf(mCollegeBranchId[position]));
-            viewHolder.lblCollegeBranchName.setText(mCollegeBranchName[position]);
-            viewHolder.lblCollegeBranchAbbr.setText(mCollegeBranchAbbr[position]);
+            viewHolder.lblSubjectId.setText(String.valueOf(mSubjectId[position]));
+            viewHolder.lblSubjectName.setText(mSubjectName[position]);
+            viewHolder.lblSubjectAbbr.setText(mSubjectAbbr[position]);
+            viewHolder.lblSubjectCode.setText(mSubjectCode[position]);
 
             return row;
         }

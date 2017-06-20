@@ -61,11 +61,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         imageView = (ImageView) headerView.findViewById(R.id.nav_drawer_header_img);
         navDrawerHeaderLblName = (TextView) headerView.findViewById(R.id.nav_drawer_header_lbl_name);
         navDrawerHeaderLblEmail = (TextView) headerView.findViewById(R.id.nav_drawer_header_lbl_email);
-        navDrawerHeaderLblName.setText("Welcome, " + session.getUserName());
+        navDrawerHeaderLblName.setText(session.getUserName());
         navDrawerHeaderLblEmail.setText(session.getUserEmail());
         Picasso.with(this)
                 .load(AppURL.PUBLIC_URL + "/img/user.png")
-                .transform(new RoundedTransformation(50, 2))
+                .transform(new RoundedTransformation(150, 2))
                 .into(imageView);
         navDrawerHeaderBtnLogout = (AppCompatButton) headerView.findViewById(R.id.nav_drawer_header_btn_logout);
         navDrawerHeaderBtnLogout.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +106,12 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         switch (itemId) {
             case 10:
                 fragment = new AdminRoleCreation();
+                break;
+            case 11:
+                fragment = new AdminCollegeBranchCreation();
+                break;
+            case 12:
+                fragment = new AdminSubjectCreation();
                 break;
             case 13:
                 fragment = new AdminUserCreation();

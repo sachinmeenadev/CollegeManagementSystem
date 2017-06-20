@@ -75,7 +75,7 @@ public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.On
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         newLblRoleType = adminFragmentRoleUpdateInputRoleType.getText().toString().trim();
-                        update(lblRoleId, newLblRoleType);
+                        update(newLblRoleType);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -216,12 +216,11 @@ public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.On
     /**
      * For updating data
      */
-    public void update(int lblRoleId, String newLblRoleType) {
+    public void update(String newLblRoleType) {
 
         if (newLblRoleType.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-
             String url = URL;
 
             RoleRepo roleRepo = new RoleRepo();
@@ -232,7 +231,6 @@ public class AdminRoleCreation extends Fragment implements SwipeRefreshLayout.On
             String status = roleRepo.update(role, url);
             String[] statusArray = status.replaceAll("[{}]", "").split(",");
             if (statusArray[0].equals("\"error\":false")) {
-                inputRole.setText("");
                 Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
                 show_data();
             } else {
