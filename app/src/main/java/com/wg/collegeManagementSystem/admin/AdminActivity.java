@@ -116,6 +116,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             case 13:
                 fragment = new AdminUserCreation();
                 break;
+            case 14:
+                fragment = new AdminFacultyMemberCreation();
+                break;
         }
         //replacing the fragment
         if (fragment != null) {
