@@ -163,37 +163,6 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     }
 
     /**
-     * For showing data inside spinner
-     */
-    public void setRoleSpinner(int id) {
-        /**
-         * 1. "0" For initial spinner
-         * 2. "1" For update spinner
-         */
-        //For creating a array for spinner
-        List<String> roleSpinnerArray = new ArrayList<String>();
-        //For creating a associative array for comparing it with values later to get th key
-        roleMap = new HashMap<Integer, String>();
-        RoleRepo roleRepo = new RoleRepo();
-        List<RoleList> list = roleRepo.getRole(sendRequest(ROLE_URL));
-        if (list.size() > 0) {
-            roleSpinnerArray.add("Select Role");
-            roleMap.put(0, "Select Role");
-            for (int i = 0; i < list.size(); i++) {
-                roleMap.put(list.get(i).getRoleId(), list.get(i).getRoleType());
-                roleSpinnerArray.add(list.get(i).getRoleType());
-            }
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, roleSpinnerArray);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        if (id == 0) {
-            inputUserRoleSpinner.setAdapter(adapter);
-        } else if (id == 1) {
-            adminFragmentUserUpdateInputUserRoleSpinner.setAdapter(adapter);
-        }
-    }
-
-    /**
      * For sending request to web server and get data
      */
     public String sendRequest(String url) {
@@ -240,6 +209,37 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
             } else {
                 Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    /**
+     * For showing data inside spinner
+     */
+    public void setRoleSpinner(int id) {
+        /**
+         * 1. "0" For initial spinner
+         * 2. "1" For update spinner
+         */
+        //For creating a array for spinner
+        List<String> roleSpinnerArray = new ArrayList<String>();
+        //For creating a associative array for comparing it with values later to get th key
+        roleMap = new HashMap<Integer, String>();
+        RoleRepo roleRepo = new RoleRepo();
+        List<RoleList> list = roleRepo.getRole(sendRequest(ROLE_URL));
+        if (list.size() > 0) {
+            roleSpinnerArray.add("Select Role");
+            roleMap.put(0, "Select Role");
+            for (int i = 0; i < list.size(); i++) {
+                roleMap.put(list.get(i).getRoleId(), list.get(i).getRoleType());
+                roleSpinnerArray.add(list.get(i).getRoleType());
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, roleSpinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        if (id == 0) {
+            inputUserRoleSpinner.setAdapter(adapter);
+        } else if (id == 1) {
+            adminFragmentUserUpdateInputUserRoleSpinner.setAdapter(adapter);
         }
     }
 

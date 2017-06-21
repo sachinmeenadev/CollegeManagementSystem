@@ -13,17 +13,15 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/admin_fragment_faculty_member_list_sl_no"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
             android:textColor="@color/colorBlack"
             android:textSize="15sp" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/admin_fragment_faculty_member_list_faculty_member_id"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
             android:visibility="invisible" />
     </LinearLayout>
 
