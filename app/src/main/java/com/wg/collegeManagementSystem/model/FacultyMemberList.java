@@ -8,6 +8,7 @@ public class FacultyMemberList {
     public int facultyMemberId;
     public String facultyMemberName;
     public int facultyMemberBranchId;
+    public int facultyMemberCurrentBranchId;
     public String facultyMemberDesignation;
     public String facultyMemberContact;
     public String facultyMemberEmail;
@@ -16,6 +17,8 @@ public class FacultyMemberList {
     public int collegeBranchId;
     public String collegeBranchName;
     public String collegeBranchAbbr;
+    public String currentBranchName;
+    public String currentBranchAbbr;
 
     public int getFacultyMemberId() {
         return facultyMemberId;
@@ -39,6 +42,14 @@ public class FacultyMemberList {
 
     public void setFacultyMemberBranchId(int facultyMemberBranchId) {
         this.facultyMemberBranchId = facultyMemberBranchId;
+    }
+
+    public int getFacultyMemberCurrentBranchId() {
+        return facultyMemberCurrentBranchId;
+    }
+
+    public void setFacultyMemberCurrentBranchId(int facultyMemberCurrentBranchId) {
+        this.facultyMemberCurrentBranchId = facultyMemberCurrentBranchId;
     }
 
     public String getFacultyMemberDesignation() {
@@ -103,6 +114,22 @@ public class FacultyMemberList {
 
     public void setCollegeBranchAbbr(String collegeBranchAbbr) {
         this.collegeBranchAbbr = collegeBranchAbbr;
+    }
+
+    public String getCurrentBranchName() {
+        return currentBranchName;
+    }
+
+    public void setCurrentBranchName(String currentBranchName) {
+        this.currentBranchName = currentBranchName;
+    }
+
+    public String getCurrentBranchAbbr() {
+        return currentBranchAbbr;
+    }
+
+    public void setCurrentBranchAbbr(String currentBranchAbbr) {
+        this.currentBranchAbbr = currentBranchAbbr;
     }
 }
 

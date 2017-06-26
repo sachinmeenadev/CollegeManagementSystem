@@ -43,6 +43,8 @@ public class FacultyMemberRepo {
                 facultyMemberList.setFacultyMemberEmail(user.getString("facultyMemberEmail"));
                 facultyMemberList.setCollegeBranchName(user.getString("collegeBranchName"));
                 facultyMemberList.setCollegeBranchAbbr(user.getString("collegeBranchAbbr"));
+                facultyMemberList.setCurrentBranchName(user.getString("currentBranchName"));
+                facultyMemberList.setCurrentBranchAbbr(user.getString("currentBranchAbbr"));
 
                 facultyMemberLists.add(facultyMemberList);
             }
@@ -61,10 +63,12 @@ public class FacultyMemberRepo {
         String facultyMemberContact = facultyMember.getFacultyMemberContact();
         String facultyMemberEmail = facultyMember.getFacultyMemberEmail();
         int facultyMemberBranchId = facultyMember.getFacultyMemberBranchId();
+        int facultyMemberCurrentBranchId = facultyMember.getFacultyMemberCurrentBranchId();
 
         HashMap<String, String> params = new HashMap<>();
         params.put("facultyMemberName", facultyMemberName);
         params.put("facultyMemberBranchId", String.valueOf(facultyMemberBranchId));
+        params.put("facultyMemberCurrentBranchId", String.valueOf(facultyMemberCurrentBranchId));
         params.put("facultyMemberDesignation", facultyMemberDesignation);
         params.put("facultyMemberContact", String.valueOf(facultyMemberContact));
         params.put("facultyMemberEmail", String.valueOf(facultyMemberEmail));
@@ -75,10 +79,12 @@ public class FacultyMemberRepo {
         return response;
     }
 
-    public String update(FacultyMember facultyMember, String url, int updateFacultyBranchStatus) {
+    public String update(FacultyMember facultyMember, String url, int updateFacultyBranchStatus, int updateFacultyCurrentBranchStatus) {
         /**
          * 1. "0" Without Branch
-         * 2. "1" With Branch
+         * 2. "1" With Parent Branch
+         * 3. "1" With Current Branch
+         * 4. "1" With Both Branch
          */
 
         String response = null;
@@ -89,17 +95,23 @@ public class FacultyMemberRepo {
         String facultyMemberContact = facultyMember.getFacultyMemberContact();
         String facultyMemberEmail = facultyMember.getFacultyMemberEmail();
         int facultyMemberBranchId = facultyMember.getFacultyMemberBranchId();
+        int facultyMemberCurrentBranchId = facultyMember.getFacultyMemberCurrentBranchId();
         int facultyMemberUpdateStatus = 0;
 
         HashMap<String, String> params = new HashMap<>();
         params.put("facultyMemberName", facultyMemberName);
         params.put("facultyMemberBranchId", String.valueOf(facultyMemberBranchId));
+        params.put("facultyMemberCurrentBranchId", String.valueOf(facultyMemberCurrentBranchId));
         params.put("facultyMemberDesignation", facultyMemberDesignation);
         params.put("facultyMemberContact", String.valueOf(facultyMemberContact));
         params.put("facultyMemberEmail", String.valueOf(facultyMemberEmail));
 
         if (updateFacultyBranchStatus == 1)
             facultyMemberUpdateStatus = 1;
+        if (updateFacultyCurrentBranchStatus == 1)
+            facultyMemberUpdateStatus = 2;
+        if (updateFacultyBranchStatus == 1 && updateFacultyCurrentBranchStatus == 1)
+            facultyMemberUpdateStatus = 3;
 
         params.put("facultyMemberUpdateStatus", String.valueOf(facultyMemberUpdateStatus));
         UrlRequest urlRequest = new UrlRequest();

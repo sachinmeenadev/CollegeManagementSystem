@@ -6,34 +6,11 @@
     android:background="@drawable/app_background"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.wg.collegeManagementSystem.admin.AdminRoleCreation">
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/admin_fragment_role_input_role_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/admin_fragment_role_input_role"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Role Type"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/admin_fragment_role_btn_insert"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:background="@color/colorBtnLoginBg"
-        android:text="Insert"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite" />
+    tools:context="com.wg.collegeManagementSystem.hod.HodFacultyMemberList">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -44,7 +21,7 @@
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight=".5"
                 android:text="#"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp"
@@ -54,19 +31,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Role Type"
+                android:text="Faculty Member Detail"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/admin_fragment_role_list_swipe_refresh_layout"
+            android:id="@+id/hod_fragment_faculty_member_list_swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ListView
-                android:id="@+id/admin_fragment_role_list"
+                android:id="@+id/hod_fragment_faculty_member_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

@@ -90,15 +90,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         navDrawerHeaderBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                session.setLogin(false);
+                session.logOut();
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
-                        session.setLogin(false);
-                        session.setUserUniqueId("");
-                        session.setUserName("");
-                        session.setUserEmail("");
-                        session.setUserRole("");
-                        session.setUserImage("");
                         startActivity(new Intent(getBaseContext(), LoginActivity.class));
                         finish();
                     }
@@ -165,6 +161,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
         // be available.
-        Log.d(TAG, "onConnectionFailed:" + connectionResult);
+        Log.d(TAG, "An unresolvable error has occurred :\n" + connectionResult);
     }
 }

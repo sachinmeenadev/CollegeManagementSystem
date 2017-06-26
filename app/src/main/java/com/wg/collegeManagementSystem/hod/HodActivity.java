@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -91,15 +90,11 @@ public class HodActivity extends AppCompatActivity implements NavigationView.OnN
         navDrawerHeaderBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                session.setLogin(false);
+                session.logOut();
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
-                        session.setLogin(false);
-                        session.setUserUniqueId("");
-                        session.setUserName("");
-                        session.setUserEmail("");
-                        session.setUserRole("");
-                        session.setUserImage("");
                         startActivity(new Intent(getBaseContext(), LoginActivity.class));
                         finish();
                     }
@@ -109,7 +104,11 @@ public class HodActivity extends AppCompatActivity implements NavigationView.OnN
         navigationView.setNavigationItemSelectedListener(this);
 
         Menu menu = navigationView.getMenu();
-        menu.add(R.id.drawer_layout_menu_items, 20, Menu.NONE, "Title1");
+        menu.add(R.id.drawer_layout_menu_items, 20, Menu.NONE, "Faculty Members List");
+        menu.add(R.id.drawer_layout_menu_items, 21, Menu.NONE, "Allot Faculty Member's Subject");
+        menu.add(R.id.drawer_layout_menu_items, 22, Menu.NONE, "Tutor Creation");
+        menu.add(R.id.drawer_layout_menu_items, 23, Menu.NONE, "Student List");
+        menu.add(R.id.drawer_layout_menu_items, 24, Menu.NONE, "Search Student");
     }
 
     @Override
@@ -130,8 +129,8 @@ public class HodActivity extends AppCompatActivity implements NavigationView.OnN
         String itemName = item.getTitle().toString();
         //initializing the fragment object which is selected
         switch (itemId) {
-            case 10:
-                Toast.makeText(this, "You selected " + itemId, Toast.LENGTH_SHORT).show();
+            case 20:
+                fragment = new HodFacultyMemberList();
                 break;
         }
         //replacing the fragment
@@ -150,6 +149,6 @@ public class HodActivity extends AppCompatActivity implements NavigationView.OnN
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
         // be available.
-        Log.d(TAG, "onConnectionFailed:" + connectionResult);
+        Log.d(TAG, "An unresolvable error has occurred :\n" + connectionResult);
     }
 }

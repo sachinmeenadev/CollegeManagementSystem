@@ -10,6 +10,7 @@ public class FacultyMember {
     public int facultyMemberId;
     public String facultyMemberName;
     public int facultyMemberBranchId;
+    public int facultyMemberCurrentBranchId;
     public String facultyMemberDesignation;
     public String facultyMemberContact;
     public String facultyMemberEmail;
@@ -36,6 +37,14 @@ public class FacultyMember {
 
     public void setFacultyMemberBranchId(int facultyMemberBranchId) {
         this.facultyMemberBranchId = facultyMemberBranchId;
+    }
+
+    public int getFacultyMemberCurrentBranchId() {
+        return facultyMemberCurrentBranchId;
+    }
+
+    public void setFacultyMemberCurrentBranchId(int facultyMemberCurrentBranchId) {
+        this.facultyMemberCurrentBranchId = facultyMemberCurrentBranchId;
     }
 
     public String getFacultyMemberDesignation() {

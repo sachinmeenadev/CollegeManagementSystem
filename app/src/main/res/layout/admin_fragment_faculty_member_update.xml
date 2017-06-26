@@ -65,8 +65,31 @@
             android:inputType="phone" />
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="Select Parent Branch"
+        android:textColor="@color/colorAccent"
+        android:textSize="10sp" />
+
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/admin_fragment_faculty_member_update_input_branch_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/spinner_title"
+        android:textColor="@color/colorInputHint" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="Select Current Branch"
+        android:textColor="@color/colorAccent"
+        android:textSize="10sp" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/admin_fragment_faculty_member_update_input_current_branch_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spinner_title"

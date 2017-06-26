@@ -12,17 +12,12 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/admin_fragment_faculty_member_list_sl_no"
+            android:id="@+id/hod_fragment_faculty_member_list_sl_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
             android:textSize="15sp" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/admin_fragment_faculty_member_list_faculty_member_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,7 +40,7 @@
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/admin_fragment_faculty_member_list_name"
+                android:id="@+id/hod_fragment_faculty_member_list_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -67,7 +62,7 @@
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/admin_fragment_faculty_member_list_designation"
+                android:id="@+id/hod_fragment_faculty_member_list_designation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -89,7 +84,7 @@
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/admin_fragment_faculty_member_list_branch"
+                android:id="@+id/hod_fragment_faculty_member_list_branch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -111,7 +106,7 @@
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/admin_fragment_faculty_member_list_current_branch"
+                android:id="@+id/hod_fragment_faculty_member_list_current_branch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -133,7 +128,7 @@
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/admin_fragment_faculty_member_list_contact"
+                android:id="@+id/hod_fragment_faculty_member_list_contact"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -155,7 +150,7 @@
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/admin_fragment_faculty_member_list_email"
+                android:id="@+id/hod_fragment_faculty_member_list_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"

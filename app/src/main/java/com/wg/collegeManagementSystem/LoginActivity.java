@@ -161,6 +161,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             startActivity(new Intent(getBaseContext(), AdminActivity.class));
                             finish();
                         } else if (userRole.equals("HOD")) {
+                            String BranchId = user.getString("facultyMemberCurrentBranchId");
+                            session.setBranchId(BranchId);
                             startActivity(new Intent(getBaseContext(), AdminActivity.class));
                             finish();
                         }

@@ -49,12 +49,12 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
     private AppCompatButton adminFragmentRoleBtnInsert;
     private AdminFacultyMemberCreation.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
-    private String lblFacultyName, newLblFacultyName, lblFacultyDesignation, newLblFacultyDesignation, lblFacultyEmail, newLblFacultyEmail, lblFacultyContact, newLblFacultyContact, newLblFacultyBranch;
+    private String lblFacultyName, newLblFacultyName, lblFacultyDesignation, newLblFacultyDesignation, lblFacultyEmail, newLblFacultyEmail, lblFacultyContact, newLblFacultyContact, newLblFacultyBranch, newLblFacultyCurrentBranch;
     private int lblFacultyMemberId;
     private boolean wrapInScrollView = true;
     private EditText adminFragmentFacultyUpdateInputName, adminFragmentFacultyUpdateInputDesignation, adminFragmentFacultyUpdateInputEmail, adminFragmentFacultyUpdateInputContact;
-    private AppCompatSpinner inputFacultyBranchSpinner;
-    private AppCompatSpinner adminFragmentFacultyUpdateInputFacultyBranchSpinner;
+    private AppCompatSpinner inputFacultyBranchSpinner, inputFacultyCurrentBranchSpinner;
+    private AppCompatSpinner adminFragmentFacultyUpdateInputFacultyBranchSpinner, adminFragmentFacultyUpdateInputFacultyCurrentBranchSpinner;
     private HashMap<Integer, String> collegeBranchMap;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -72,6 +72,7 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
         inputFacultyEmail = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_email);
         inputFacultyContact = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_contact);
         inputFacultyBranchSpinner = (AppCompatSpinner) view.findViewById(R.id.admin_fragment_faculty_member_input_branch_spinner);
+        inputFacultyCurrentBranchSpinner = (AppCompatSpinner) view.findViewById(R.id.admin_fragment_faculty_member_input_current_branch_spinner);
         setBranchSpinner(0);
         listView = (ListView) view.findViewById(R.id.admin_fragment_faculty_member_list);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -96,6 +97,7 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
                 adminFragmentFacultyUpdateInputContact.setText(lblFacultyContact);
 
                 adminFragmentFacultyUpdateInputFacultyBranchSpinner = (AppCompatSpinner) mView.findViewById(R.id.admin_fragment_faculty_member_update_input_branch_spinner);
+                adminFragmentFacultyUpdateInputFacultyCurrentBranchSpinner = (AppCompatSpinner) mView.findViewById(R.id.admin_fragment_faculty_member_update_input_current_branch_spinner);
                 setBranchSpinner(1);
 
                 builder.title("Action");
@@ -111,7 +113,8 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
                         newLblFacultyEmail = adminFragmentFacultyUpdateInputEmail.getText().toString().trim();
                         newLblFacultyContact = adminFragmentFacultyUpdateInputContact.getText().toString().trim();
                         newLblFacultyBranch = adminFragmentFacultyUpdateInputFacultyBranchSpinner.getSelectedItem().toString().trim();
-                        update(newLblFacultyName, newLblFacultyDesignation, newLblFacultyEmail, newLblFacultyContact, newLblFacultyBranch);
+                        newLblFacultyCurrentBranch = adminFragmentFacultyUpdateInputFacultyCurrentBranchSpinner.getSelectedItem().toString().trim();
+                        update(newLblFacultyName, newLblFacultyDesignation, newLblFacultyEmail, newLblFacultyContact, newLblFacultyBranch, newLblFacultyCurrentBranch);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -208,6 +211,7 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
             String[] facultyContact = new String[list.size()];
             String[] facultyEmail = new String[list.size()];
             String[] facultyBranch = new String[list.size()];
+            String[] facultyCurrentBranch = new String[list.size()];
             if (list.size() > 0) {
                 for (int i = 0; i < list.size(); i++) {
                     facultyMemberId[i] = list.get(i).getFacultyMemberId();
@@ -216,8 +220,9 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
                     facultyContact[i] = list.get(i).getFacultyMemberContact();
                     facultyEmail[i] = list.get(i).getFacultyMemberEmail();
                     facultyBranch[i] = list.get(i).getCollegeBranchName() + ", " + list.get(i).getCollegeBranchAbbr();
+                    facultyCurrentBranch[i] = list.get(i).getCurrentBranchName() + ", " + list.get(i).getCurrentBranchAbbr();
                 }
-                customAdapter = new AdminFacultyMemberCreation.CustomAdapter(getActivity(), facultyMemberId, facultyName, facultyDesignation, facultyContact, facultyEmail, facultyBranch);
+                customAdapter = new AdminFacultyMemberCreation.CustomAdapter(getActivity(), facultyMemberId, facultyName, facultyDesignation, facultyContact, facultyEmail, facultyBranch, facultyCurrentBranch);
                 listView.setAdapter(customAdapter);
             } else {
                 Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
@@ -251,8 +256,10 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         if (id == 0) {
             inputFacultyBranchSpinner.setAdapter(adapter);
+            inputFacultyCurrentBranchSpinner.setAdapter(adapter);
         } else if (id == 1) {
             adminFragmentFacultyUpdateInputFacultyBranchSpinner.setAdapter(adapter);
+            adminFragmentFacultyUpdateInputFacultyCurrentBranchSpinner.setAdapter(adapter);
         }
     }
 
@@ -281,8 +288,10 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
         String facultyContact = inputFacultyContact.getText().toString().trim();
         String facultyEmail = inputFacultyEmail.getText().toString().trim();
         String facultyBranch = inputFacultyBranchSpinner.getSelectedItem().toString().trim();
+        String facultyCurrentBranch = inputFacultyCurrentBranchSpinner.getSelectedItem().toString().trim();
         int facultyBranchId = getBranchSpinner(facultyBranch);
-        if (facultyName.isEmpty() || facultyDesignation.isEmpty() || facultyContact.isEmpty() || facultyEmail.isEmpty() || facultyBranchId == 0) {
+        int facultyCurrentBranchId = getBranchSpinner(facultyCurrentBranch);
+        if (facultyName.isEmpty() || facultyDesignation.isEmpty() || facultyContact.isEmpty() || facultyEmail.isEmpty() || facultyBranchId == 0 || facultyCurrentBranchId == 0) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
             if (facultyName.equals(lblFacultyName) && facultyEmail.equals(lblFacultyEmail) && facultyDesignation.equals(lblFacultyDesignation)) {
@@ -298,6 +307,7 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
                 facultyMember.setFacultyMemberContact(facultyContact);
                 facultyMember.setFacultyMemberEmail(facultyEmail);
                 facultyMember.setFacultyMemberBranchId(facultyBranchId);
+                facultyMember.setFacultyMemberCurrentBranchId(facultyCurrentBranchId);
                 String status = facultyMemberRepo.insert(facultyMember, url);
                 String[] statusArray = status.replaceAll("[{}]", "").split(",");
                 if (statusArray[0].equals("\"error\":false")) {
@@ -318,11 +328,16 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
     /**
      * For updating in database
      */
-    public void update(String newLblFacultyName, String newLblFacultyDesignation, String newLblFacultyEmail, String newLblFacultyContact, String newLblFacultyBranch) {
+    public void update(String newLblFacultyName, String newLblFacultyDesignation, String newLblFacultyEmail, String newLblFacultyContact, String newLblFacultyBranch, String newLblFacultyCurrentBranch) {
         int facultyBranchId = getBranchSpinner(newLblFacultyBranch);
+        int facultyCurrentBranchId = getBranchSpinner(newLblFacultyCurrentBranch);
         int updateFacultyBranchStatus = 0;
+        int updateFacultyCurrentBranchStatus = 0;
         if (facultyBranchId != 0) {
             updateFacultyBranchStatus = 1;
+        }
+        if (facultyCurrentBranchId != 0) {
+            updateFacultyCurrentBranchStatus = 1;
         }
         if (newLblFacultyName.isEmpty() || newLblFacultyDesignation.isEmpty() || newLblFacultyEmail.isEmpty() || newLblFacultyContact.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
@@ -338,7 +353,8 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
             facultyMember.setFacultyMemberContact(newLblFacultyContact);
             facultyMember.setFacultyMemberEmail(newLblFacultyEmail);
             facultyMember.setFacultyMemberBranchId(facultyBranchId);
-            String status = facultyMemberRepo.update(facultyMember, url, updateFacultyBranchStatus);
+            facultyMember.setFacultyMemberCurrentBranchId(facultyCurrentBranchId);
+            String status = facultyMemberRepo.update(facultyMember, url, updateFacultyBranchStatus, updateFacultyCurrentBranchStatus);
             String[] statusArray = status.replaceAll("[{}]", "").split(",");
             if (statusArray[0].equals("\"error\":false")) {
                 Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
@@ -375,7 +391,7 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
      * ViewHolder to hold elements from custom row layout
      */
     public class ViewHolder {
-        AppCompatTextView lblSlNo, lblFacultyMemberId, lblFacultyName, lblFacultyDesignation, lblFacultyEmail, lblFacultyContact, lblFacultyBranch;
+        AppCompatTextView lblSlNo, lblFacultyMemberId, lblFacultyName, lblFacultyDesignation, lblFacultyEmail, lblFacultyContact, lblFacultyBranch, lblFacultyCurrentBranch;
 
         public ViewHolder(View v) {
             lblSlNo = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_sl_no);
@@ -385,6 +401,7 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
             lblFacultyEmail = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_contact);
             lblFacultyContact = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_email);
             lblFacultyBranch = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_branch);
+            lblFacultyCurrentBranch = (AppCompatTextView) v.findViewById(R.id.admin_fragment_faculty_member_list_current_branch);
         }
     }
 
@@ -398,9 +415,10 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
         String[] mFacultyContact;
         String[] mFacultyEmail;
         String[] mFacultyBranch;
+        String[] mFacultyCurrentBranch;
         Context mContext;
 
-        public CustomAdapter(Context context, int[] facultyMemberId, String[] facultyName, String[] facultyDesignation, String[] facultyContact, String[] facultyEmail, String[] facultyBranch) {
+        public CustomAdapter(Context context, int[] facultyMemberId, String[] facultyName, String[] facultyDesignation, String[] facultyContact, String[] facultyEmail, String[] facultyBranch, String[] facultyCurrentBranch) {
             super(context, R.layout.admin_fragment_faculty_member_row, R.id.admin_fragment_faculty_member_list_name, facultyName);
             mFacultyMemberId = facultyMemberId;
             mFacultyName = facultyName;
@@ -408,6 +426,7 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
             mFacultyContact = facultyContact;
             mFacultyEmail = facultyEmail;
             mFacultyBranch = facultyBranch;
+            mFacultyCurrentBranch = facultyCurrentBranch;
             mContext = context;
         }
 
@@ -432,6 +451,7 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
             viewHolder.lblFacultyEmail.setText(mFacultyContact[position]);
             viewHolder.lblFacultyContact.setText(mFacultyEmail[position]);
             viewHolder.lblFacultyBranch.setText(mFacultyBranch[position]);
+            viewHolder.lblFacultyCurrentBranch.setText(mFacultyCurrentBranch[position]);
 
             return row;
         }
