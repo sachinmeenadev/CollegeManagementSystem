@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "992789719397",
+    "project_id": "collegemanagementsystem-50892"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992789719397:android:087f3fc464792424",
+        "android_client_info": {
+          "package_name": "com.wg.collegeManagementSystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992789719397-7ndojindm6ptieao6du32ej8duh6pjaj.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "992789719397-btf1ajd43ctleon73bbbbrubkt481gg2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wg.collegeManagementSystem",
+            "certificate_hash": "93d2f1a917c03d649f67110787052848051a65c5"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB67xZoYyXH7-h_PsFR2D5h6kMHFKBCfKs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,7 +10,6 @@ public class User {
     public int userId;
     public String userName;
     public String userEmail;
-    public String userPassword;
     public int userRoleId;
 
     public int getUserId() {
@@ -35,14 +34,6 @@ public class User {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
     }
 
     public int getUserRoleId() {

@@ -1,18 +1,28 @@
 package com.wg.collegeManagementSystem;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.wg.collegeManagementSystem.admin.AdminActivity;
 import com.wg.collegeManagementSystem.app.config.AppController;
 import com.wg.collegeManagementSystem.app.config.AppURL;
@@ -25,20 +35,18 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
+    private static final int RC_SIGN_IN = 007;
     public SessionManager session;
-    private EditText inputEmail, inputPassword;
     private ProgressDialog pDialog;
+    private GoogleApiClient mGoogleApiClient;
+    private SignInButton btnSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Progress dialog
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
-
         session = new SessionManager(getApplicationContext());
         if (session.isLoggedIn()) {
             if (session.getUserRole().equals("Admin")) {
@@ -51,44 +59,73 @@ public class LoginActivity extends Activity {
                 Intent intent = new Intent(this, HodActivity.class);
                 startActivity(intent);
                 finish();
-            } else if (session.getUserRole().equals("Faculty")) {
-                // User is already logged in. Take him to Faculty activity
-                Intent intent = new Intent(this, AdminActivity.class);
-                startActivity(intent);
-                finish();
-            } else if (session.getUserRole().equals("Tutor")) {
-                // User is already logged in. Take him to Tutor activity
-                Intent intent = new Intent(this, AdminActivity.class);
-                startActivity(intent);
-                finish();
             }
         }
-        inputEmail = (EditText) findViewById(R.id.activity_login_input_email);
-        inputPassword = (EditText) findViewById(R.id.activity_login_input_password);
+        // Progress dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
+        btnSignIn.setOnClickListener(this);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        // Customizing G+ button
+        btnSignIn.setSize(SignInButton.SIZE_STANDARD);
+        btnSignIn.setColorScheme(SignInButton.COLOR_AUTO);
+        btnSignIn.setScopes(gso.getScopeArray());
     }
 
-    /**
-     * On login button click
-     */
-    public void activity_login_btn_login(View v) {
+    @Override
+    public void onClick(View v) {
+        signIn();
+    }
 
-        String email, password;
-        String userName = null, userEmail = null, userRole = null;
+    private void signIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
 
-        email = inputEmail.getText().toString().trim();
-        password = inputPassword.getText().toString().trim();
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        if (!email.isEmpty() && !password.isEmpty()) {
-            checkLogin(email, password);
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            String personPhotoUrl = AppURL.PUBLIC_URL + "/img/user.png";
+            String personName = acct.getDisplayName();
+            String email = acct.getEmail();
+            Uri userPhoto = acct.getPhotoUrl();
+            if (userPhoto != null) {
+                personPhotoUrl = userPhoto.toString();
+            }
+            checkLogin(personName, email, personPhotoUrl);
         } else {
-            Toast.makeText(this, "Please fill email and password", Toast.LENGTH_SHORT).show();
+            // Signed out, show unauthenticated UI.
+            Toast.makeText(this, "Unable To Sign In", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
      * function to verify login details in mysql db
      */
-    private void checkLogin(final String email, final String password) {
+
+    private void checkLogin(final String personName, final String email, final String personPhotoUrl) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -102,7 +139,6 @@ public class LoginActivity extends Activity {
             public void onResponse(String response) {
                 Log.d(TAG, "Login Response: " + response.toString());
                 hideDialog();
-
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
@@ -120,19 +156,32 @@ public class LoginActivity extends Activity {
                         session.setUserName(userName);
                         session.setUserEmail(userEmail);
                         session.setUserRole(userRole);
+                        session.setUserImage(personPhotoUrl);
                         if (userRole.equals("Admin")) {
+                            startActivity(new Intent(getBaseContext(), AdminActivity.class));
+                            finish();
+                        } else if (userRole.equals("HOD")) {
                             startActivity(new Intent(getBaseContext(), AdminActivity.class));
                             finish();
                         }
                     } else {
                         // Error in login. Get the error message
-                        String errorMsg = jObj.getString("error_msg");
-                        Toast.makeText(getApplicationContext(),
-                                errorMsg, Toast.LENGTH_LONG).show();
+                        String errorMsg = jObj.getString("message");
+                        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                            @Override
+                            public void onResult(Status status) {
+                            }
+                        });
+                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
+                    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                        }
+                    });
                     Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
@@ -146,13 +195,11 @@ public class LoginActivity extends Activity {
                 hideDialog();
             }
         }) {
-
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("userEmail", email);
-                params.put("userPassword", password);
 
                 return params;
             }
@@ -171,4 +218,10 @@ public class LoginActivity extends Activity {
             pDialog.dismiss();
     }
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
+        // be available.
+        Log.d(TAG, "An unresolvable error has occurred :\n" + connectionResult);
+    }
 }

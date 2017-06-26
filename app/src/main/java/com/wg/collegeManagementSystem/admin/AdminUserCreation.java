@@ -45,14 +45,14 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     private String URL = AppURL.ADMIN_USER_URL;
     private String ROLE_URL = AppURL.ADMIN_ROLE_URL;
     private ListView listView;
-    private EditText inputUserName, inputUserEmail, inputUserPassword;
+    private EditText inputUserName, inputUserEmail;
     private AppCompatButton adminFragmentUserBtnInsert;
     private AdminUserCreation.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
-    private String lblUserName, newLblUserName, lblUserEmail, newLblUserEmail, newLblUserPassword, newLblUserRole;
+    private String lblUserName, newLblUserName, lblUserEmail, newLblUserEmail, newLblUserRole;
     private int lblUserId;
     private boolean wrapInScrollView = true;
-    private EditText adminFragmentUserUpdateInputUserName, adminFragmentUserUpdateInputUserEmail, adminFragmentUserUpdateInputUserPassword;
+    private EditText adminFragmentUserUpdateInputUserName, adminFragmentUserUpdateInputUserEmail;
     private AppCompatSpinner inputUserRoleSpinner;
     private AppCompatSpinner adminFragmentUserUpdateInputUserRoleSpinner;
     private HashMap<Integer, String> roleMap;
@@ -69,7 +69,6 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
         builder = new MaterialDialog.Builder(getActivity());
         inputUserName = (EditText) view.findViewById(R.id.admin_fragment_user_input_user_name);
         inputUserEmail = (EditText) view.findViewById(R.id.admin_fragment_user_input_user_email);
-        inputUserPassword = (EditText) view.findViewById(R.id.admin_fragment_user_input_user_password);
         inputUserRoleSpinner = (AppCompatSpinner) view.findViewById(R.id.admin_fragment_user_input_user_role_spinner);
         setRoleSpinner(0);
         listView = (ListView) view.findViewById(R.id.admin_fragment_user_list);
@@ -86,7 +85,6 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
                 adminFragmentUserUpdateInputUserName.setText(lblUserName);
                 adminFragmentUserUpdateInputUserEmail = (EditText) mView.findViewById(R.id.admin_fragment_user_update_input_user_email);
                 adminFragmentUserUpdateInputUserEmail.setText(lblUserEmail);
-                adminFragmentUserUpdateInputUserPassword = (EditText) mView.findViewById(R.id.admin_fragment_user_update_input_user_password);
                 adminFragmentUserUpdateInputUserRoleSpinner = (AppCompatSpinner) mView.findViewById(R.id.admin_fragment_user_update_input_user_role_spinner);
                 setRoleSpinner(1);
 
@@ -100,9 +98,8 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         newLblUserName = adminFragmentUserUpdateInputUserName.getText().toString().trim();
                         newLblUserEmail = adminFragmentUserUpdateInputUserEmail.getText().toString().trim();
-                        newLblUserPassword = adminFragmentUserUpdateInputUserPassword.getText().toString().trim();
                         newLblUserRole = adminFragmentUserUpdateInputUserRoleSpinner.getSelectedItem().toString().trim();
-                        update(newLblUserName, newLblUserEmail, newLblUserPassword, newLblUserRole);
+                        update(newLblUserName, newLblUserEmail, newLblUserRole);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -265,10 +262,9 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     public void insert() {
         String userName = inputUserName.getText().toString().trim();
         String userEmail = inputUserEmail.getText().toString().trim();
-        String userPassword = inputUserPassword.getText().toString().trim();
         String userRole = inputUserRoleSpinner.getSelectedItem().toString().trim();
         int userRoleId = getRoleSpinner(userRole);
-        if (userName.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userRoleId == 0) {
+        if (userName.isEmpty() || userEmail.isEmpty() || userRoleId == 0) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
             if (userName.equals(lblUserName) && userEmail.equals(lblUserEmail)) {
@@ -281,14 +277,12 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
 
                 user.setUserName(userName);
                 user.setUserEmail(userEmail);
-                user.setUserPassword(userPassword);
                 user.setUserRoleId(userRoleId);
                 String status = userRepo.insert(user, url);
                 String[] statusArray = status.replaceAll("[{}]", "").split(",");
                 if (statusArray[0].equals("\"error\":false")) {
                     inputUserName.setText("");
                     inputUserEmail.setText("");
-                    inputUserPassword.setText("");
                     Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
                     show_data();
                 } else {
@@ -302,14 +296,11 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
     /**
      * For updating data
      */
-    public void update(String newLblUserName, String newLblUserEmail, String newLblUserPassword, String newLblUserRole) {
+    public void update(String newLblUserName, String newLblUserEmail, String newLblUserRole) {
         int userRoleId = getRoleSpinner(newLblUserRole);
-        int updateUserRoleStatus = 0, updateUserPasswordStatus = 0;
+        int updateUserRoleStatus = 0;
         if (userRoleId != 0) {
             updateUserRoleStatus = 1;
-        }
-        if (!newLblUserPassword.isEmpty()) {
-            updateUserPasswordStatus = 1;
         }
         if (newLblUserName.isEmpty() || newLblUserEmail.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
@@ -322,9 +313,8 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
             user.setUserId(lblUserId);
             user.setUserName(newLblUserName);
             user.setUserEmail(newLblUserEmail);
-            user.setUserPassword(newLblUserPassword);
             user.setUserRoleId(userRoleId);
-            String status = userRepo.update(user, url, updateUserRoleStatus, updateUserPasswordStatus);
+            String status = userRepo.update(user, url, updateUserRoleStatus);
             String[] statusArray = status.replaceAll("[{}]", "").split(",");
             if (statusArray[0].equals("\"error\":false")) {
                 Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();

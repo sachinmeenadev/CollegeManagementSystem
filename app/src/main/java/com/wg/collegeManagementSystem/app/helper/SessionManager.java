@@ -17,6 +17,7 @@ public class SessionManager {
     private static String USER_EMAIL = "USER_EMAIL";
     private static String USER_ROLE = "USER_ROLE";
     private static String USER_UNIQUE_ID = "USER_UNIQUE_ID";
+    private static String USER_IMAGE = "USER_IMAGE";
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
     // Shared Preferences
@@ -81,6 +82,16 @@ public class SessionManager {
         editor.putString(USER_UNIQUE_ID, userUniqueId);
         editor.commit();
         Log.d(TAG, "User unique id modified!");
+    }
+
+    public String getUserImage() {
+        return pref.getString(USER_IMAGE, "userImage");
+    }
+
+    public void setUserImage(String userImage) {
+        editor.putString(USER_IMAGE, userImage);
+        editor.commit();
+        Log.d(TAG, "User image modified!");
     }
 }
 

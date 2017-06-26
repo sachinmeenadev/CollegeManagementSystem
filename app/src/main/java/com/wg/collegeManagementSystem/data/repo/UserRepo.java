@@ -55,13 +55,11 @@ public class UserRepo {
 
         String userName = user.getUserName();
         String userEmail = user.getUserEmail();
-        String userPassword = user.getUserPassword();
         int userRoleId = user.getUserRoleId();
 
         HashMap<String, String> params = new HashMap<>();
         params.put("userName", userName);
         params.put("userEmail", userEmail);
-        params.put("userPassword", userPassword);
         params.put("userRoleId", String.valueOf(userRoleId));
 
         UrlRequest urlRequest = new UrlRequest();
@@ -70,12 +68,10 @@ public class UserRepo {
         return response;
     }
 
-    public String update(User user, String url, int updateUserRoleStatus, int updateUserPasswordStatus) {
+    public String update(User user, String url, int updateUserRoleStatus) {
         /**
          * 1. "0" For User Name & Email
-         * 2. "1" For Password
-         * 3. "2" For Role
-         * 4. "3" For all update
+         * 2. "1" For Role
          */
 
         String response = null;
@@ -83,22 +79,16 @@ public class UserRepo {
         int userId = user.getUserId();
         String userName = user.getUserName();
         String userEmail = user.getUserEmail();
-        String userPassword = user.getUserPassword();
         int userRoleId = user.getUserRoleId();
         int userUpdateStatus = 0;
 
         HashMap<String, String> params = new HashMap<>();
         params.put("userName", userName);
         params.put("userEmail", userEmail);
-        params.put("userPassword", userPassword);
         params.put("userRoleId", String.valueOf(userRoleId));
 
-        if (updateUserPasswordStatus == 1)
-            userUpdateStatus = 1;
         if (updateUserRoleStatus == 1)
-            userUpdateStatus = 2;
-        if (updateUserPasswordStatus == 1 && updateUserRoleStatus == 1)
-            userUpdateStatus = 3;
+            userUpdateStatus = 1;
 
         params.put("userUpdateStatus", String.valueOf(userUpdateStatus));
         UrlRequest urlRequest = new UrlRequest();
