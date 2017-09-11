@@ -10,6 +10,7 @@ public class Tutor {
     public int tutorId;
     public int tutorFacultyId;
     public String tutorSection;
+    public String tutorClass;
     public String tutorBatch;
 
     public int getTutorId() {
@@ -42,5 +43,13 @@ public class Tutor {
 
     public void setTutorBatch(String tutorBatch) {
         this.tutorBatch = tutorBatch;
+    }
+
+    public String getTutorClass() {
+        return tutorClass;
+    }
+
+    public void setTutorClass(String tutorClass) {
+        this.tutorClass = tutorClass;
     }
 }

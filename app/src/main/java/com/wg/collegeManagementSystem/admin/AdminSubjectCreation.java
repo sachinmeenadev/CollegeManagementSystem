@@ -115,6 +115,7 @@ public class AdminSubjectCreation extends Fragment implements SwipeRefreshLayout
 
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.admin_fragment_subject_list_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(R.color.pink, R.color.indigo, R.color.lime);
         swipeRefreshLayout.post(new Runnable() {
                                     @Override
                                     public void run() {

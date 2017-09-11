@@ -39,6 +39,14 @@
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="Select User Role"
+        android:textColor="@color/colorAccent"
+        android:textSize="10sp" />
+
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/admin_fragment_user_update_input_user_role_spinner"
         android:layout_width="fill_parent"

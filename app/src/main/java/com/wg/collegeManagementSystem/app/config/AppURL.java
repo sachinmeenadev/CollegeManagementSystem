@@ -22,4 +22,7 @@ public class AppURL {
      */
     public static String HOD_BASE_URL = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/api/hod";
     public static String HOD_FACULTY_MEMBER = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/api/hod/facultyMembers";
+    public static String HOD_FACULTY_MEMBER_ALLOT_CLASS_SUBJECT = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/api/hod/facultyMembersAllotClassSubjects";
+    public static String HOD_TUTOR = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/api/hod/tutors";
+    public static String HOD_STUDENT = "http://192.168.43.103:8090/CollegeManagementSystemWebApp/api/hod/students";
 }

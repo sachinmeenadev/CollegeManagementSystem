@@ -8,4 +8,7 @@
     <color name="colorBtnLoginBg">#3D5AFE</color>
     <color name="colorInputHint">#878787</color>
     <color name="colorNavMenu">#f5f5f5</color>
+    <color name="pink">#FF4081</color>
+    <color name="indigo">#3F51B5</color>
+    <color name="lime">#CDDC39</color>
 </resources>

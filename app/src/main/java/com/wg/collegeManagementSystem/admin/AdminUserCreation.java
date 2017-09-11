@@ -124,6 +124,7 @@ public class AdminUserCreation extends Fragment implements SwipeRefreshLayout.On
 
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.admin_fragment_user_list_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(R.color.pink, R.color.indigo, R.color.lime);
         swipeRefreshLayout.post(new Runnable() {
                                     @Override
                                     public void run() {

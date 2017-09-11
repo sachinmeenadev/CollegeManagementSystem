@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/hod_fragment_tutor_list_sl_no"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/hod_fragment_tutor_list_tutor_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/hod_fragment_tutor_list_tutor_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/hod_fragment_tutor_list_class"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/hod_fragment_tutor_list_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/hod_fragment_tutor_list_batch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp" />
+</LinearLayout>
