@@ -6,12 +6,6 @@ package com.wg.collegeManagementSystem.data.model;
 
 public class FacultyMemberSubject {
     public static final String TAG = FacultyMemberSubject.class.getSimpleName();
-    public static final String TABLE = "facultyMemberSubjects";
-
-    // Labels Table Columns names
-    public static final String KEY_FMSId = "fmsId";
-    public static final String KEY_FMSFacultyId = "fmsFacultyId";
-    public static final String KEY_FMSSubjectId = "fmsSubjectId";
 
     public int fmsId;
     public int fmsFacultyId;

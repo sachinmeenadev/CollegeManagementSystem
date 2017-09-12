@@ -25,6 +25,7 @@ import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.app.config.AppURL;
 import com.wg.collegeManagementSystem.app.helper.SessionManager;
 import com.wg.collegeManagementSystem.app.helper.UrlRequest;
+import com.wg.collegeManagementSystem.data.model.Tutor;
 import com.wg.collegeManagementSystem.data.repo.FacultyMemberRepo;
 import com.wg.collegeManagementSystem.data.repo.TutorRepo;
 import com.wg.collegeManagementSystem.model.FacultyMemberList;
@@ -108,13 +109,13 @@ public class HodTutorCreation extends Fragment implements SwipeRefreshLayout.OnR
                         newLblSection = hodFragmentTutorUpdateSection.getText().toString().trim();
                         newLblBatch = hodFragmentTutorUpdateBatch.getText().toString().trim();
                         newLblFacultyName = hodFragmentTutorUpdateInputTutorNameSpinner.getSelectedItem().toString().trim();
-                        // update(newLblFacultyName, newLblClass, newLblSection, newLblBatch);
+                        update(newLblFacultyName, newLblClass, newLblSection, newLblBatch);
                     }
                 });
                 builder.onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        //delete();
+                        delete();
                     }
                 });
                 builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
@@ -147,7 +148,7 @@ public class HodTutorCreation extends Fragment implements SwipeRefreshLayout.OnR
         hodFragmentBtnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //insert();
+                insert();
             }
         });
         show_data();
@@ -242,7 +243,7 @@ public class HodTutorCreation extends Fragment implements SwipeRefreshLayout.OnR
     }
 
     /**
-     * For showing added roles from database
+     * For showing data from database
      */
     public void show_data() {
         // showing refresh animation before making http call
@@ -280,6 +281,101 @@ public class HodTutorCreation extends Fragment implements SwipeRefreshLayout.OnR
             } else {
                 Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    /**
+     * For inserting in database
+     */
+    public void insert() {
+        String tutorClass = inputClass.getText().toString().trim();
+        String tutorSection = inputSection.getText().toString().trim();
+        String tutorBatch = inputBatch.getText().toString().trim();
+        String tutorName = inputFacultySpinner.getSelectedItem().toString().trim();
+        int tutorFacultyId = getFacultyMemberSpinner(tutorName);
+        if (tutorClass.isEmpty() || tutorSection.isEmpty() || tutorBatch.isEmpty() || tutorFacultyId == 0) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
+        } else {
+            if (tutorFacultyId == lblTutorId) {
+                Toast.makeText(getActivity(), "You already made an entry for this", Toast.LENGTH_SHORT).show();
+            } else {
+                String url = URL + "/insert";
+
+                TutorRepo tutorRepo = new TutorRepo();
+                Tutor tutor = new Tutor();
+
+                tutor.setTutorFacultyId(tutorFacultyId);
+                tutor.setTutorClass(tutorClass);
+                tutor.setTutorSection(tutorSection);
+                tutor.setTutorBatch(tutorBatch);
+                String status = tutorRepo.insert(tutor, url);
+                String[] statusArray = status.replaceAll("[{}]", "").split(",");
+                if (statusArray[0].equals("\"error\":false")) {
+                    inputClass.setText("");
+                    inputSection.setText("");
+                    inputBatch.setText("");
+                    Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                    show_data();
+                } else {
+                    Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                    show_data();
+                }
+            }
+        }
+    }
+
+    /**
+     * For updating in database
+     */
+    public void update(String newLblFacultyName, String newLblClass, String newLblSection, String newLblBatch) {
+        int tutorFacultyId = getFacultyMemberSpinner(newLblFacultyName);
+        int updateTutorNameStatus = 0;
+        if (tutorFacultyId != 0) {
+            updateTutorNameStatus = 1;
+        }
+        if (newLblFacultyName.isEmpty() || newLblClass.isEmpty() || newLblSection.isEmpty() || newLblBatch.isEmpty()) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
+        } else {
+            String url = URL;
+
+            TutorRepo tutorRepo = new TutorRepo();
+            Tutor tutor = new Tutor();
+
+            tutor.setTutorId(lblTutorId);
+            tutor.setTutorFacultyId(tutorFacultyId);
+            tutor.setTutorClass(newLblClass);
+            tutor.setTutorSection(newLblSection);
+            tutor.setTutorBatch(newLblBatch);
+            String status = tutorRepo.update(tutor, url, updateTutorNameStatus);
+            String[] statusArray = status.replaceAll("[{}]", "").split(",");
+            if (statusArray[0].equals("\"error\":false")) {
+                Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+                show_data();
+            } else {
+                Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                show_data();
+            }
+        }
+    }
+
+    /**
+     * For deleting roles in database
+     */
+    public void delete() {
+        String url = URL;
+
+        TutorRepo tutorRepo = new TutorRepo();
+        Tutor tutor = new Tutor();
+
+        tutor.setTutorId(lblTutorId);
+        String status = tutorRepo.delete(tutor, url);
+        String[] statusArray = status.replaceAll("[{}]", "").split(",");
+        if (statusArray[0].equals("\"error\":false")) {
+            Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
+            show_data();
+        } else {
+            Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+            show_data();
         }
     }
 

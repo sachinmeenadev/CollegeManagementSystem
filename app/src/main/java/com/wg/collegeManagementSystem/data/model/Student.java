@@ -51,9 +51,6 @@ public class Student {
     public String studentAcademicDiplomaBoard;
     public String studentAcademicDiplomaMedium;
     public String studentAcademicDiplomaInstituteName;
-    public String studentAcademicCollegeAgg;
-    public String studentAcademicCollegeBackCount;
-    public String studentAcademicCollegeBackSubject;
     public String studentAcademicHobbies;
 
     public int getStudentId() {
@@ -398,30 +395,6 @@ public class Student {
 
     public void setStudentAcademicDiplomaInstituteName(String studentAcademicDiplomaInstituteName) {
         this.studentAcademicDiplomaInstituteName = studentAcademicDiplomaInstituteName;
-    }
-
-    public String getStudentAcademicCollegeAgg() {
-        return studentAcademicCollegeAgg;
-    }
-
-    public void setStudentAcademicCollegeAgg(String studentAcademicCollegeAgg) {
-        this.studentAcademicCollegeAgg = studentAcademicCollegeAgg;
-    }
-
-    public String getStudentAcademicCollegeBackCount() {
-        return studentAcademicCollegeBackCount;
-    }
-
-    public void setStudentAcademicCollegeBackCount(String studentAcademicCollegeBackCount) {
-        this.studentAcademicCollegeBackCount = studentAcademicCollegeBackCount;
-    }
-
-    public String getStudentAcademicCollegeBackSubject() {
-        return studentAcademicCollegeBackSubject;
-    }
-
-    public void setStudentAcademicCollegeBackSubject(String studentAcademicCollegeBackSubject) {
-        this.studentAcademicCollegeBackSubject = studentAcademicCollegeBackSubject;
     }
 
     public String getStudentAcademicHobbies() {

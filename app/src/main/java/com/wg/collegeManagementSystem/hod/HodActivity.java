@@ -132,6 +132,12 @@ public class HodActivity extends AppCompatActivity implements NavigationView.OnN
             case 20:
                 fragment = new HodFacultyMemberList();
                 break;
+            case 22:
+                fragment = new HodTutorCreation();
+                break;
+            case 24:
+                fragment = new HodStudentSearch();
+                break;
         }
         //replacing the fragment
         if (fragment != null) {
