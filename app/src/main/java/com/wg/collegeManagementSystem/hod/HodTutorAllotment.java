@@ -40,16 +40,16 @@ import java.util.Map;
  * Created by Jerry on 27-06-2017.
  */
 
-public class HodTutorCreation extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class HodTutorAllotment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    public static final String TAG = HodTutorCreation.class.getSimpleName();
+    public static final String TAG = HodTutorAllotment.class.getSimpleName();
     public SessionManager session;
     private String URL = AppURL.HOD_TUTOR;
     private String FACULTY_URL = AppURL.HOD_FACULTY_MEMBER;
     private ListView listView;
     private EditText inputClass, inputSection, inputBatch;
     private AppCompatButton hodFragmentBtnInsert;
-    private HodTutorCreation.CustomAdapter customAdapter;
+    private HodTutorAllotment.CustomAdapter customAdapter;
     private MaterialDialog.Builder builder;
     private String lblClass, newLblClass, lblSection, newLblSection, lblBatch, newLblBatch, newLblFacultyName;
     private int lblTutorId;
@@ -276,7 +276,7 @@ public class HodTutorCreation extends Fragment implements SwipeRefreshLayout.OnR
                     tutorSection[i] = list.get(i).getTutorSection();
                     tutorBatch[i] = list.get(i).getTutorBatch();
                 }
-                customAdapter = new HodTutorCreation.CustomAdapter(getActivity(), tutorId, tutorName, tutorClass, tutorSection, tutorBatch);
+                customAdapter = new HodTutorAllotment.CustomAdapter(getActivity(), tutorId, tutorName, tutorClass, tutorSection, tutorBatch);
                 listView.setAdapter(customAdapter);
             } else {
                 Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
@@ -419,15 +419,15 @@ public class HodTutorCreation extends Fragment implements SwipeRefreshLayout.OnR
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View row = convertView;
-            HodTutorCreation.ViewHolder viewHolder;
+            HodTutorAllotment.ViewHolder viewHolder;
 
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 row = inflater.inflate(R.layout.hod_fragment_tutor_row, parent, false);
-                viewHolder = new HodTutorCreation.ViewHolder(row);
+                viewHolder = new HodTutorAllotment.ViewHolder(row);
                 row.setTag(viewHolder);
             } else {
-                viewHolder = (HodTutorCreation.ViewHolder) row.getTag();
+                viewHolder = (HodTutorAllotment.ViewHolder) row.getTag();
             }
 
             viewHolder.lblSlNo.setText(String.valueOf(position + 1));

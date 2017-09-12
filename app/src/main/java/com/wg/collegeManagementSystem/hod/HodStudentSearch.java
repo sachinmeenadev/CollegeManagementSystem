@@ -6,6 +6,8 @@ import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
@@ -21,7 +23,6 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.wg.collegeManagementSystem.R;
 import com.wg.collegeManagementSystem.app.config.AppURL;
-import com.wg.collegeManagementSystem.app.helper.SessionManager;
 import com.wg.collegeManagementSystem.app.helper.UrlRequest;
 import com.wg.collegeManagementSystem.data.repo.StudentSearchRepo;
 import com.wg.collegeManagementSystem.model.StudentSearchList;
@@ -35,7 +36,6 @@ import java.util.List;
 
 public class HodStudentSearch extends Fragment {
     public static final String TAG = HodStudentSearch.class.getSimpleName();
-    public SessionManager session;
     private String URL = AppURL.HOD_STUDENT;
     private ListView listView;
     private EditText inputStudentInfo;
@@ -54,7 +54,6 @@ public class HodStudentSearch extends Fragment {
         View view = inflater.inflate(R.layout.hod_fragment_student_search, container, false);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        session = new SessionManager(getActivity().getApplicationContext());
 
         builder = new MaterialDialog.Builder(getActivity());
         inputStudentInfo = (EditText) view.findViewById(R.id.hod_fragment_student_search_input_student_info);
@@ -92,7 +91,17 @@ public class HodStudentSearch extends Fragment {
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        Fragment hodStudentProfile = new HodStudentProfile();
 
+                        Bundle args = new Bundle();
+                        args.putString("studentId", String.valueOf(lblStudentId));
+                        hodStudentProfile.setArguments(args);
+
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.hod_fragment_student_search_list, hodStudentProfile);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
                     }
                 });
                 builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
@@ -235,7 +244,7 @@ public class HodStudentSearch extends Fragment {
             viewHolder.lblStudentId.setText(String.valueOf(mStudentId[position]));
             viewHolder.lblStudentName.setText(mStudentName[position]);
             viewHolder.lblStudentRegNo.setText(mStudentRegNo[position]);
-            viewHolder.lblStudentClass.setText(mStudentClass[position]);
+            viewHolder.lblStudentClass.setText(mStudentClass[position] + " Sem, ");
             viewHolder.lblStudentBatch.setText(mStudentBatch[position]);
             viewHolder.lblStudentContact.setText(mStudentContact[position]);
 
