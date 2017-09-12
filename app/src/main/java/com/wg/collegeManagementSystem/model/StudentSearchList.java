@@ -5,14 +5,10 @@ package com.wg.collegeManagementSystem.model;
  */
 
 public class StudentSearchList {
-    public static final String TAG = StudentSearchList.class.getSimpleName();
-
     public int studentId;
     public String studentName;
     public String studentRegNumber;
-    public String studentBranch;
     public String studentSem;
-    public String studentSemSection;
     public String studentSemBatch;
     public String studentContact;
 
@@ -40,28 +36,12 @@ public class StudentSearchList {
         this.studentRegNumber = studentRegNumber;
     }
 
-    public String getStudentBranch() {
-        return studentBranch;
-    }
-
-    public void setStudentBranch(String studentBranch) {
-        this.studentBranch = studentBranch;
-    }
-
     public String getStudentSem() {
         return studentSem;
     }
 
     public void setStudentSem(String studentSem) {
         this.studentSem = studentSem;
-    }
-
-    public String getStudentSemSection() {
-        return studentSemSection;
-    }
-
-    public void setStudentSemSection(String studentSemSection) {
-        this.studentSemSection = studentSemSection;
     }
 
     public String getStudentSemBatch() {
@@ -79,4 +59,5 @@ public class StudentSearchList {
     public void setStudentContact(String studentContact) {
         this.studentContact = studentContact;
     }
+
 }

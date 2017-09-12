@@ -99,7 +99,7 @@ public class HodStudentSearch extends Fragment {
 
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.hod_fragment_student_search_list, hodStudentProfile);
+                        fragmentTransaction.replace(R.id.content_hod_frame, hodStudentProfile);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }
@@ -154,34 +154,38 @@ public class HodStudentSearch extends Fragment {
      */
     public void search() {
         String studentInfo = inputStudentInfo.getText().toString();
-        String url = URL;
-        String response = sendRequest(url, studentInfo);
-        String[] responseArray = response.split(" ");
-        if (responseArray[0].equals("ERROR")) {
-            Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
+        if (studentInfo.isEmpty()) {
+            Toast.makeText(getActivity(), "Please fill the input field", Toast.LENGTH_SHORT).show();
         } else {
-            StudentSearchRepo studentSearchRepo = new StudentSearchRepo();
-            List<StudentSearchList> list = studentSearchRepo.getStudentSearch(response);
-
-            int[] studentId = new int[list.size()];
-            String[] studentName = new String[list.size()];
-            String[] studentRegNo = new String[list.size()];
-            String[] studentClass = new String[list.size()];
-            String[] studentBatch = new String[list.size()];
-            String[] studentContactNo = new String[list.size()];
-            if (list.size() > 0) {
-                for (int i = 0; i < list.size(); i++) {
-                    studentId[i] = list.get(i).getStudentId();
-                    studentName[i] = list.get(i).getStudentName();
-                    studentRegNo[i] = list.get(i).getStudentRegNumber();
-                    studentClass[i] = list.get(i).getStudentSem();
-                    studentBatch[i] = list.get(i).getStudentSemBatch();
-                    studentContactNo[i] = list.get(i).getStudentContact();
-                }
-                customAdapter = new HodStudentSearch.CustomAdapter(getActivity(), studentId, studentName, studentRegNo, studentClass, studentBatch, studentContactNo);
-                listView.setAdapter(customAdapter);
+            String url = URL;
+            String response = sendRequest(url, studentInfo);
+            String[] responseArray = response.split(" ");
+            if (responseArray[0].equals("ERROR")) {
+                Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
+                StudentSearchRepo studentSearchRepo = new StudentSearchRepo();
+                List<StudentSearchList> list = studentSearchRepo.getStudentSearch(response);
+
+                int[] studentId = new int[list.size()];
+                String[] studentName = new String[list.size()];
+                String[] studentRegNo = new String[list.size()];
+                String[] studentClass = new String[list.size()];
+                String[] studentBatch = new String[list.size()];
+                String[] studentContactNo = new String[list.size()];
+                if (list.size() > 0) {
+                    for (int i = 0; i < list.size(); i++) {
+                        studentId[i] = list.get(i).getStudentId();
+                        studentName[i] = list.get(i).getStudentName();
+                        studentRegNo[i] = list.get(i).getStudentRegNumber();
+                        studentClass[i] = list.get(i).getStudentSem();
+                        studentBatch[i] = list.get(i).getStudentSemBatch();
+                        studentContactNo[i] = list.get(i).getStudentContact();
+                    }
+                    customAdapter = new HodStudentSearch.CustomAdapter(getActivity(), studentId, studentName, studentRegNo, studentClass, studentBatch, studentContactNo);
+                    listView.setAdapter(customAdapter);
+                } else {
+                    Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -244,7 +248,7 @@ public class HodStudentSearch extends Fragment {
             viewHolder.lblStudentId.setText(String.valueOf(mStudentId[position]));
             viewHolder.lblStudentName.setText(mStudentName[position]);
             viewHolder.lblStudentRegNo.setText(mStudentRegNo[position]);
-            viewHolder.lblStudentClass.setText(mStudentClass[position] + " Sem, ");
+            viewHolder.lblStudentClass.setText(mStudentClass[position] + " Sem ");
             viewHolder.lblStudentBatch.setText(mStudentBatch[position]);
             viewHolder.lblStudentContact.setText(mStudentContact[position]);
 
