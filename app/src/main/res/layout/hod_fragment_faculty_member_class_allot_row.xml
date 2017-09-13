@@ -31,6 +31,7 @@
         android:id="@+id/hod_fragment_faculty_member_class_allot_list_faculty_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="1dp"
         android:layout_weight="1"
         android:textColor="@color/colorBlack"
         android:textSize="15sp" />
@@ -39,6 +40,7 @@
         android:id="@+id/hod_fragment_faculty_member_class_allot_list_subject"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="1dp"
         android:layout_weight="1"
         android:textColor="@color/colorBlack"
         android:textSize="15sp" />
@@ -47,6 +49,7 @@
         android:id="@+id/hod_fragment_faculty_member_class_allot_list_class"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="1dp"
         android:layout_weight="1"
         android:textColor="@color/colorBlack"
         android:textSize="15sp" />
@@ -55,6 +58,7 @@
         android:id="@+id/hod_fragment_faculty_member_class_allot_list_section"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="1dp"
         android:layout_weight="1"
         android:textColor="@color/colorBlack"
         android:textSize="15sp" />
@@ -63,6 +67,7 @@
         android:id="@+id/hod_fragment_faculty_member_class_allot_list_batch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="1dp"
         android:layout_weight="1"
         android:textColor="@color/colorBlack"
         android:textSize="15sp" />

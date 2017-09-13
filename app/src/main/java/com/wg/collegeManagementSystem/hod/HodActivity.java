@@ -105,7 +105,7 @@ public class HodActivity extends AppCompatActivity implements NavigationView.OnN
 
         Menu menu = navigationView.getMenu();
         menu.add(R.id.drawer_layout_menu_items, 20, Menu.NONE, "Faculty Members List");
-        menu.add(R.id.drawer_layout_menu_items, 21, Menu.NONE, "Allot Faculty Member's Subject");
+        menu.add(R.id.drawer_layout_menu_items, 21, Menu.NONE, "Faculty Member's Class Allot");
         menu.add(R.id.drawer_layout_menu_items, 22, Menu.NONE, "Tutor Allotment");
         menu.add(R.id.drawer_layout_menu_items, 23, Menu.NONE, "Student List");
         menu.add(R.id.drawer_layout_menu_items, 24, Menu.NONE, "Search Student");
@@ -131,6 +131,9 @@ public class HodActivity extends AppCompatActivity implements NavigationView.OnN
         switch (itemId) {
             case 20:
                 fragment = new HodFacultyMemberList();
+                break;
+            case 21:
+                fragment = new HodFacultyMemberAllotClass();
                 break;
             case 22:
                 fragment = new HodTutorAllotment();

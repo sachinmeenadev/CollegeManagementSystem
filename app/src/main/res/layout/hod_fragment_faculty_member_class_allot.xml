@@ -6,7 +6,7 @@
     android:background="@drawable/app_background"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.wg.collegeManagementSystem.hod.HodFacultyMemberAllotClassSubject">
+    tools:context="com.wg.collegeManagementSystem.hod.HodFacultyMemberAllotClass">
 
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
