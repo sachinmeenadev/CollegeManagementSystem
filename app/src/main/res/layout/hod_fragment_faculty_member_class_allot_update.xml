@@ -45,7 +45,7 @@
             android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Class (7 sem)"
+            android:hint="Enter Class (7 SEM)"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 

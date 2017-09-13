@@ -9,6 +9,7 @@ public class StudentSearchList {
     public String studentName;
     public String studentRegNumber;
     public String studentSem;
+    public String studentSemSection;
     public String studentSemBatch;
     public String studentContact;
 
@@ -42,6 +43,14 @@ public class StudentSearchList {
 
     public void setStudentSem(String studentSem) {
         this.studentSem = studentSem;
+    }
+
+    public String getStudentSemSection() {
+        return studentSemSection;
+    }
+
+    public void setStudentSemSection(String studentSemSection) {
+        this.studentSemSection = studentSemSection;
     }
 
     public String getStudentSemBatch() {

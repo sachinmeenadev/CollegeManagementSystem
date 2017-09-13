@@ -6,23 +6,82 @@
     android:background="@drawable/app_background"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.wg.collegeManagementSystem.hod.HodStudentSearch">
+    tools:context="com.wg.collegeManagementSystem.hod.HodStudentList">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/hod_fragment_student_search_input_student_info_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/hod_fragment_student_search_input_student_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter name or registration number"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Select Class"
+                android:textColor="@color/colorAccent"
+                android:textSize="10sp" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/hod_fragment_student_list_input_class_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/spinner_title"
+                android:textColor="@color/colorInputHint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Select Section"
+                android:textColor="@color/colorAccent"
+                android:textSize="10sp" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/hod_fragment_student_list_input_section_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/spinner_title"
+                android:textColor="@color/colorInputHint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Select Batcch"
+                android:textColor="@color/colorAccent"
+                android:textSize="10sp" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/hod_fragment_student_list_input_batch_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/spinner_title"
+                android:textColor="@color/colorInputHint" />
+        </LinearLayout>
+    </LinearLayout>
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/hod_fragment_student_search_btn_search"
+        android:id="@+id/hod_fragment_student_list_search_btn_search"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:background="@color/colorBtnLoginBg"
@@ -95,13 +154,13 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
-            <ListView
-                android:id="@+id/hod_fragment_student_search_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-            </ListView>
+        <ListView
+            android:id="@+id/hod_fragment_student_filter_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+        </ListView>
     </LinearLayout>
 
 </LinearLayout>

@@ -37,6 +37,7 @@ public class StudentSearchRepo {
                 studentSearchList.setStudentRegNumber(user.getString("studentRegNumber"));
                 studentSearchList.setStudentSem(user.getString("studentSem"));
                 studentSearchList.setStudentSemBatch(user.getString("studentSemBatch"));
+                studentSearchList.setStudentSemSection(user.getString("studentSemSection"));
                 studentSearchList.setStudentContact(user.getString("studentContact"));
 
                 studentSearchLists.add(studentSearchList);
