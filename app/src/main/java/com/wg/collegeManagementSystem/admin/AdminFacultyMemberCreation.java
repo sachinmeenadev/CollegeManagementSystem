@@ -71,9 +71,11 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
         inputFacultyDesignation = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_designation);
         inputFacultyEmail = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_email);
         inputFacultyContact = (EditText) view.findViewById(R.id.admin_fragment_faculty_member_input_contact);
+
         inputFacultyBranchSpinner = (AppCompatSpinner) view.findViewById(R.id.admin_fragment_faculty_member_input_branch_spinner);
         inputFacultyCurrentBranchSpinner = (AppCompatSpinner) view.findViewById(R.id.admin_fragment_faculty_member_input_current_branch_spinner);
         setBranchSpinner(0);
+
         listView = (ListView) view.findViewById(R.id.admin_fragment_faculty_member_list);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -112,8 +114,10 @@ public class AdminFacultyMemberCreation extends Fragment implements SwipeRefresh
                         newLblFacultyDesignation = adminFragmentFacultyUpdateInputDesignation.getText().toString().trim();
                         newLblFacultyEmail = adminFragmentFacultyUpdateInputEmail.getText().toString().trim();
                         newLblFacultyContact = adminFragmentFacultyUpdateInputContact.getText().toString().trim();
+
                         newLblFacultyBranch = adminFragmentFacultyUpdateInputFacultyBranchSpinner.getSelectedItem().toString().trim();
                         newLblFacultyCurrentBranch = adminFragmentFacultyUpdateInputFacultyCurrentBranchSpinner.getSelectedItem().toString().trim();
+
                         update(newLblFacultyName, newLblFacultyDesignation, newLblFacultyEmail, newLblFacultyContact, newLblFacultyBranch, newLblFacultyCurrentBranch);
                     }
                 });

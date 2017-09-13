@@ -77,6 +77,7 @@ public class HodFacultyMemberAllotClass extends Fragment implements SwipeRefresh
         inputClass = (EditText) view.findViewById(R.id.hod_fragment_faculty_member_class_allot_input_class);
         inputSection = (EditText) view.findViewById(R.id.hod_fragment_faculty_member_class_allot_input_section);
         inputBatch = (EditText) view.findViewById(R.id.hod_fragment_faculty_member_class_allot_input_batch);
+
         inputFacultySpinner = (AppCompatSpinner) view.findViewById(R.id.hod_fragment_faculty_member_class_allot_input_faculty_spinner);
         inputSubjectSpinner = (AppCompatSpinner) view.findViewById(R.id.hod_fragment_faculty_member_class_allot_input_subject_spinner);
         setHodFacultyAllotmentSpinner(0);
@@ -101,7 +102,7 @@ public class HodFacultyMemberAllotClass extends Fragment implements SwipeRefresh
                 hodFragmentFacultyClassAllotmentUpdateBatch.setText(lblBatch);
 
                 hodFragmentFacultyClassAllotmentUpdateInputFacultyNameSpinner = (AppCompatSpinner) mView.findViewById(R.id.hod_fragment_faculty_member_class_allot_input_update_faculty_spinner);
-                hodFragmentFacultyClassAllotmentUpdateInputSubjectNameSpinner = (AppCompatSpinner) mView.findViewById(R.id.hod_fragment_faculty_member_class_allot_input_update_faculty_spinner);
+                hodFragmentFacultyClassAllotmentUpdateInputSubjectNameSpinner = (AppCompatSpinner) mView.findViewById(R.id.hod_fragment_faculty_member_class_allot_input_update_subject_spinner);
                 setHodFacultyAllotmentSpinner(1);
 
                 builder.title("Action");
@@ -115,8 +116,10 @@ public class HodFacultyMemberAllotClass extends Fragment implements SwipeRefresh
                         newLblClass = hodFragmentFacultyClassAllotmentUpdateClass.getText().toString().trim();
                         newLblSection = hodFragmentFacultyClassAllotmentUpdateSection.getText().toString().trim();
                         newLblBatch = hodFragmentFacultyClassAllotmentUpdateBatch.getText().toString().trim();
+
                         newLblFacultyName = hodFragmentFacultyClassAllotmentUpdateInputFacultyNameSpinner.getSelectedItem().toString().trim();
                         newLblSubjectName = hodFragmentFacultyClassAllotmentUpdateInputSubjectNameSpinner.getSelectedItem().toString().trim();
+
                         update(newLblFacultyName, newLblSubjectName, newLblClass, newLblSection, newLblBatch);
                     }
                 });
@@ -224,7 +227,7 @@ public class HodFacultyMemberAllotClass extends Fragment implements SwipeRefresh
         SubjectRepo subjectRepo = new SubjectRepo();
 
         List<FacultyMemberList> list = facultyMemberRepo.getFacultyMember(getFacultyRequest(FACULTY_URL));
-        List<SubjectList> subjectList = subjectRepo.getSubject(getFacultyRequest(FACULTY_URL));
+        List<SubjectList> subjectList = subjectRepo.getSubject(getSubjectRequest(SUBJECT_URL));
 
         if (list.size() > 0) {
             faclutyMemberSpinnerArray.add("Select Faculty");
@@ -243,9 +246,11 @@ public class HodFacultyMemberAllotClass extends Fragment implements SwipeRefresh
                 subjectSpinnerArray.add(subjectList.get(i).getSubjectAbbr() + ", " + subjectList.get(i).getSubjectCode());
             }
         }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, faclutyMemberSpinnerArray);
-        ArrayAdapter<String> subjectAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, subjectSpinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<String> subjectAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, subjectSpinnerArray);
         subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         if (id == 0) {
