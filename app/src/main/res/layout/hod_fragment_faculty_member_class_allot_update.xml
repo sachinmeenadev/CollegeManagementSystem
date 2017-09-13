@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/hod_fragment_tutor_update_layout"
+    android:id="@+id/hod_fragment_faculty_member_class_allot_update_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,24 +10,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:text="Select Faculty Member Name"
+        android:text="Select Faculty Member"
         android:textColor="@color/colorAccent"
         android:textSize="10sp" />
 
     <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/hod_fragment_tutor_input_update_tutor_name_spinner"
+        android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_faculty_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/spinner_title"
+        android:textColor="@color/colorInputHint" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="Select Subject"
+        android:textColor="@color/colorAccent"
+        android:textSize="10sp" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_subject_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spinner_title"
         android:textColor="@color/colorInputHint" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/hod_fragment_tutor_input_update_tutor_class_layout"
+        android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_class_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/hod_fragment_tutor_input_update_tutor_class"
+            android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Class (7 sem)"
@@ -35,12 +50,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/hod_fragment_tutor_input_update_tutor_section_layout"
+        android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_section_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/hod_fragment_tutor_input_update_tutor_section"
+            android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Section (7CS-A)"
@@ -48,15 +63,15 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/hod_fragment_tutor_input_update_tutor_batch_layout"
+        android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_batch_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/hod_fragment_tutor_input_update_tutor_batch"
+            android:id="@+id/hod_fragment_faculty_member_class_allot_input_update_batch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Batch (A1)"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 </LinearLayout>

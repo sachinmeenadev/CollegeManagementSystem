@@ -22,7 +22,8 @@ import com.wg.collegeManagementSystem.app.config.ConnectivityReceiver;
 public class HodWelcome extends Fragment implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     public static final String TAG = HodWelcome.class.getSimpleName();
-    public WebView webView;
+    private WebView webView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

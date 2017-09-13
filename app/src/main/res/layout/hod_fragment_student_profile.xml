@@ -36,15 +36,14 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="1dp"
-                        android:layout_weight="0.98"
+                        android:layout_weight="1"
                         android:padding="2dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="1dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|center"
+                        android:layout_weight="2"
                         android:orientation="vertical"
                         android:padding="2dp">
 
@@ -694,7 +693,7 @@
                             android:layout_margin="1dp"
                             android:layout_weight="1"
                             android:padding="2dp"
-                            android:text="Pincode : "
+                            android:text="Pin : "
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp" />
 

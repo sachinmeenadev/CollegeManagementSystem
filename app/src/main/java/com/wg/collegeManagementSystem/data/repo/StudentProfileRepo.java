@@ -42,7 +42,7 @@ public class StudentProfileRepo {
                 studentProfileList.setStudentSemSection(user.getString("studentSemSection"));
                 studentProfileList.setStudentEmail(user.getString("studentEmail"));
                 studentProfileList.setStudentFatherName(user.getString("studentFatherName"));
-                studentProfileList.setStudentFatherContact(user.getString("studentFatherContact "));
+                studentProfileList.setStudentFatherContact(user.getString("studentFatherContact"));
                 studentProfileList.setStudentFatherEmail(user.getString("studentFatherEmail"));
                 studentProfileList.setStudentFatherOccupation(user.getString("studentFatherOccupation"));
                 studentProfileList.setStudentMotherName(user.getString("studentMotherName"));
@@ -58,7 +58,7 @@ public class StudentProfileRepo {
                 studentProfileList.setStudentPermanentAddress(user.getString("studentPermanentAddress"));
                 studentProfileList.setStudentCity(user.getString("studentCity"));
                 studentProfileList.setStudentState(user.getString("studentState"));
-                studentProfileList.setStudentPinCode(user.getString("studentPinCode"));
+                studentProfileList.setStudentPinCode(user.getString("studentPincode"));
                 studentProfileList.setStudentHobbies(user.getString("studentHobbies"));
                 studentProfileList.setCollegeBranchName(user.getString("collegeBranchName"));
 

@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.wg.collegeManagementSystem.R;
@@ -19,12 +22,21 @@ import com.wg.collegeManagementSystem.app.config.ConnectivityReceiver;
 public class AdminWelcome extends Fragment implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     public static final String TAG = AdminWelcome.class.getSimpleName();
+    private WebView webView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         checkConnection();
         View view = inflater.inflate(R.layout.admin_fragment_welcome, container, false);
+        String url = "https://www.powr.io/plugins/rss-feed/view?unique_label=3b3ff56e_1488530168&external_type=iframe";
+        webView = (WebView) view.findViewById(R.id.admin_welcome_web_view);
+        webView.loadUrl(url);
+        // Enable Javascript
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        // Force links and redirects to open in the WebView instead of in a browser
+        webView.setWebViewClient(new WebViewClient());
         return view;
     }
 

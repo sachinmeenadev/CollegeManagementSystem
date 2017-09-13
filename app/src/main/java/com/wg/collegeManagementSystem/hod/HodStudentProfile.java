@@ -35,7 +35,7 @@ public class HodStudentProfile extends Fragment implements SwipeRefreshLayout.On
     private String studentId;
     private ImageView imageView;
     private String studentName, studentRegNo, collegeBranchName, studentClass, studentBatch, studentSemSection, studentEmail, studentContact, studentFatherName, studentFatherContact, studentFatherEmail, studentFatherOccupation, studentMotherName, studentMotherContact, studentMotherEmail, studentMotherOccupation, studentLocalGuardianName, studentLocalGuardianContact, studentLocalGuardianEmail, studentLocalGuardianRelation, studentResidentType, studentLocalAddress, studentPermanentAddress, studentCity, studentState, studentPinCode, studentHobbies;
-    private String studentProfilePicture = "";
+    private String studentProfilePicture;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
@@ -174,6 +174,7 @@ public class HodStudentProfile extends Fragment implements SwipeRefreshLayout.On
             } else {
                 Toast.makeText(getActivity(), "No data in database", Toast.LENGTH_SHORT).show();
             }
+
             Picasso.with(getActivity())
                     .load(studentProfilePicture)
                     .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
