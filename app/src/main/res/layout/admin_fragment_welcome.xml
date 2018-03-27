@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:src="@drawable/piet_only_logo_round" />
+        android:src="@drawable/webguides" />
 
     <WebView
         android:id="@+id/admin_welcome_web_view"

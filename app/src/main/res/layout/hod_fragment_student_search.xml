@@ -6,7 +6,7 @@
     android:background="@drawable/app_background"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.wg.collegeManagementSystem.hod.HodStudentSearch">
+    tools:context=".hod.HodStudentSearch">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/hod_fragment_student_search_input_student_info_layout"

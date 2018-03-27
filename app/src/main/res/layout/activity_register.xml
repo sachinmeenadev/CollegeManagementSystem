@@ -7,13 +7,13 @@
     android:gravity="top"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.wg.collegeManagementSystem.LoginActivity">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:src="@drawable/piet_only_logo_round" />
+        android:src="@drawable/webguides" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:id="@+id/activity_register_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email (poornima.org)"
+                android:hint="Google Email ID"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
@@ -87,9 +87,22 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:src="@drawable/piet_only_name_logo" />
+        android:layout_weight=".5"
+        android:gravity="center"
+        android:text="Design &amp; Developed With &#10084; By"
+        android:textColor="#454545"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight=".5"
+        android:gravity="center"
+        android:text="WebGuides.in"
+        android:textColor="#454545"
+        android:textSize="15dp" />
 </LinearLayout>

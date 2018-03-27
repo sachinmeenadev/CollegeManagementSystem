@@ -6,7 +6,7 @@
     android:background="@drawable/app_background"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.wg.collegeManagementSystem.admin.AdminImportData">
+    tools:context=".admin.AdminImportData">
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/admin_fragment_import_data_btn_import_role"

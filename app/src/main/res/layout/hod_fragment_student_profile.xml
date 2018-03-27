@@ -6,7 +6,7 @@
     android:background="@drawable/app_background"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.wg.collegeManagementSystem.hod.HodStudentProfile">
+    tools:context=".hod.HodStudentProfile">
 
 
     <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"

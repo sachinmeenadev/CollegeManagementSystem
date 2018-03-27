@@ -9,16 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:src="@drawable/piet_only_logo" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="2"
-        android:src="@drawable/piet_only_name_logo" />
+        android:padding="40dp"
+        android:src="@drawable/webguides" />
 
     <ProgressBar
         android:id="@+id/splash_progressBar"
@@ -37,7 +29,7 @@
         android:layout_height="0dp"
         android:layout_weight=".5"
         android:gravity="center"
-        android:text="Design &amp; Developed By"
+        android:text="Design &amp; Developed With &#10084; By"
         android:textColor="#454545"
         android:textSize="12dp" />
 
@@ -47,7 +39,7 @@
         android:layout_marginBottom="10dp"
         android:layout_weight=".5"
         android:gravity="center"
-        android:text="Jerry"
+        android:text="WebGuides.in"
         android:textColor="#454545"
         android:textSize="15dp" />
 

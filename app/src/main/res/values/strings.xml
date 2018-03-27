@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">PIET - AIM</string>
-    <string name="app_name_admin">PIET - AIM Admin</string>
-    <string name="app_name_hod">PIET - AIM HOD</string>
+    <string name="app_name">CollegeERP</string>
+    <string name="app_name_admin">CollegeERP Admin</string>
+    <string name="app_name_hod">CollegeERP HOD</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="spinner_title">Select</string>

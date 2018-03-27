@@ -6,7 +6,7 @@
     android:background="@drawable/app_background"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.wg.collegeManagementSystem.admin.AdminSubjectCreation">
+    tools:context=".admin.AdminSubjectCreation">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/admin_fragment_subject_input_subject_name_layout"
