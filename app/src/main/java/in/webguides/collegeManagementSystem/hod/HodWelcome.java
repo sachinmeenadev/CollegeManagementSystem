@@ -45,7 +45,7 @@ public class HodWelcome extends Fragment implements ConnectivityReceiver.Connect
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("PIET-AIM, HOD Welcome");
+        getActivity().setTitle("HOD Welcome");
     }
 
     private void checkConnection() {
